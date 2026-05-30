@@ -1,0 +1,86 @@
+@startuml 05e_StateDiagram_User
+
+skinparam backgroundColor #ffffff
+skinparam state {
+    BackgroundColor     #ffffff
+    BorderColor         #000000
+    BorderThickness     1.5
+    FontName            Arial
+    FontSize            11
+    FontStyle           plain
+    ArrowColor          #000000
+    ArrowThickness      1.2
+}
+skinparam note {
+    BackgroundColor     #ffffff
+    BorderColor         #000000
+    FontName            Arial
+    FontSize            9
+}
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+' ═══════════════════════════════════════════════════════════════
+title State 5.5 — UserDTO  [IsActive × IsFaceIDRegistered]
+' Source  : Users.IsActive BIT DEFAULT 1  CHECK (0,1)
+'           Users.IsFaceIDRegistered BIT DEFAULT 0  CHECK (0,1)
+' Composite state from Cartesian product of two boolean flags.
+' ═══════════════════════════════════════════════════════════════
+
+' ── Composite states (4 = 2 × 2) ─────────────────────────────
+state "Active / No FaceID\n(IsActive=1, IsFaceIDRegistered=0)" as A_NF
+state "Active / FaceID Registered\n(IsActive=1, IsFaceIDRegistered=1)" as A_F
+state "Locked / No FaceID\n(IsActive=0, IsFaceIDRegistered=0)" as L_NF
+state "Locked / FaceID Registered\n(IsActive=0, IsFaceIDRegistered=1)" as L_F
+
+' ── Initial → Active/NoFaceID ─────────────────────────────────
+[*] --> A_NF : EmployeeService.AddEmployeeAsync(UserDTO)\n/ EmployeeRepository.UpsertEmployeeAsync(UserDTO)\n  EXEC sp_UpsertEmployee  (OUTPUT: UserID)\n  [IsActive = 1, IsFaceIDRegistered = 0]\n  + SecurityHelper.GenerateRandomPassword()\n  + EmailSmtpHelper.SendEmailAsync(email, subject, body)
+
+' ── FaceID Registration (Active states only) ──────────────────
+A_NF --> A_F  : UserBLL.RegisterFaceIDAsync(username, password, faceData)\n/ AesHelper.EncryptBytes(faceData) [static]\n  UserRepository.RegisterFaceIDAsync(userId, encryptedData)\n  EXEC sp_RegisterFaceID  [IsFaceIDRegistered = 1]
+
+' FaceID update / re-registration while already registered
+A_F  --> A_F  : UserBLL.RegisterFaceIDAsync(username, password, faceData)\n[re-registration: capture new face data]\n/ AesHelper.EncryptBytes(faceData) [static]\n  UserRepository.RegisterFaceIDAsync(userId, encryptedData)\n  EXEC sp_RegisterFaceID  [IsFaceIDRegistered stays 1]
+
+' ── Lock / Unlock (no FaceID path) ───────────────────────────
+A_NF --> L_NF : EmployeeService.ToggleActiveAsync(userId, false)\n/ EmployeeRepository.ToggleActiveAsync()\n  EXEC sp_ToggleEmployeeActive  [IsActive = 0]\n  + SystemAuditHelper.LogAsync(adminId, \"TOGGLE_EMPLOYEE\",\n    \"User\", userId)
+
+L_NF --> A_NF : EmployeeService.ToggleActiveAsync(userId, true)\n/ EmployeeRepository.ToggleActiveAsync()\n  EXEC sp_ToggleEmployeeActive  [IsActive = 1]\n  + SystemAuditHelper.LogAsync(adminId, \"TOGGLE_EMPLOYEE\",\n    \"User\", userId)
+
+' ── Lock / Unlock (with FaceID path) ─────────────────────────
+A_F  --> L_F  : EmployeeService.ToggleActiveAsync(userId, false)\n/ EXEC sp_ToggleEmployeeActive  [IsActive = 0]\n  + SystemAuditHelper.LogAsync(...)
+
+L_F  --> A_F  : EmployeeService.ToggleActiveAsync(userId, true)\n/ EXEC sp_ToggleEmployeeActive  [IsActive = 1]\n  + SystemAuditHelper.LogAsync(...)
+
+' ── Locked state: FaceID registration is never valid ─────────
+note right of L_NF
+  Locked users CANNOT log in.
+  LoginThrottleService / AppState
+  never populate CurrentUser for
+  IsActive = 0 accounts.
+  (UserBLL.LoginAsync checks IsActive)
+end note
+
+note right of A_F
+  FaceID is used if
+  IsFaceIDRegistered = 1 AND
+  IsActive = 1.
+  Threshold: AppConfig.FaceId.Threshold
+  (default 0.65).
+  FaceIdManager.CompareHistogram() ≥ 0.65
+  → UserBLL.LoginWithFaceIDAsync()
+end note
+
+note right of L_F
+  IsFaceIDRegistered remains 1
+  even when locked.
+  Upon re-activation the employee
+  can again use Face ID login
+  without re-registration.
+end note
+
+' ── Terminal ──────────────────────────────────────────────────
+L_NF --> [*] : EmployeeService.DeleteEmployeeAsync(id)\n[soft delete or admin removes account]
+L_F  --> [*] : EmployeeService.DeleteEmployeeAsync(id)
+
+@enduml

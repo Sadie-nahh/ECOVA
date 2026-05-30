@@ -1,0 +1,325 @@
+@startuml 02d_ClassDiagram_GUI
+' ============================================================
+'  ECOVA -- Class Diagram 2.4: GUI Layer + Common Layer
+'  Forms, UserControls, GUI Services, Common Singletons,
+'  Static Helpers, Enumerations
+'  Nguon goc: implementation_plan.md lines 466-607
+' ============================================================
+
+skinparam linetype ortho
+skinparam ranksep 55
+skinparam nodesep 35
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 10
+
+skinparam class {
+    BackgroundColor          #FFFFFF
+    BorderColor              #000000
+    BorderThickness          1.5
+    FontColor                #000000
+    FontStyle                bold
+    FontSize                 11
+    AttributeFontColor       #000000
+    AttributeFontSize        10
+    HeaderBackgroundColor    #000000
+    HeaderFontColor          #FFFFFF
+    ArrowColor               #000000
+    ArrowFontColor           #000000
+    ArrowFontSize            9
+}
+
+hide circle
+hide stereotypes
+
+' ============================================================
+' COMMON -- Singletons
+' ============================================================
+
+class "AppState" as AppState <<singleton>> {
+    - _instance     : AppState   {static}
+    - _lock         : object     {static}
+    - _currentUser  : UserDTO?
+    --
+    + Instance      : AppState   {static}
+    + CurrentUser   : UserDTO?
+    + IsLoggedIn    : bool
+    + Logout()      : void
+}
+
+class "LanguageManager" as LanguageManager <<singleton>> {
+    - _lazy             : Lazy<LanguageManager>  {static}
+    - _currentLanguage  : AppLanguage
+    - _vi               : Dictionary<string,string>
+    - _en               : Dictionary<string,string>
+    --
+    + Instance          : LanguageManager  {static}
+    + CurrentLanguage   : AppLanguage
+    + IsVietnamese      : bool
+    + IsEnglish         : bool
+    + ToggleLabel       : string
+    + Get(key)          : string
+    + ToggleLanguage()  : void
+    + SetLanguage(lang) : void
+    + event LanguageChanged
+}
+
+' ============================================================
+' COMMON -- Enumerations (per plan lines 560-606)
+' 5 enums: AppLanguage, ContractStatus, OrderStatus,
+'          SampleStatus, EmailStatus, ApprovalStatus
+' ============================================================
+
+enum "AppLanguage" as AppLanguage {
+    Vietnamese = 0
+    English = 1
+}
+
+enum "ContractStatus" as ContractStatus {
+    Active = 0
+    Pending = 1
+    Expiring = 2
+    Expired = 3
+    Cancelled = 4
+}
+
+enum "OrderStatus" as OrderStatus {
+    New = 0
+    Planned = 1
+    Completed = 2
+}
+
+enum "SampleStatus" as SampleStatus {
+    New = 0
+    Analyzing = 1
+    Cancelled = 2
+    Completed = 3
+}
+
+enum "EmailStatus" as EmailStatus {
+    Pending = 0
+    Sent = 1
+    Failed = 2
+}
+
+enum "ApprovalStatus" as ApprovalStatus {
+    Pending = 0
+    Approved = 1
+}
+
+LanguageManager --> AppLanguage
+
+' ============================================================
+' COMMON -- Static Helpers
+' ============================================================
+
+class "SecurityHelper" as SecurityHelper <<static>> {
+    --
+    + HashPassword(pw) : string              {static}
+    + VerifyPassword(pw, hash) : bool        {static}
+    + GenerateRandomPassword() : string      {static}
+}
+
+class "AesHelper" as AesHelper <<static>> {
+    --
+    + Encrypt(plain) : string                {static}
+    + Decrypt(cipher) : string               {static}
+    + EncryptBytes(data) : string            {static}
+    + DecryptBytes(b64) : byte[]?            {static}
+}
+
+class "PdfExportHelper" as PdfExportHelper <<static>> {
+    --
+    + GenerateStructuredPdf(...) : string    {static}
+    + GenerateTestResultPdf(...) : string    {static}
+}
+
+class "EmailSmtpHelper" as EmailSmtpHelper <<static>> {
+    --
+    + Configure(server, port, user, pw)      {static}
+    + SendEmailAsync(to, subj, body) : Task<bool>  {static}
+    + Shutdown() : void                      {static}
+}
+
+' ============================================================
+' GUI -- Services (static / IDisposable)
+' ============================================================
+
+class "LoginThrottleService" as LoginThrottleService <<static>> {
+    - _attempts      : Dictionary<string,..>  {static}
+    - MaxAttempts    : int                    {from AppConfig, default 5}
+    - LockoutMinutes : int                    {from AppConfig, default 5}
+    --
+    + IsLockedOut(user, out remaining) : bool  {static}
+    + RecordFailure(user) : void               {static}
+    + RecordSuccess(user) : void               {static}
+    + RemainingAttempts(user) : int            {static}
+}
+
+class "SessionTimeoutService" as SessionTimeoutService <<static>> {
+    - _timer     : Timer?    {static}
+    - _onTimeout : Action?   {static}
+    --
+    + Start(minutes, onTimeout) : void  {static}
+    + Reset() : void                    {static}
+    + Stop() : void                     {static}
+    + IsRunning : bool                  {static}
+}
+
+class "FaceIdManager" as FaceIdManager <<static>> <<internal>> {
+    - _faceNet     : Lazy<Net>  {DNN model, static}
+    - BBOX_PADDING : 0.15       {static}
+    --
+    + DrawFaceGuide(frame) : void           {static}
+    + ExtractNormalizedFace(frame) : byte[] {static}
+    + CompareHistogram(a, b) : double       {static}
+}
+
+class "VoiceSearchService" as VoiceSearchService {
+    - _model      : Vosk.Model
+    - _recordCts  : CancellationTokenSource
+    --
+    + ListenAsync() : Task<string>
+    + Cancel() : void
+    + Dispose() : void
+    + event OnPartialResult
+}
+
+VoiceSearchService ..|> "IDisposable"
+
+' ============================================================
+' GUI -- Forms (boundary)
+' ============================================================
+
+class "Login" as Login <<boundary>> {
+    ' partial class (3 files: Login.cs, Login.FaceID.cs, Login.ForgotPassword.cs)
+    - _userBLL : IUserBLL
+    --
+    ' Login.FaceID.cs: uses FaceIdManager (internal static)
+    ' Login.ForgotPassword.cs: uses RandomNumberGenerator,
+    '   EmailSmtpHelper, _userBLL.ResetPasswordByEmailAsync()
+}
+
+class "MainForm" as MainForm <<boundary>> {
+    ' uses AppState.Instance, LanguageManager.Instance
+    ' creates SessionTimeoutService internally
+}
+
+class "ContractCreateForm" as ContractCreateForm <<boundary>> {
+    - _contractService : IContractService
+    - _validator       : ContractValidator
+}
+
+class "ContractEditForm" as ContractEditForm <<boundary>> {
+    - _contractService : IContractService
+}
+
+class "CustomerEditForm" as CustomerEditForm <<boundary>> {
+    - _customerService : ICustomerService
+}
+
+class "EmployeeAddEditForm" as EmployeeAddEditForm <<boundary>> {
+    - _employeeService : IEmployeeService
+}
+
+class "EditProfileForm" as EditProfileForm <<boundary>> {
+    - _userBLL : IUserBLL
+}
+
+class "SendMailForm" as SendMailForm <<boundary>> {
+    ' calls EmailSmtpHelper (static)
+}
+
+class "SmtpSetupForm" as SmtpSetupForm <<boundary>> {
+    ' calls EmailSmtpHelper (static)
+}
+
+class "AddAreaForm"        as AddAreaForm        <<boundary>>
+class "AddParameterForm"   as AddParameterForm   <<boundary>>
+class "PrintBarcodeForm"   as PrintBarcodeForm   <<boundary>>
+
+class "VoiceDownloadForm" as VoiceDownloadForm <<boundary>> {
+    ' calls VoiceModelManager.EnsureReadyAsync() (static)
+}
+
+' ============================================================
+' GUI -- UserControls (boundary -- loaded vao MainForm.pnlContent)
+' ============================================================
+
+class "DashboardUC" as DashboardUC <<boundary>> {
+    ' Service Locator: IContractService, IOrderRepository,
+    '   ISampleRepository, ITestResultRepository,
+    '   AiIntegrationService, VoiceSearchService
+}
+
+class "CustomerManagementUC" as CustomerManagementUC <<boundary>> {
+    - _customerService : ICustomerService
+    - _contractService : IContractService
+}
+
+class "ContractListUC" as ContractListUC <<boundary>> {
+    - _contractService : IContractService
+    - _customerService : ICustomerService
+}
+
+class "SampleConfigUC" as SampleConfigUC <<boundary>> {
+    ' Service Locator: IPlanningService
+}
+
+class "ParameterConfigUC" as ParameterConfigUC <<boundary>> {
+    ' Service Locator: IPlanningService
+}
+
+class "EnterResultUC" as EnterResultUC <<boundary>> {
+    ' Service Locator: IPlanningService, ITestingService
+}
+
+class "LabResultUC" as LabResultUC <<boundary>> {
+    ' Service Locator: IPlanningService, ITestingService
+}
+
+class "DirectorApprovalUC" as DirectorApprovalUC <<boundary>> {
+    ' Service Locator: IPlanningService, ITestingService, IExportService
+}
+
+class "EmployeeManagementUC" as EmployeeManagementUC <<boundary>> {
+    ' Service Locator: IEmployeeService
+}
+
+class "NotificationUC" as NotificationUC <<boundary>> {
+    - _notifService : INotificationService
+}
+
+' ============================================================
+' QUAN HE Forms --> Services
+' ============================================================
+
+Login               --> "IUserBLL"
+Login               --> FaceIdManager        : "<<internal static>>"
+Login               ..> LoginThrottleService : "<<static call>>"
+Login               ..> EmailSmtpHelper      : "<<static call>>"
+Login               ..> AesHelper            : "<<static call>>"
+
+MainForm            --> AppState
+MainForm            --> LanguageManager
+MainForm            --> SessionTimeoutService : "<<creates>>"
+
+ContractCreateForm  --> "IContractService"
+ContractCreateForm  --> "ContractValidator"
+ContractEditForm    --> "IContractService"
+CustomerEditForm    --> "ICustomerService"
+EmployeeAddEditForm --> "IEmployeeService"
+EditProfileForm     --> "IUserBLL"
+SendMailForm        ..> EmailSmtpHelper      : "<<static call>>"
+SmtpSetupForm       ..> EmailSmtpHelper      : "<<static call>>"
+
+DashboardUC          --> "IContractService"
+DashboardUC          --> "AiIntegrationService"
+DashboardUC          --> VoiceSearchService
+CustomerManagementUC --> "ICustomerService"
+CustomerManagementUC --> "IContractService"
+ContractListUC       --> "IContractService"
+ContractListUC       --> "ICustomerService"
+NotificationUC       --> "INotificationService"
+
+@enduml

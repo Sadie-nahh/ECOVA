@@ -1,0 +1,75 @@
+@startuml 05a_StateDiagram_Contract
+
+' ── Styling: traditional black & white UML state diagram ──────────────────
+skinparam backgroundColor #ffffff
+skinparam state {
+    BackgroundColor     #ffffff
+    BorderColor         #000000
+    BorderThickness     1.5
+    FontName            Arial
+    FontSize            11
+    FontStyle           plain
+    ArrowColor          #000000
+    ArrowThickness      1.2
+}
+skinparam note {
+    BackgroundColor     #ffffff
+    BorderColor         #000000
+    FontName            Arial
+    FontSize            9
+}
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+' ═══════════════════════════════════════════════════════════════
+title State 5.1 — ContractDto  [ContractStatus]
+' Source  : Contracts.Status INT  CHECK (0,1,2,3,4)
+' Enum    : ContractStatus  {Active=0, Pending=1, Expiring=2,
+'                            Expired=3, Cancelled=4}
+' Trigger : sp_UpdateContractStatuses  (scheduled daily job)
+' ═══════════════════════════════════════════════════════════════
+
+' ── States ────────────────────────────────────────────────────
+state "Active (0)" as Active
+state "Pending (1)" as Pending
+state "Expiring (2)" as Expiring
+state "Expired (3)" as Expired
+state "Cancelled (4)" as Cancelled
+
+' ── Initial → Active ──────────────────────────────────────────
+[*] --> Active : ContractService.CreateContractAsync()\n/ ContractRepository.AddContractAsync()\n  EXEC sp_AddContract
+
+' ── Active → Expiring (automated by scheduled SP) ─────────────
+Active --> Expiring : sp_UpdateContractStatuses\n[ValidTo − now ≤ 30 days]
+
+' ── Active ↔ Pending (manual admin toggle) ───────────────────
+Active  --> Pending  : Admin suspends contract\n/ ContractService.UpdateContractAsync(ContractDto)\n  ContractRepository.UpdateContractAsync()\n  EXEC sp_UpdateContract  [Status = 1]
+Pending --> Active   : Admin re-activates\n/ ContractService.UpdateContractAsync(ContractDto)\n  ContractRepository.UpdateContractAsync()\n  EXEC sp_UpdateContract  [Status = 0]
+
+' ── Expiring → Expired (automated) ───────────────────────────
+Expiring --> Expired : sp_UpdateContractStatuses\n[ValidTo < now]
+
+' ── Expired → terminal ────────────────────────────────────────
+Expired --> [*] : Contract archived\n(read-only)
+
+' ── Cancelled (from Active or Pending) → terminal ─────────────
+Active  --> Cancelled : Admin cancels contract\n/ ContractService.UpdateContractAsync(ContractDto)\n  ContractRepository.UpdateContractAsync()\n  EXEC sp_UpdateContract  [Status = 4]
+Pending --> Cancelled : Admin cancels contract\n/ ContractService.UpdateContractAsync(ContractDto)\n  ContractRepository.UpdateContractAsync()\n  EXEC sp_UpdateContract  [Status = 4]
+Cancelled --> [*] : Contract permanently closed\n(read-only)
+
+' ── Explanatory note ─────────────────────────────────────────
+note right of Expiring
+  Triggered by daily scheduled job
+  calling sp_UpdateContractStatuses.
+  Notification email queued via
+  NotificationService.RunDailyDeadlineCheckAsync()
+  → EmailQueue.Status = Pending (0)
+end note
+
+note right of Cancelled
+  DB CHECK: Status IN (0,1,2,3,4)
+  No transition FROM Cancelled or Expired
+  (terminal states — read-only in UI)
+end note
+
+@enduml

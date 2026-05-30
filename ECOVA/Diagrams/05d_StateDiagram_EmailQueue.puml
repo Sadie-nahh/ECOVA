@@ -1,0 +1,72 @@
+@startuml 05d_StateDiagram_EmailQueue
+
+skinparam backgroundColor #ffffff
+skinparam state {
+    BackgroundColor     #ffffff
+    BorderColor         #000000
+    BorderThickness     1.5
+    FontName            Arial
+    FontSize            11
+    FontStyle           plain
+    ArrowColor          #000000
+    ArrowThickness      1.2
+}
+skinparam note {
+    BackgroundColor     #ffffff
+    BorderColor         #000000
+    FontName            Arial
+    FontSize            9
+}
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+' ═══════════════════════════════════════════════════════════════
+title State 5.4 — EmailQueueDTO  [EmailStatus]
+' Source  : EmailQueue.Status INT  CHECK (0,1,2)
+' Enum    : EmailStatus  {Pending=0, Sent=1, Failed=2}
+' Table   : EmailQueue (EmailID, Recipient, Subject, Body,
+'           AttachmentPath, Status, CreatedTime, Type)
+' ═══════════════════════════════════════════════════════════════
+
+' ── States ────────────────────────────────────────────────────
+state "Pending (0)" as Pending
+state "Sent (1)"    as Sent
+state "Failed (2)"  as Failed
+
+' ── Initial → Pending ─────────────────────────────────────────
+[*] --> Pending : NotificationService.RunDailyDeadlineCheckAsync()\n[Contract: ValidTo − now ≤ 30 days]\n/ INSERT INTO EmailQueue\n  (Status = 0, Type = \"CONTRACT_EXPIRY\")\n\nOR\n\nNotificationService.SendBroadcastEmailAsync()\n/ INSERT INTO EmailQueue\n  (Status = 0, Type = \"BROADCAST\")
+
+' ── Pending → Sent ────────────────────────────────────────────
+Pending --> Sent : EmailSmtpHelper.SendEmailAsync()\n  SmtpClient.SendMailAsync() success\n/ UPDATE EmailQueue SET Status = 1
+
+' ── Pending → Failed ──────────────────────────────────────────
+Pending --> Failed : EmailSmtpHelper.SendEmailAsync()\n  SmtpClient.SendMailAsync() throws\n/ UPDATE EmailQueue SET Status = 2
+
+' ── Failed can be retried (re-queue) ──────────────────────────
+Failed --> Pending : Manual retry / admin re-queues\n[UPDATE EmailQueue SET Status = 0]
+
+' ── Terminal states ────────────────────────────────────────────
+Sent   --> [*] : Email delivered —\nrecord retained for audit
+Failed --> [*] : Admin dismisses failure\n(no further retry)
+
+' ── Notes ─────────────────────────────────────────────────────
+note right of Pending
+  IX_EmailQueue_Pending index on
+  EmailQueue(Status) WHERE Status = 0
+  optimises daily batch processing.
+
+  Scheduler calls
+  NotificationService.RunDailyDeadlineCheckAsync()
+  (triggered externally, e.g. Windows Task Scheduler
+   or MainForm timer).
+end note
+
+note right of Failed
+  NotificationService.SendBroadcastEmailAsync()
+  returns (Sent: int, Failed: int,
+           FailedEmails: List<string>)
+  — caller receives failure details.
+  DB CHECK: Status IN (0,1,2)
+end note
+
+@enduml

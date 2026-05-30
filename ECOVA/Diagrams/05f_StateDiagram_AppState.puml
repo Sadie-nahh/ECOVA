@@ -1,0 +1,89 @@
+@startuml 05f_StateDiagram_AppState
+
+skinparam backgroundColor #ffffff
+skinparam state {
+    BackgroundColor     #ffffff
+    BorderColor         #000000
+    BorderThickness     1.5
+    FontName            Arial
+    FontSize            11
+    FontStyle           plain
+    ArrowColor          #000000
+    ArrowThickness      1.2
+}
+skinparam note {
+    BackgroundColor     #ffffff
+    BorderColor         #000000
+    FontName            Arial
+    FontSize            9
+}
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+' ═══════════════════════════════════════════════════════════════
+title State 5.6 — AppState  [Session Lifecycle]
+' Source  : AppState singleton  (Common layer)
+'           AppState._currentUser : UserDTO?  (private)
+'           AppState.CurrentUser property (public)
+'           AppState.IsLoggedIn bool (public)
+' ═══════════════════════════════════════════════════════════════
+
+' ── States ────────────────────────────────────────────────────
+state "NotAuthenticated\n(CurrentUser = null,\n IsLoggedIn = false)" as NotAuth
+state "Authenticated\n(CurrentUser ≠ null,\n IsLoggedIn = true)" as Auth
+state "LockedOut\n(LoginThrottleService:\n ≥ 5 failed attempts,\n locked 5 minutes)" as Locked
+
+' ── Application startup ───────────────────────────────────────
+[*] --> NotAuth : Application starts\n(Program.cs — Build() + Run())\n[AppState.Instance.CurrentUser = null]
+
+' ── Login paths: NotAuthenticated → Authenticated ─────────────
+NotAuth --> Auth : UserBLL.LoginAsync(username, password)\n[UserDTO.IsActive = true AND\n SecurityHelper.VerifyPassword(input, hash) = true]\n/ AppState.Instance.CurrentUser = UserDTO\n  SystemAuditHelper.LogAsync(userId, "LOGIN", "User", userId)
+
+NotAuth --> Auth : UserBLL.LoginWithFaceIDAsync(username)\n[UserDTO.IsActive = true AND\n FaceIdManager.CompareHistogram() ≥ AppConfig.FaceId.Threshold]\n/ AppState.Instance.CurrentUser = UserDTO
+
+' ── Lockout path ──────────────────────────────────────────────
+NotAuth --> Locked : LoginThrottleService.RecordFailure(username)\n[RecordFailure count ≥ MaxAttempts (default = 5)]\n/ LoginThrottleService timer starts\n  (LockoutMinutes = 5, from AppConfig)
+
+' ── Lockout expiry ────────────────────────────────────────────
+Locked --> NotAuth : LoginThrottleService timer elapsed\n(LockoutMinutes × 60 seconds)\n/ _attempts[username] cleared
+
+' ── Logout paths: Authenticated → NotAuthenticated ─────────────
+Auth --> NotAuth : UserBLL.LogoutAsync()\n/ AppState.Instance.Logout()  [CurrentUser = null]\n  [Note: no LOGOUT audit log — only LOGIN is recorded\n   via SystemAuditHelper.LogAsync]
+
+Auth --> NotAuth : SessionTimeoutService timer fires\n[Idle for 30 minutes]\n/ SessionTimeoutService.Stop()\n  AppState.Instance.Logout()\n  Login form shown
+
+' ── Application exit ──────────────────────────────────────────
+Auth    --> [*] : Application closed\n(MainForm.FormClosing)\n[EmailSmtpHelper.Shutdown() called]
+NotAuth --> [*] : Application closed\n(Login form closed)
+Locked  --> [*] : Application closed\nduring lockout
+
+' ── Notes ─────────────────────────────────────────────────────
+note right of Auth
+  AppState is «singleton»:
+  AppState.Instance (double-check lock pattern)
+  CurrentUser exposes logged-in UserDTO.
+  RoleID in UserDTO controls role-based UI:
+  - IsReadOnlyForRole() → Director sees dashboard only.
+  - Each UC reads AppState.Instance.CurrentUser.RoleID.
+  [UserDTO.IsActive = false] accounts are REJECTED
+  at UserBLL.LoginAsync() — they never reach Authenticated.
+end note
+
+note right of Locked
+  LoginThrottleService is «static»:
+  - _attempts : Dictionary<string, (int Count, DateTime LockUntil)>
+  - MaxAttempts   = AppConfig.Login.MaxAttempts (default 5)
+  - LockoutMinutes = AppConfig.Login.LockoutMinutes (default 5)
+  IsLockedOut(username, out remaining) returns true
+  when LockUntil > DateTime.Now.
+end note
+
+note bottom of NotAuth
+  SessionTimeoutService is «static»:
+  - Started in MainForm constructor:
+      SessionTimeoutService.Start(minutes: 30, onTimeout: () => ...)
+  - Reset() called on any user interaction.
+  - Stop() called on manual logout.
+end note
+
+@enduml

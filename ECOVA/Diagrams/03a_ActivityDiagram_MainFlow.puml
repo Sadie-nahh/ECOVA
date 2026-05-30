@@ -1,0 +1,180 @@
+@startuml 03a_ActivityDiagram_MainFlow
+title Environmental Monitoring Process - Activity 3.1
+skinparam defaultTextAlignment left
+skinparam ActivityBorderColor #000000
+skinparam ActivityBackgroundColor #FAFAFA
+skinparam ActivityDiamondBorderColor #333333
+skinparam ActivityDiamondBackgroundColor #FFFDE7
+skinparam ArrowColor #333333
+skinparam ActivityBarColor #333333
+skinparam FontName Arial
+skinparam ActivityFontSize 11
+skinparam NoteBackgroundColor #FFFDE7
+skinparam NoteBorderColor #BBBBBB
+skinparam swimlaneBorderColor #666666
+
+' ================================================================
+' SWIMLANE 1: ADMIN (R01)
+' ================================================================
+|#E8EAF6| Admin (R01) |
+start
+
+:Create new employee account;
+note right
+  [-> Seq 4.8]
+  EmployeeService.AddEmployeeAsync(UserDTO)
+  SecurityHelper.HashPassword(inputPassword)
+  EmailSmtpHelper.SendEmailAsync(email, generatedPwd)
+end note
+
+' ================================================================
+' SWIMLANE 2: SALES (R03)
+' ================================================================
+|#FFF8E1| Sales (R03) |
+
+:Add customer information;
+note right
+  CustomerService.AddCustomerAsync(CustomerDto)
+end note
+
+:Enter new contract information;
+
+:ContractValidator validates contract;
+note right
+  ContractService.CreateContractAsync(CreateContractRequest)
+  ContractValidator.ValidateAndThrow(CreateContractRequest)
+  (inherits AbstractValidator<CreateContractRequest>)
+end note
+
+if (ValidateAndThrow() throws ValidationException?) then ([Yes - error found])
+  :Display validation error message;
+  back to :Enter new contract information;
+else ([No - valid])
+  :Save contract to database;
+  note right
+    [-> Seq 4.3]
+    ContractRepository.AddContractAsync()
+    -> SqlHelper: sp_CreateContract
+  end note
+  :Predict renewal probability with AI;
+  note right
+    AiIntegrationService.PredictRenewal(customerFeedback)
+    -> returns AiPredictionResponse
+       (RenewalProbabilityScore, IsPollutionWarning)
+  end note
+  :Write contract creation audit log;
+  note right
+    SystemAuditHelper.LogAsync("CREATE_CONTRACT", contractId)
+  end note
+endif
+
+' ================================================================
+' SWIMLANE 3: PLANNING (R06)
+' ================================================================
+|#E8F5E9| Planning (R06) |
+
+:Initialize new environmental sampling area;
+note right
+  [-> Seq 4.7]
+  PlanningService.CreateSamplingAreaAsync()
+end note
+
+if (Create new sampling Order?) then ([Yes])
+  :Select environment sample type;
+  note right
+    ConstraintMenu - 3 types:
+    - Air
+    - Wastewater / Surface water
+    - Soil / Sediment
+  end note
+  :Create Order for monitoring batch;
+  note right
+    OrderRepository.CreateOrderAsync(OrderDTO)
+  end note
+else ([No - use existing Order])
+endif
+
+:Save sampling plan;
+note right
+  PlanningService.SaveSamplingPlanAsync(sampleParameterPlanDTO)
+  -> SamplingPlanRepository.SaveSamplingPlanAsync()
+  -> SqlHelper: sp_SaveSamplingPlan
+end note
+
+' ================================================================
+' FORK: FIELD (R04) || LAB (R05) -- parallel
+' ================================================================
+fork
+  |#FFEBEE| Field Sampler (R04) |
+  :Enter field sample results;
+  note right
+    [-> Seq 4.4]
+    TestingService.EnterTestResultAsync(SampleDTO)
+    -> SampleRepository.UpdateSampleAsync()
+    DB Trigger: trg_AutoWarning
+      (SET IsWarning=1 if exceeds QCVN threshold)
+    DB Trigger: trg_AuditHistory
+      (INSERT INTO ResultHistory)
+  end note
+
+fork again
+  |#E3F2FD| Lab Technician (R05) |
+  :Enter laboratory test results;
+  note right
+    [-> Seq 4.4]
+    TestingService.EnterTestResultAsync(TestResultDTO)
+    -> TestResultRepository.SaveTestResultAsync()
+    DB Trigger: trg_AutoWarning
+      (SET IsWarning=1 if exceeds QCVN threshold)
+    DB Trigger: trg_AuditHistory
+      (INSERT INTO ResultHistory)
+  end note
+
+end fork
+
+' ================================================================
+' SWIMLANE 5: QA (R07)
+' ================================================================
+|#FFFDE7| QA Officer (R07) |
+
+:Approve monitoring order;
+note right
+  [-> Seq 4.5]
+  ApprovalService.ApproveOrderAsync(orderId)
+  -> OrderRepository.ApproveOrderAsync()
+  -> SqlHelper: sp_ApproveOrder
+end note
+
+:Compile and export PDF report;
+note right
+  ExportService.ExportStructuredPdfAsync(orderId)
+  -> PdfExportHelper.GeneratePdf()
+  -> save FinalReportPath to Orders table
+end note
+
+if (Results exceed QCVN threshold?) then ([Yes - IsWarning = 1])
+  :Display warning and highlight violations;
+  note right
+    ApprovalService.CheckQcvnViolation(orderId)
+    -> highlight rows where TestResult.IsWarning = 1
+    -> mark red in PDF report
+  end note
+else ([No - within allowed limits])
+  :Display normal results;
+endif
+
+' ================================================================
+' SWIMLANE 6: DIRECTOR (R02) -- read-only
+' ================================================================
+|#EDE7F6| Director (R02) |
+
+:View consolidated dashboard;
+note right
+  DirectorApprovalUC (read-only)
+  IsReadOnlyForRole("R02") = true
+  AppState.Instance.CurrentUser.RoleID = "R02"
+  View only - no data modification allowed
+end note
+
+stop
+@enduml

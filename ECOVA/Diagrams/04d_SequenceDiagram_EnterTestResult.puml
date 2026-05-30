@@ -1,0 +1,109 @@
+@startuml 04d_SequenceDiagram_EnterTestResult
+title Sequence 4.4 — Enter Test Result (Field / Lab)
+skinparam defaultTextAlignment left
+skinparam SequenceArrowThickness 1
+skinparam SequenceBoxBorderColor #000000
+skinparam SequenceLifeLineBorderColor #000000
+skinparam SequenceParticipantBackgroundColor #FFFFFF
+skinparam SequenceParticipantBorderColor #000000
+skinparam NoteBackgroundColor #FFFDE7
+skinparam NoteBorderColor #AAAAAA
+skinparam FontName Arial
+skinparam FontSize 10
+skinparam SequenceGroupBorderColor #555555
+skinparam SequenceGroupBackgroundColor #F5F5F5
+
+' ── Lifelines (7) — plan: KTV, EnterResultUC, ResultValidator,
+'    TestingService, TestResultRepository, SqlHelper, DB (Triggers)
+actor       "Field / Lab Technician"  as KTV
+participant ":EnterResultUC"          as UC          <<boundary>>
+participant ":ResultValidator"        as Validator   <<control>>
+participant ":TestingService"         as TestService <<control>>
+participant ":TestResultRepository"   as ResultRepo  <<entity>>
+participant ":SqlHelper"              as SqlHelper   <<entity>>
+participant "DB Triggers"             as DB          <<entity>>
+
+note over UC, DB
+  LabResultUC uses the identical flow — only the boundary form class differs.
+  TestingService.EnterTestResultAsync() is shared by both EnterResultUC and LabResultUC.
+end note
+
+' ── Step 1: Technician selects sample and enters result ──────────
+KTV -> UC : Select sample (sampleId, paramId), enter ResultValue,\nclick "Save"
+activate UC
+
+' ── Step 2: Client-side FluentValidation ─────────────────────────
+UC -> Validator : Validate(testResultDTO)
+activate Validator
+note right of Validator
+  AbstractValidator<TestResultDTO>
+  Rules:
+    ResultValue >= 0
+    ParamID: NotEmpty
+    TesterID: NotEmpty
+    SampleID: NotEmpty
+end note
+Validator --> UC : return ValidationResult (IsValid, Errors)
+deactivate Validator
+
+alt [ValidationResult.IsValid = false]
+    UC -> UC : Display validation error messages
+    note right of UC
+      User must correct input before retrying.
+      Errors shown per field on the DataGridView.
+    end note
+end
+
+' ── Step 3: Persist result via TestingService ────────────────────
+UC -> TestService : EnterTestResultAsync(testResultDTO, reason?)
+activate TestService
+note right of TestService
+  reason?: optional edit reason string
+  (null on first entry, non-null on amendment)
+end note
+
+  TestService -> ResultRepo : SaveTestResultAsync(\nresultId, sampleId, paramId,\nresultValue, testerId)
+  activate ResultRepo
+
+    ResultRepo -> SqlHelper : ExecuteNonQueryAsync(\n"sp_SaveTestResult",\n{resultId, sampleId, paramId,\nresultValue, testerId})
+    activate SqlHelper
+
+    SqlHelper -> DB : EXEC sp_SaveTestResult\n(INSERT or UPDATE TestResults)
+    activate DB
+
+    ' ── DB Triggers fire automatically after INSERT/UPDATE ──────
+    DB -> DB : TRIGGER trg_TestResults_AutoWarning\n  AFTER INSERT, UPDATE ON TestResults\n  fn_IsResultExceedingLimit(paramId, resultValue)\n  -> UPDATE TestResults SET IsWarning = 1\n     WHERE ResultValue > RegulationLimits.MaxValue
+    note right of DB
+      fn_IsResultExceedingLimit(paramId, value):
+        SELECT MaxValue FROM RegulationLimits
+        WHERE ParamID = @paramId
+        RETURNS 1 if value > MaxValue, else 0
+      Applies QCVN threshold check automatically.
+    end note
+
+    DB -> DB : TRIGGER trg_TestResults_AuditHistory\n  AFTER UPDATE ON TestResults\n  INSERT INTO ResultHistory\n  (HistoryID, ResultID, OldValue, NewValue,\n   ChangedBy, ChangedAt)
+    note right of DB
+      Captures full edit history.
+      OldValue from DELETED virtual table.
+      NewValue from INSERTED virtual table.
+      ChangedBy = testerId from UPDATE statement.
+    end note
+
+    DB --> SqlHelper : return (rows affected = 1)
+    deactivate DB
+
+    SqlHelper --> ResultRepo : return (void)
+    deactivate SqlHelper
+
+  ResultRepo --> TestService : return TestResultDTO\n(with IsWarning flag set by trigger)
+  deactivate ResultRepo
+
+TestService --> UC : return TestResultDTO
+deactivate TestService
+
+' ── Step 4: Refresh UI ────────────────────────────────────────────
+UC -> UC : Refresh DataGridView row:\n  - Highlight row in red if IsWarning = true\n  - Show warning icon in IsWarning column
+
+deactivate UC
+
+@enduml

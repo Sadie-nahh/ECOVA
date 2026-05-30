@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="21.0" type="device">
+  <diagram id="state-diagram" name="State 5.6 — AppState  [Session Lifecycle]">
+    <mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1126" pageHeight="1119" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="NotAuthenticated&lt;br/&gt;(CurrentUser = null,&lt;br/&gt; IsLoggedIn = false)" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=10;fontStyle=0;align=center;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry x="373.0" y="323.0" width="260.0" height="96.0" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="Authenticated&lt;br/&gt;(CurrentUser ≠ null,&lt;br/&gt; IsLoggedIn = true)" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=10;fontStyle=0;align=center;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry x="80.0" y="603.0" width="260.0" height="96.0" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="LockedOut&lt;br/&gt;(LoginThrottleService:&lt;br/&gt; ≥ 5 failed attempts,&lt;br/&gt; locked 5 minutes)" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=10;fontStyle=0;align=center;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry x="485.0" y="594.0" width="260.0" height="114.0" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;strokeWidth=1;fontSize=1;aspect=fixed;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="489.0" y="120.0" width="28.0" height="28.0" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="" style="ellipse;fillColor=#ffffff;strokeColor=#000000;strokeWidth=3;fontSize=1;aspect=fixed;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="394.5" y="883.0" width="36.0" height="36.0" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;strokeWidth=1;fontSize=1;aspect=fixed;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="404.5" y="893.0" width="16.0" height="16.0" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="" style="ellipse;fillColor=#ffffff;strokeColor=#000000;strokeWidth=3;fontSize=1;aspect=fixed;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="890.0" y="633.0" width="36.0" height="36.0" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;strokeWidth=1;fontSize=1;aspect=fixed;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="900.0" y="643.0" width="16.0" height="16.0" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="" style="ellipse;fillColor=#ffffff;strokeColor=#000000;strokeWidth=3;fontSize=1;aspect=fixed;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="575.5" y="883.0" width="36.0" height="36.0" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;strokeWidth=1;fontSize=1;aspect=fixed;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="585.5" y="893.0" width="16.0" height="16.0" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="Application starts&lt;br/&gt;(Program.cs — Build() + Run())&lt;br/&gt;[AppState.Instance.CurrentUser = null]" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;" edge="1" parent="1" source="5" target="2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="503.0" y="134.0" as="sourcePoint" />
+            <mxPoint x="503.0" y="371.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="13" value="UserBLL.LoginAsync(username, password)&lt;br/&gt;[UserDTO.IsActive = true AND&lt;br/&gt; SecurityHelper.VerifyPassword(input, hash) = true]&lt;br/&gt;/ AppState.Instance.CurrentUser = UserDTO&lt;br/&gt;  SystemAuditHelper.LogAsync(userId, &quot;LOGIN&quot;, &quot;User&quot;, userId)" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="3">
+          <mxGeometry relative="1" as="geometry" x="0.40">
+            <mxPoint x="503.0" y="371.0" as="sourcePoint" />
+            <mxPoint x="210.0" y="651.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="14" value="UserBLL.LoginWithFaceIDAsync(username)&lt;br/&gt;[UserDTO.IsActive = true AND&lt;br/&gt; FaceIdManager.CompareHistogram() ≥ AppConfig.FaceId.Threshold]&lt;br/&gt;/ AppState.Instance.CurrentUser = UserDTO" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;exitX=0.42;exitY=1;exitDx=0;exitDy=0;entryX=0.42;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="3">
+          <mxGeometry relative="1" as="geometry" x="0.40">
+            <mxPoint x="503.0" y="371.0" as="sourcePoint" />
+            <mxPoint x="210.0" y="651.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="15" value="LoginThrottleService.RecordFailure(username)&lt;br/&gt;[RecordFailure count ≥ MaxAttempts (default = 5)]&lt;br/&gt;/ LoginThrottleService timer starts&lt;br/&gt;  (LockoutMinutes = 5, from AppConfig)" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;exitX=0.58;exitY=1;exitDx=0;exitDy=0;entryX=0.58;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="4">
+          <mxGeometry relative="1" as="geometry" x="0.40">
+            <mxPoint x="503.0" y="371.0" as="sourcePoint" />
+            <mxPoint x="615.0" y="651.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="16" value="LoginThrottleService timer elapsed&lt;br/&gt;(LockoutMinutes × 60 seconds)&lt;br/&gt;/ _attempts[username] cleared" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=left;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="4" target="2">
+          <mxGeometry relative="1" as="geometry" x="-0.20">
+            <mxPoint x="615.0" y="651.0" as="sourcePoint" />
+            <mxPoint x="503.0" y="371.0" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-10.0" y="651.0" />
+              <mxPoint x="-10.0" y="371.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="17" value="UserBLL.LogoutAsync()&lt;br/&gt;/ AppState.Instance.Logout()  [CurrentUser = null]&lt;br/&gt;  [Note: no LOGOUT audit log — only LOGIN is recorded&lt;br/&gt;   via SystemAuditHelper.LogAsync]" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=left;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="2">
+          <mxGeometry relative="1" as="geometry" x="-0.20">
+            <mxPoint x="210.0" y="651.0" as="sourcePoint" />
+            <mxPoint x="503.0" y="371.0" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-10.0" y="651.0" />
+              <mxPoint x="-10.0" y="371.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="18" value="SessionTimeoutService timer fires&lt;br/&gt;[Idle for 30 minutes]&lt;br/&gt;/ SessionTimeoutService.Stop()&lt;br/&gt;  AppState.Instance.Logout()&lt;br/&gt;  Login form shown" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=left;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="2">
+          <mxGeometry relative="1" as="geometry" x="-0.20">
+            <mxPoint x="210.0" y="651.0" as="sourcePoint" />
+            <mxPoint x="503.0" y="371.0" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-10.0" y="651.0" />
+              <mxPoint x="-10.0" y="371.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="19" value="Application closed&lt;br/&gt;(MainForm.FormClosing)&lt;br/&gt;[EmailSmtpHelper.Shutdown() called]" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;" edge="1" parent="1" source="3" target="6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="210.0" y="651.0" as="sourcePoint" />
+            <mxPoint x="412.5" y="901.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="20" value="Application closed&lt;br/&gt;(Login form closed)" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="8">
+          <mxGeometry relative="1" as="geometry" x="0.40">
+            <mxPoint x="503.0" y="371.0" as="sourcePoint" />
+            <mxPoint x="908.0" y="651.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="21" value="Application closed&lt;br/&gt;during lockout" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;" edge="1" parent="1" source="4" target="10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="615.0" y="651.0" as="sourcePoint" />
+            <mxPoint x="593.5" y="901.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="22" value="AppState is «singleton»:&lt;br/&gt;AppState.Instance (double-check lock pattern)&lt;br/&gt;CurrentUser exposes logged-in UserDTO.&lt;br/&gt;RoleID in UserDTO controls role-based UI:&lt;br/&gt;- IsReadOnlyForRole() → Director sees dashboard only.&lt;br/&gt;- Each UC reads AppState.Instance.CurrentUser.RoleID.&lt;br/&gt;[UserDTO.IsActive = false] accounts are REJECTED&lt;br/&gt;at UserBLL.LoginAsync() — they never reach Authenticated." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=12;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=6;spacingRight=6;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="781.0" y="603.0" width="250.0" height="134.0" as="geometry" />
+        </mxCell>
+        <mxCell id="23" value="" style="endArrow=none;html=1;dashed=1;strokeColor=#888888;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="781.0" y="670.0" as="sourcePoint" />
+            <mxPoint x="340.0" y="651.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="24" value="LoginThrottleService is «static»:&lt;br/&gt;- _attempts : Dictionary&amp;lt;string, (int Count, DateTime LockUntil)&amp;gt;&lt;br/&gt;- MaxAttempts   = AppConfig.Login.MaxAttempts (default 5)&lt;br/&gt;- LockoutMinutes = AppConfig.Login.LockoutMinutes (default 5)&lt;br/&gt;IsLockedOut(username, out remaining) returns true&lt;br/&gt;when LockUntil &amp;gt; DateTime.Now." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=12;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=6;spacingRight=6;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="781.0" y="749.0" width="250.0" height="106.0" as="geometry" />
+        </mxCell>
+        <mxCell id="25" value="" style="endArrow=none;html=1;dashed=1;strokeColor=#888888;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="781.0" y="802.0" as="sourcePoint" />
+            <mxPoint x="745.0" y="651.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="26" value="SessionTimeoutService is «static»:&lt;br/&gt;- Started in MainForm constructor:&lt;br/&gt;SessionTimeoutService.Start(minutes: 30, onTimeout: () =&amp;gt; ...)&lt;br/&gt;- Reset() called on any user interaction.&lt;br/&gt;- Stop() called on manual logout." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=12;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=6;spacingRight=6;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="373.0" y="455.0" width="250.0" height="92.0" as="geometry" />
+        </mxCell>
+        <mxCell id="27" value="" style="endArrow=none;html=1;dashed=1;strokeColor=#888888;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="498.0" y="455.0" as="sourcePoint" />
+            <mxPoint x="503.0" y="419.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="28" value="State 5.6 — AppState  [Session Lifecycle]" style="text;html=1;align=center;strokeColor=none;fillColor=none;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80.0" y="0.0" width="846.0" height="100.0" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

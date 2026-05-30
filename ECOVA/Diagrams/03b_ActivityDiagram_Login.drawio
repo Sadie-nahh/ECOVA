@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="lane_0" value="| System" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="0" y="0" width="360" height="2192" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_1" value="| User" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="360" y="0" width="360" height="2192" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_2" value="| Login Form «boundary»" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="720" y="0" width="360" height="2192" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_3" value="| UserBLL «control»" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="1080" y="0" width="360" height="2192" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_4" value="| FaceIdManager «static»" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="1440" y="0" width="360" height="2192" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_5" value="| AppState «singleton»" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="1800" y="0" width="360" height="2192" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_6" value="| SystemAuditHelper «entity»" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="2160" y="0" width="360" height="2192" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_7" value="| LoginThrottleService «static»" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="2520" y="0" width="360" height="2192" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_8" value="| UserRepository «entity»" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="2880" y="0" width="360" height="2192" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_9" value="| SecurityHelper «static»" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="3240" y="0" width="360" height="2192" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4058" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;fontColor=#FFFFFF;aspect=fixed;" vertex="1" parent="lane_0">
+      <mxGeometry x="169.0" y="52" width="22" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4059" value="Launch ECOVA application" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_0">
+      <mxGeometry x="30.0" y="102" width="300" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4061" value="Display Login form" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_0">
+      <mxGeometry x="30.0" y="174" width="300" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4063" value="Select login method?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=center;verticalAlign=middle;" vertex="1" parent="lane_1">
+      <mxGeometry x="100.0" y="246" width="160" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4065" value="Enter username" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_2">
+      <mxGeometry x="30.0" y="354" width="300" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4067" value="Retrieve stored FaceID data from DB&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;UserBLL.GetFaceIDDataAsync(username)&lt;br/&gt;-&amp;gt; UserRepository.GetByUsernameAsync(username)&lt;br/&gt;-&amp;gt; returns UserDTO (FaceIDData: byte[], IsFaceIDRegistered: bool)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_3">
+      <mxGeometry x="30.0" y="426" width="300" height="134" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4069" value="IsFaceIDRegistered = true?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=center;verticalAlign=middle;" vertex="1" parent="lane_3">
+      <mxGeometry x="100.0" y="588" width="160" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4071" value="Activate camera, capture new face image" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_2">
+      <mxGeometry x="30.0" y="696" width="300" height="46" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4073" value="Prompt password entry to verify identity" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_2">
+      <mxGeometry x="30.0" y="770" width="300" height="46" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4075" value="Register FaceID for first time&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;UserBLL.RegisterFaceIDAsync(userId, rawFaceData)&lt;br/&gt;-&amp;gt; FaceIdManager.ExtractNormalizedFace(frame)&lt;br/&gt;-&amp;gt; AesHelper.EncryptBytes(normalizedFaceData)&lt;br/&gt;-&amp;gt; UserRepository.RegisterFaceIDAsync(userId, encryptedData)&lt;br/&gt;-&amp;gt; SqlHelper: sp_RegisterFaceID&lt;br/&gt;-&amp;gt; SET IsFaceIDRegistered = 1&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_3">
+      <mxGeometry x="30.0" y="844" width="300" height="182" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4077" value="Decrypt stored FaceID data&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;AesHelper.DecryptBytes(UserDTO.FaceIDData)&lt;br/&gt;-&amp;gt; storedFaceBytes (byte[])&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_4">
+      <mxGeometry x="30.0" y="1054" width="300" height="82" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4079" value="Capture frame from camera (VideoCapture)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_4">
+      <mxGeometry x="30.0" y="1164" width="300" height="46" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4081" value="Extract and normalize face from frame&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;FaceIdManager.ExtractNormalizedFace(frame)&lt;br/&gt;-&amp;gt; EmguCV CascadeClassifier detect face ROI&lt;br/&gt;-&amp;gt; Resize(100x100) -&amp;gt; GaussianBlur -&amp;gt; normalize&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_4">
+      <mxGeometry x="30.0" y="1238" width="300" height="134" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4083" value="Compare face histograms&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;FaceIdManager.CompareHistogram(storedFace, capturedFace)&lt;br/&gt;-&amp;gt; 2x2 Grid Histogram Correlation (Bhattacharyya)&lt;br/&gt;-&amp;gt; returns similarity score (double: 0.0 -&amp;gt; 1.0)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_4">
+      <mxGeometry x="30.0" y="1400" width="300" height="118" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4085" value="similarity &amp;lt; AppConfig.FaceId.Threshold (default 0.65)?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=center;verticalAlign=middle;" vertex="1" parent="lane_4">
+      <mxGeometry x="100.0" y="1546" width="160" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4088" value="Perform login via FaceID&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;UserBLL.LoginWithFaceIDAsync(username)&lt;br/&gt;-&amp;gt; UserRepository.GetByUsernameAsync(username)&lt;br/&gt;-&amp;gt; returns full UserDTO&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_3">
+      <mxGeometry x="30.0" y="1654" width="300" height="106" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4090" value="Save user session&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;AppState.Instance.CurrentUser = UserDTO&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_5">
+      <mxGeometry x="30.0" y="1788" width="300" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4092" value="Write FaceID login audit log&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;SystemAuditHelper.LogAsync(&amp;quot;LOGIN_FACEID&amp;quot;, userId)&lt;br/&gt;-&amp;gt; AuditLogs INSERT (fire-and-forget Task)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_6">
+      <mxGeometry x="30.0" y="1886" width="300" height="94" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4094" value="Open MainForm (main interface)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_0">
+      <mxGeometry x="30.0" y="2008" width="300" height="46" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4096" value="" style="ellipse;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;aspect=fixed;" vertex="1" parent="lane_0">
+      <mxGeometry x="165.0" y="2082" width="30" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4097" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;aspect=fixed;" vertex="1" parent="n4096">
+      <mxGeometry x="6.0" y="6.0" width="18" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4099" value="Enter username and password" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_2">
+      <mxGeometry x="30.0" y="354" width="300" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4101" value="Check if account is locked&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;LoginThrottleService.IsLockedOut(username, out TimeSpan remaining)&lt;br/&gt;-&amp;gt; Check internal Dictionary&amp;lt;string, LockInfo&amp;gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_7">
+      <mxGeometry x="30.0" y="426" width="300" height="94" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4103" value="Account is currently locked?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=center;verticalAlign=middle;" vertex="1" parent="lane_7">
+      <mxGeometry x="100.0" y="548" width="160" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4105" value="Display &amp;quot;Account locked for X min Y sec&amp;quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_2">
+      <mxGeometry x="30.0" y="656" width="300" height="46" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4107" value="" style="ellipse;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;aspect=fixed;" vertex="1" parent="lane_2">
+      <mxGeometry x="165.0" y="730" width="30" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4108" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;aspect=fixed;" vertex="1" parent="n4107">
+      <mxGeometry x="6.0" y="6.0" width="18" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4110" value="Authenticate user credentials&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;UserBLL.LoginAsync(username, password)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_3">
+      <mxGeometry x="30.0" y="656" width="300" height="86" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4112" value="Query user information from DB&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;UserRepository.GetByUsernameAsync(username)&lt;br/&gt;-&amp;gt; SqlHelper.QuerySingleOrDefaultAsync(&lt;br/&gt;&amp;quot;sp_AuthenticateUser&amp;quot;, {username})&lt;br/&gt;-&amp;gt; returns UserDTO (PasswordHash, IsActive, RoleID)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_8">
+      <mxGeometry x="30.0" y="770" width="300" height="146" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4114" value="Verify password against stored hash&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;SecurityHelper.VerifyPassword(inputPwd, UserDTO.PasswordHash)&lt;br/&gt;-&amp;gt; BCrypt.Net.BCrypt.Verify(pwd, hash)&lt;br/&gt;-&amp;gt; returns bool&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_9">
+      <mxGeometry x="30.0" y="944" width="300" height="122" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4116" value="Password correct and IsActive = true?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=center;verticalAlign=middle;" vertex="1" parent="lane_9">
+      <mxGeometry x="100.0" y="1094" width="160" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4118" value="Save user session&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;AppState.Instance.CurrentUser = UserDTO&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_5">
+      <mxGeometry x="30.0" y="1202" width="300" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4120" value="Write login success audit log&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;SystemAuditHelper.LogAsync(&amp;quot;LOGIN&amp;quot;, userId, detail)&lt;br/&gt;-&amp;gt; AuditLogs INSERT (fire-and-forget Task)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_6">
+      <mxGeometry x="30.0" y="1300" width="300" height="110" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4122" value="Open MainForm (main interface)" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_0">
+      <mxGeometry x="30.0" y="1438" width="300" height="46" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4124" value="" style="ellipse;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;aspect=fixed;" vertex="1" parent="lane_0">
+      <mxGeometry x="165.0" y="1512" width="30" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4125" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;aspect=fixed;" vertex="1" parent="n4124">
+      <mxGeometry x="6.0" y="6.0" width="18" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4127" value="Record failed login attempt&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;LoginThrottleService.RecordFailure(username)&lt;br/&gt;-&amp;gt; _failureCounts[username]++&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_7">
+      <mxGeometry x="30.0" y="1202" width="300" height="82" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4129" value="Failure count &amp;gt;= 5?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=center;verticalAlign=middle;" vertex="1" parent="lane_7">
+      <mxGeometry x="100.0" y="1312" width="160" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4131" value="Lock account for 5 minutes&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;LoginThrottleService sets lock timer for 5 minutes&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_2">
+      <mxGeometry x="30.0" y="1420" width="300" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4133" value="Display &amp;quot;Account locked for 5 minutes&amp;quot;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_2">
+      <mxGeometry x="30.0" y="1518" width="300" height="46" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4135" value="" style="ellipse;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;aspect=fixed;" vertex="1" parent="lane_2">
+      <mxGeometry x="165.0" y="1592" width="30" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4136" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;aspect=fixed;" vertex="1" parent="n4135">
+      <mxGeometry x="6.0" y="6.0" width="18" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4138" value="Display wrong password warning&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;If FaceID fails 5 consecutive times:&lt;br/&gt;Fallback options displayed:&lt;br/&gt;[1] Retry Face ID&lt;br/&gt;[2] Switch to password login&lt;br/&gt;[3] Update FaceID with new capture (requires password)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_2">
+      <mxGeometry x="30.0" y="1420" width="300" height="160" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4141" value="" style="ellipse;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="lane_2">
+      <mxGeometry x="175.0" y="1650" width="10" height="10" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4060" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4058" target="n4059" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4062" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4059" target="n4061" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4064" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4061" target="n4063" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4066" value="[Face ID - Seq 4.2]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;dashed=1;dashPattern=6 3;startArrow=none;endArrow=open;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;fontColor=#444444;fontStyle=2;" edge="1" source="n4063" target="n4065" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4068" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4065" target="n4067" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4070" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4067" target="n4069" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4072" value="[No - Not yet registered]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;fontStyle=2;" edge="1" source="n4069" target="n4071" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4074" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4071" target="n4073" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4076" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4073" target="n4075" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4078" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4075" target="n4077" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4080" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4077" target="n4079" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4082" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4079" target="n4081" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4084" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4081" target="n4083" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4086" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4083" target="n4085" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4087" value="[Yes - no match, retry]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;dashed=1;dashPattern=6 3;startArrow=none;endArrow=open;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;fontColor=#444444;fontStyle=2;" edge="1" source="n4085" target="n4079" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4089" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4085" target="n4088" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4091" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4088" target="n4090" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4093" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4090" target="n4092" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4095" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4092" target="n4094" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4098" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4094" target="n4096" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4100" value="[Password - Seq 4.1]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;fontStyle=2;" edge="1" source="n4063" target="n4099" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4102" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4099" target="n4101" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4104" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4101" target="n4103" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4106" value="[Yes]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;dashed=1;dashPattern=6 3;startArrow=none;endArrow=open;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;fontColor=#444444;fontStyle=2;" edge="1" source="n4103" target="n4105" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4109" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4105" target="n4107" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4111" value="[No]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;fontStyle=2;" edge="1" source="n4103" target="n4110" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4113" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4110" target="n4112" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4115" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4112" target="n4114" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4117" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4114" target="n4116" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4119" value="[Yes]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;dashed=1;dashPattern=6 3;startArrow=none;endArrow=open;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;fontColor=#444444;fontStyle=2;" edge="1" source="n4116" target="n4118" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4121" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4118" target="n4120" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4123" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4120" target="n4122" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4126" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4122" target="n4124" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4128" value="[No - wrong password or IsActive = false]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;fontStyle=2;" edge="1" source="n4116" target="n4127" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4130" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4127" target="n4129" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4132" value="[Yes]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;fontStyle=2;" edge="1" source="n4129" target="n4131" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4134" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4131" target="n4133" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4137" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4133" target="n4135" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4139" value="[No - still under 5 attempts]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;fontStyle=2;" edge="1" source="n4129" target="n4138" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4140" value="Enter username and password" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;dashed=1;dashPattern=6 3;startArrow=none;endArrow=open;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;fontColor=#444444;fontStyle=2;" edge="1" source="n4138" target="n4099" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+  </root>
+</mxGraphModel>

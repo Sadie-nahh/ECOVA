@@ -1,0 +1,25 @@
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+.agent/
+docs/
+artifacts/
+/tmp/
+
+# Per-dev local config (connection string, secrets)
+appsettings.Development.json
+
+# appsettings.json — SAFE TO COMMIT vì password dùng AES (cross-machine)
+# DPAPI (machine-specific) đã được thay bằng AES — không còn bị lock vào 1 máy
+# !**/appsettings.json.example  (không cần rule này nữa)
+
+# ML Model binary cache — được generate lại khi train lần đầu
+# Không commit vì file binary lớn, tự động rebuild từ SeedData_ML.csv
+**/Data/ecova_renewal_model.zip
+
+# Log files
+**/logs/*.log

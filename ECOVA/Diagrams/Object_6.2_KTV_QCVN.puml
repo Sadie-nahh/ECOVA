@@ -1,0 +1,205 @@
+@startuml Object_6_2_KTV_QCVN
+title Object Diagram 6.2 — Field Technician Enters Result Exceeding QCVN Threshold\n(Ref: Sequence 4.4 Enter-Test-Result · Trigger AutoWarning + AuditHistory)\n(Ref: State 5.2 OrderStatus = Planned · State 5.3 SampleStatus = Analyzing)
+
+skinparam monochrome true
+skinparam style strictuml
+skinparam shadowing false
+skinparam backgroundColor White
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 11
+skinparam object {
+    BackgroundColor White
+    BorderColor     Black
+    FontName        "Arial"
+    FontSize        11
+    ArrowColor      Black
+    HeaderBackgroundColor White
+    HeaderBorderColor     Black
+    AttributeFontSize     10
+}
+skinparam note {
+    BackgroundColor White
+    BorderColor     Black
+    FontName        "Arial"
+    FontSize        9
+}
+skinparam linetype ortho
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 1  baolongnv : UserDTO
+'   Source: seed U04 — Department "Hien truong", Role R04
+'   Field technician entering results (IsField=1 parameters)
+'   IsFaceIDRegistered = true (seed: U04 is one of 4 registered)
+'   DTO class: EnvContract.DTO.Entities.UserDTO
+' ─────────────────────────────────────────────────────────
+object "<u>baolongnv : UserDTO</u>" as baolongnv {
+    UserID             = "U04"
+    EmployeeCode       = "EMP004"
+    Username           = "baolongnv"
+    FullName           = "Luong Bao Long"
+    Email              = "baolong2k6iter@gmail.com"
+    Phone              = "0933445566"
+    Department         = "Hien truong"
+    RoleID             = "R04"
+    IsActive           = true
+    IsFaceIDRegistered = true
+}
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 2  order1 : OrderDTO
+'   Source: seed ORD-0001 (Orders table, i=1)
+'   i=1 => @env = 1%3 = 1 => EnvironmentType = "Khong khi"
+'   OrderName: @env=1 => "Khu vuc ong khoi chinh"
+'   Status: i=1 not in (3,8,12) not in (5) => 2 (Completed in seed)
+'     [Diagram uses Status=1 to illustrate InProgress snapshot]
+'   IsApproved: i=1 not in (5) => 1 (true in seed)
+'     [Diagram uses IsApproved=0 to illustrate pending approval]
+'   CreatedBy: i=1 odd => 'U11' [CASE WHEN @i%2=0 THEN 'U08' ELSE 'U11']
+'   OrderDate: Period5 i<=12 => DATEADD(DAY,-(1*2+1),GETDATE()) = -3 days
+'   DTO class: EnvContract.DTO.Entities.OrderDTO
+' ─────────────────────────────────────────────────────────
+object "<u>order1 : OrderDTO</u>" as order1 {
+    OrderID         = "ORD-0001"
+    ContractID      = "HD-0001"
+    OrderName       = "Khu vuc ong khoi chinh"
+    EnvironmentType = "Khong khi"
+    Status          = 1
+    IsApproved      = 0
+    CreatedBy       = "U11"
+    OrderDate       = "2026-04-10"
+    Deadline        = "2026-04-25"
+}
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 3  sample1 : SampleDTO
+'   Source: seed SMP-0001 (Samples table, i=1)
+'   @contractIdx=(1-1)/2+1=1, @envType=1%3=1 => @regId='RG02'
+'   Barcode: @envType=1 => 'ECO-A'+RIGHT('000'+CAST(1),4) = 'ECO-A0001'
+'   SamplingLocation: @envType=1 AND @i%2=1 => 'Ong khoi lo hoi chinh'
+'   SamplingTime: DATEADD(DAY,-((1*11)%365),GETDATE()) = -11 days
+'   FieldTemperature: 25.0+(1%11) = 26.0
+'   FieldHumidity: 55.0+(1%26) = 56.0
+'   SamplerID: i=1 odd => 'U10' [CASE WHEN @i%2=0 THEN 'U04' ELSE 'U10']
+'   Status=2 in seed (Completed); diagram uses Status=1 (Analyzing snapshot)
+'   IsWarning=true — set by trigger trg_TestResults_AutoWarning
+'   WeatherCondition: NULL in seed (column repurposed for ParamID storage)
+'   DTO class: EnvContract.DTO.Entities.SampleDTO
+' ─────────────────────────────────────────────────────────
+object "<u>sample1 : SampleDTO</u>" as sample1 {
+    SampleID         = "SMP-0001"
+    OrderID          = "ORD-0001"
+    RegulationID     = "RG02"
+    Barcode          = "ECO-A0001"
+    SamplingLocation = "Ong khoi lo hoi chinh"
+    SamplingTime     = "2026-04-02 09:00"
+    SamplerID        = "U10"
+    FieldTemperature = 26.0
+    FieldHumidity    = 56.0
+    WeatherCondition = null
+    Status           = 1
+    IsWarning        = true
+}
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 4  tspParam : TestParameterDTO
+'   Source: seed P01 (TestParameters table)
+'   IsField=1 => measured on-site by Field team
+'   DTO class: EnvContract.DTO.Entities.TestParameterDTO
+' ─────────────────────────────────────────────────────────
+object "<u>tspParam : TestParameterDTO</u>" as tspParam {
+    ParamID    = "P01"
+    ParamName  = "Anh sang"
+    Unit       = "lx"
+    TestMethod = "TCVN 5176:1990"
+    IsField    = 1
+    Price      = 50000
+}
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 5  qcvnLimit : RegulationLimitDTO
+'   Source: seed L01 (RegulationLimits table)
+'   RG02 = QCVN 05:2023/BTNMT linked to P01 (Anh sang)
+'   MinValue=300, MaxValue=500  [300–500 lx per QCVN 22/BYT]
+'   DTO class: EnvContract.DTO.Entities.RegulationLimitDTO
+' ─────────────────────────────────────────────────────────
+object "<u>qcvnLimit : RegulationLimitDTO</u>" as qcvnLimit {
+    LimitID      = "L01"
+    RegulationID = "RG02"
+    ParamID      = "P01"
+    MinValue     = 300.0
+    MaxValue     = 500.0
+}
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 6  result1 : TestResultDTO
+'   ResultValue = 280.0 — BELOW MinValue(300) => threshold violated
+'   [Seed actual value = 307; 280 used to illustrate warning scenario]
+'   TesterID = "U04" (baolongnv — field team enters result)
+'   ResultID seed: @resIdx=1, i=1, envType=1, P01 => 'RES-00001'
+'   IsWarning = true — set automatically by trigger AutoWarning
+'   DTO class: EnvContract.DTO.Entities.TestResultDTO
+' ─────────────────────────────────────────────────────────
+object "<u>result1 : TestResultDTO</u>" as result1 {
+    ResultID    = "RES-00001"
+    SampleID    = "SMP-0001"
+    ParamID     = "P01"
+    ResultValue = 280.0
+    IsWarning   = true
+    TesterID    = "U04"
+    EnteredAt   = "2026-04-12 13:00"
+}
+
+' ─────────────────────────────────────────────────────────
+' LINKS — instance-level associations
+' ─────────────────────────────────────────────────────────
+sample1   --  order1     : "OrderID"
+sample1   --  baolongnv  : "SamplerID (U10)"
+result1   --  sample1    : "SampleID"
+result1   --  tspParam   : "ParamID"
+result1   --  baolongnv  : "TesterID (U04)"
+qcvnLimit --  tspParam   : "ParamID"
+
+' ─────────────────────────────────────────────────────────
+' NOTES
+' ─────────────────────────────────────────────────────────
+note right of result1
+  Trigger trg_TestResults_AutoWarning (AFTER INSERT, AFTER UPDATE):
+    ResultValue = 280.0 < MinValue(L01) = 300.0 => violation
+    UPDATE TestResults SET IsWarning=1 WHERE ResultID='RES-00001'
+    UPDATE Samples SET IsWarning=1 WHERE SampleID='SMP-0001'
+  ---
+  Trigger trg_TestResults_AuditHistory (AFTER UPDATE):
+    If ResultValue changed => INSERT INTO ResultHistory {
+      HistoryID=NEWID(), ResultID='RES-00001',
+      OldValue=<prev>, NewValue=280.0,
+      ChangedBy='U04', ChangedAt=SYSDATETIME() }
+    [ResultHistory has no DTO — written directly via trigger]
+  ---
+  ResultValidator (FluentValidation — before EnterTestResultAsync):
+    ResultValue >= 0 : 280.0 >= 0  OK
+    ParamID NotEmpty : "P01"        OK
+    TesterID NotEmpty: "U04"        OK
+  => TestingService.EnterTestResultAsync(TestResultDTO, reason?)
+       => TestResultRepository
+end note
+
+note right of sample1
+  [State 5.3 - SampleStatus.Analyzing = 1]
+  Snapshot: technician is entering results for this sample
+  IsWarning = true: Anh sang (280 lx) is below
+    MinValue = 300 lx (QCVN 22/BYT occupational environment)
+  WeatherCondition = null: column repurposed in code
+    for ParamID storage when saved from Planning module
+end note
+
+note right of order1
+  [State 5.2 - OrderStatus.Planned = 1]
+  IsApproved = 0 : ApprovalStatus.Pending
+  ---
+  ApprovalService.ApproveOrderAsync() not yet called
+  Director has not approved the final report
+  CreatedBy = "U11" (Vo Minh Tung, Planning dept)
+  [Seed: CASE WHEN @i%2=0 THEN 'U08' ELSE 'U11'; i=1 odd => U11]
+end note
+
+@enduml

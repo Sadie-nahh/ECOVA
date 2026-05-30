@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="EnvContract.BLL/EnvContract.BLL.csproj" />
+  <Project Path="EnvContract.Common/EnvContract.Common.csproj" />
+  <Project Path="EnvContract.DAL/EnvContract.DAL.csproj" />
+  <Project Path="EnvContract.DTO/EnvContract.DTO.csproj" />
+  <Project Path="EnvContract.GUI/EnvContract.GUI.csproj" />
+  <Project Path="EnvContract.Tests/EnvContract.Tests.csproj" />
+</Solution>

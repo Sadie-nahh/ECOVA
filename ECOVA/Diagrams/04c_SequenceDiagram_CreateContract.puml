@@ -1,0 +1,121 @@
+@startuml 04c_SequenceDiagram_CreateContract
+title Sequence 4.3 — Create Contract
+skinparam defaultTextAlignment left
+skinparam SequenceArrowThickness 1
+skinparam SequenceBoxBorderColor #000000
+skinparam SequenceLifeLineBorderColor #000000
+skinparam SequenceParticipantBackgroundColor #FFFFFF
+skinparam SequenceParticipantBorderColor #000000
+skinparam NoteBackgroundColor #FFFDE7
+skinparam NoteBorderColor #AAAAAA
+skinparam FontName Arial
+skinparam FontSize 10
+skinparam SequenceGroupBorderColor #555555
+skinparam SequenceGroupBackgroundColor #F5F5F5
+
+' ── Lifelines (8) — plan: Sales Staff, ContractCreateForm,
+'    ContractValidator, ContractService, ContractRepository,
+'    SqlHelper, AiIntegrationService, SystemAuditHelper
+actor       "Sales Staff"           as Sales
+participant ":ContractCreateForm"   as Form        <<boundary>>
+participant ":ContractService"      as ConService  <<control>>
+participant ":ContractValidator"    as Validator   <<control>>
+participant ":ContractRepository"   as ConRepo     <<entity>>
+participant ":SqlHelper"            as SqlHelper   <<entity>>
+participant ":AiIntegrationService" as AiService   <<singleton>>
+participant ":SystemAuditHelper"    as AuditHelper <<entity>>
+
+' ── Step 1: Sales staff opens form and fills details ──────────────
+Sales -> Form : Open form, fill contract details\n(CustomerId, ContractId, ValidFrom, ValidTo,\nTotalContractValue, IndustryType, ContractFilePath)
+activate Form
+
+' ── Step 2: Submit → ContractService.CreateContractAsync ──────────
+Form -> ConService : CreateContractAsync(CreateContractRequest)
+note right of Form
+  CreateContractRequest contains:
+    Contract: ContractDto
+    SourcePdfPath: string
+end note
+activate ConService
+
+  ' ── Step 3: FluentValidation — ValidateAndThrow ───────────────
+  ConService -> Validator : ValidateAndThrow(request.Contract)
+  activate Validator
+  note right of Validator
+    AbstractValidator<CreateContractRequest>
+    (ContractValidator : AbstractValidator<CreateContractRequest>)
+    ValidateAndThrow() throws ValidationException if any rule fails.
+    Rules validated on request.Contract (ContractDto):
+      ContractId: NotEmpty, MaxLength(50)
+      CustomerId: NotEmpty
+      ValidTo > ValidFrom
+      ValidTo > DateTime.Today
+      TotalContractValue >= 0
+  end note
+
+  alt [ValidationException thrown — invalid data]
+      Validator --> ConService : throw ValidationException\n(list of ValidationFailure)
+      deactivate Validator
+      ConService --> Form : propagate ValidationException
+      deactivate ConService
+      Form -> Form : Display per-field error messages
+      Form -> Form : Highlight invalid controls
+
+  else [No exception — data is valid]
+      Validator --> ConService : (return without exception)
+      deactivate Validator
+
+      ' ── Step 4: Persist contract to DB ──────────────────────
+      ConService -> ConRepo : AddContractAsync(contractDto)
+      activate ConRepo
+        ConRepo -> SqlHelper : ExecuteNonQueryAsync(\n"sp_AddContract",\n{contractId, customerId, signedDate,\nvalidFrom, validTo, filePath,\nstatus=0, totalValue, industryType, createdBy})
+        activate SqlHelper
+        note right of SqlHelper
+          sp_AddContract:
+          INSERT INTO Contracts (...)
+          Returns void (non-query)
+        end note
+        SqlHelper --> ConRepo : return (void)
+        deactivate SqlHelper
+      ConRepo --> ConService : return (void)
+      deactivate ConRepo
+
+      ' ── Step 5: AI Renewal Prediction ───────────────────────
+      ConService -> AiService : PredictRenewal(\nresponsSpeed, responseTime,\npreviousViolations, frequency) [singleton]
+      activate AiService
+      note right of AiService
+        ML.NET PredictionEngine<ContractRenewalInput,
+          ContractRenewalPrediction>
+        Reads CustomerFeedbacks data for customer.
+        Returns AiPredictionResponse:
+          RenewalProbabilityScore: double
+          IsPollutionWarning: bool
+          PredictionDetails: string
+      end note
+      AiService --> ConService : return AiPredictionResponse
+      deactivate AiService
+
+      ' ── Step 6: Audit Log ───────────────────────────────────
+      ConService -> AuditHelper : LogAsync(\nuserId, "CREATE_CONTRACT", "Contract", contractId)
+      activate AuditHelper
+      note right of AuditHelper
+        Fire-and-forget Task:
+        INSERT INTO AuditLogs:
+          Action = "CREATE_CONTRACT"
+          EntityType = "Contract"
+          EntityID = contractId
+          LoggedAt = SYSDATETIME()
+      end note
+      AuditHelper --> ConService : (void)
+      deactivate AuditHelper
+
+      ConService --> Form : return (void — success)
+      deactivate ConService
+
+      Form -> Form : Display AI prediction result\n(RenewalProbabilityScore, IsPollutionWarning)
+      Form -> Form : this.Close()
+  end
+
+deactivate Form
+
+@enduml

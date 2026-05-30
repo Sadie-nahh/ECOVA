@@ -1,0 +1,418 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="RIAMg2NSpIwDWWJNJ3y9" name="Page-1">
+    <mxGraphModel dx="2575" dy="1520" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="2800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="10" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="«interface» IUserBLL" vertex="1">
+          <mxGeometry height="228" width="340" x="60" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ LoginAsync(username, password) : Task&lt;bool&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetFaceIDDataAsync(username) : Task&lt;byte[]?&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ LoginWithFaceIDAsync(username) : Task&lt;bool&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ RegisterFaceIDAsync(username, password, faceData) : Task&lt;bool&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="94" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ LogoutAsync() : Task&lt;bool&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ ResetPasswordAsync(username, newPw) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ ResetPasswordByEmailAsync(email, newPw) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ CheckEmailExistsAsync(email) : Task&lt;bool&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="166" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ UpdateProfileAsync(user) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="184" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ UpdateAvatarAsync(userId, data) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="«interface» IAuthService" vertex="1">
+          <mxGeometry height="102" width="340" x="425" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="21" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GenerateOtp(email) : string" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="21" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ ValidateOtpAsync(email, otp) : Task&lt;bool&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="24" parent="21" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ ChangePasswordByEmailAsync(email, newPW) : Task&lt;bool&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="25" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="«interface» IContractService" vertex="1">
+          <mxGeometry height="156" width="340" x="790" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="26" parent="25" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ CreateContractAsync(request) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="27" parent="25" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ UpdateContractAsync(contract) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="28" parent="25" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetAllContractsAsync() : Task&lt;List&lt;ContractDto&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="29" parent="25" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetContractCardsAsync() : Task&lt;List&lt;ContractCardDTO&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="94" as="geometry" />
+        </mxCell>
+        <mxCell id="30" parent="25" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ SearchContractCardsAsync(keyword) : Task&lt;List&lt;ContractCardDTO&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="31" parent="25" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetContractCardByIdAsync(id) : Task&lt;ContractCardDTO?&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="32" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="«interface» ICustomerService" vertex="1">
+          <mxGeometry height="138" width="340" x="1155" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="33" parent="32" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetAllCustomersAsync() : Task&lt;List&lt;CustomerDto&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="34" parent="32" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ AddCustomerAsync(customer) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="35" parent="32" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ UpdateCustomerAsync(customer) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="36" parent="32" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ CheckTaxCodeExistsAsync(taxCode) : Task&lt;bool&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="94" as="geometry" />
+        </mxCell>
+        <mxCell id="37" parent="32" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetCustomerByIdAsync(id) : Task&lt;CustomerDto?&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="38" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="«interface» IEmployeeService" vertex="1">
+          <mxGeometry height="192" width="340" x="1520" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="39" parent="38" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ AddEmployeeAsync(user) : Task&lt;string&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="40" parent="38" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ UpdateEmployeeAsync(user) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="41" parent="38" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ ToggleActiveAsync(userId, isActive) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="42" parent="38" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ DeleteEmployeeAsync(id) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="94" as="geometry" />
+        </mxCell>
+        <mxCell id="43" parent="38" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetEmployeeByIdAsync(id) : Task&lt;UserDTO?&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="44" parent="38" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetAllEmployeesAsync() : Task&lt;List&lt;UserDTO&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="45" parent="38" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ SearchEmployeesAsync(keyword) : Task&lt;List&lt;UserDTO&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="46" parent="38" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GenerateNewEmployeeDataAsync(roleId) : Task&lt;(string Code, string ID, string Username)&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="166" as="geometry" />
+        </mxCell>
+        <mxCell id="47" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="«interface» IPlanningService" vertex="1">
+          <mxGeometry height="228" width="340" x="60" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="48" parent="47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ CreateSamplingAreaAsync(contractId, name, envType) : Task&lt;OrderDTO&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="49" parent="47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ DeleteSamplingAreaAsync(orderId) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="50" parent="47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ ConfigureSampleLocationsAsync(orderId, samples) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="51" parent="47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ CancelSampleAsync(sampleId) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="94" as="geometry" />
+        </mxCell>
+        <mxCell id="52" parent="47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ SaveSamplingPlanAsync(orderId, items) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="53" parent="47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetContractListAsync() : Task&lt;List&lt;ContractDisplayDTO&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="54" parent="47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetOrdersByContractAsync(contractId) : Task&lt;List&lt;OrderDTO&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="55" parent="47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetSamplesByOrderAsync(orderId) : Task&lt;List&lt;SampleDTO&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="166" as="geometry" />
+        </mxCell>
+        <mxCell id="56" parent="47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetParametersForPlanAsync(envType) : Task&lt;List&lt;SampleParameterPlanDTO&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="184" as="geometry" />
+        </mxCell>
+        <mxCell id="57" parent="47" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetParametersByOrderAsync(orderId) : Task&lt;List&lt;SampleParameterPlanDTO&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="58" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="«interface» ITestingService" vertex="1">
+          <mxGeometry height="102" width="340" x="425" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="59" parent="58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ EnterTestResultAsync(result, reason?) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="60" parent="58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetResultsForSampleAsync(sampleId) : Task&lt;List&lt;TestResultDTO&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="61" parent="58" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetResultHistoryAsync(resultId) : Task&lt;List&lt;AuditLogDTO&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="62" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="«interface» IExportService" vertex="1">
+          <mxGeometry height="84" width="340" x="790" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="63" parent="62" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ ExportOrderResultToPdfAsync(orderId, customerName, text, path) : Task&lt;string&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="64" parent="62" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ ExportStructuredPdfAsync(orderId, customerName, address, type, areas, rows, dir, ...) : Task&lt;string&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="65" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="«interface» IApprovalService" vertex="1">
+          <mxGeometry height="102" width="340" x="1155" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="66" parent="65" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ ApproveOrderAsync(orderId, userId) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="67" parent="65" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ RejectOrderAsync(orderId, userId, reason) : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="68" parent="65" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ IsApprovedAsync(orderId) : Task&lt;bool&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="69" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="«interface» INotificationService" vertex="1">
+          <mxGeometry height="102" width="340" x="1520" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="70" parent="69" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ RunDailyDeadlineCheckAsync() : Task" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="71" parent="69" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ GetNotifications() : Task&lt;List&lt;NotificationDTO&gt;&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="72" parent="69" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="+ SendBroadcastEmailAsync(...) : Task&lt;(int Sent, int Failed, List&lt;string&gt; FailedEmails)&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="73" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="UserBLL" vertex="1">
+          <mxGeometry height="88" width="340" x="60" y="323" as="geometry" />
+        </mxCell>
+        <mxCell id="74" parent="73" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _userRepo : IUserRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="75" parent="73" style="line;strokeColor=#000000;fillColor=none;rotatable=0;fontSize=0;" value="" vertex="1">
+          <mxGeometry height="4" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="76" parent="73" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;fontStyle=2;" value="+ (implements IUserBLL)" vertex="1">
+          <mxGeometry height="18" width="340" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="77" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="AuthService" vertex="1">
+          <mxGeometry height="88" width="340" x="425" y="323" as="geometry" />
+        </mxCell>
+        <mxCell id="78" parent="77" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _userRepo : IUserRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="79" parent="77" style="line;strokeColor=#000000;fillColor=none;rotatable=0;fontSize=0;" value="" vertex="1">
+          <mxGeometry height="4" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="80" parent="77" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;fontStyle=2;" value="+ (implements IAuthService)" vertex="1">
+          <mxGeometry height="18" width="340" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="81" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="ContractService" vertex="1">
+          <mxGeometry height="124" width="340" x="790" y="323" as="geometry" />
+        </mxCell>
+        <mxCell id="82" parent="81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _contractRepo  : IContractRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="83" parent="81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _validator     : ContractValidator" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="84" parent="81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _aiService     : AiIntegrationService" vertex="1">
+          <mxGeometry height="18" width="340" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="85" parent="81" style="line;strokeColor=#000000;fillColor=none;rotatable=0;fontSize=0;" value="" vertex="1">
+          <mxGeometry height="4" width="340" y="94" as="geometry" />
+        </mxCell>
+        <mxCell id="86" parent="81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;fontStyle=2;" value="+ (implements IContractService)" vertex="1">
+          <mxGeometry height="18" width="340" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="87" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="CustomerService" vertex="1">
+          <mxGeometry height="88" width="340" x="1155" y="323" as="geometry" />
+        </mxCell>
+        <mxCell id="88" parent="87" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _customerRepo  : ICustomerRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="89" parent="87" style="line;strokeColor=#000000;fillColor=none;rotatable=0;fontSize=0;" value="" vertex="1">
+          <mxGeometry height="4" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="90" parent="87" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;fontStyle=2;" value="+ (implements ICustomerService)" vertex="1">
+          <mxGeometry height="18" width="340" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="91" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="EmployeeService" vertex="1">
+          <mxGeometry height="88" width="340" x="1520" y="323" as="geometry" />
+        </mxCell>
+        <mxCell id="92" parent="91" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _employeeRepo  : IEmployeeRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="93" parent="91" style="line;strokeColor=#000000;fillColor=none;rotatable=0;fontSize=0;" value="" vertex="1">
+          <mxGeometry height="4" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="94" parent="91" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;fontStyle=2;" value="+ (implements IEmployeeService)" vertex="1">
+          <mxGeometry height="18" width="340" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="95" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="PlanningService" vertex="1">
+          <mxGeometry height="160" width="340" x="60" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="96" parent="95" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _sampleRepo    : ISampleRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="97" parent="95" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _contractRepo  : IContractRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="98" parent="95" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _orderRepo     : IOrderRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="99" parent="95" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _paramRepo     : IStandardParameterRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="94" as="geometry" />
+        </mxCell>
+        <mxCell id="100" parent="95" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _planRepo      : ISamplingPlanRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="101" parent="95" style="line;strokeColor=#000000;fillColor=none;rotatable=0;fontSize=0;" value="" vertex="1">
+          <mxGeometry height="4" width="340" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="102" parent="95" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;fontStyle=2;" value="+ (implements IPlanningService)" vertex="1">
+          <mxGeometry height="18" width="340" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="103" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="TestingService" vertex="1">
+          <mxGeometry height="124" width="340" x="425" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="104" parent="103" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _resultRepo    : ITestResultRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="105" parent="103" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _auditRepo     : IAuditLogRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="106" parent="103" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _validator     : ResultValidator" vertex="1">
+          <mxGeometry height="18" width="340" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="107" parent="103" style="line;strokeColor=#000000;fillColor=none;rotatable=0;fontSize=0;" value="" vertex="1">
+          <mxGeometry height="4" width="340" y="94" as="geometry" />
+        </mxCell>
+        <mxCell id="108" parent="103" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;fontStyle=2;" value="+ (implements ITestingService)" vertex="1">
+          <mxGeometry height="18" width="340" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="109" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="ExportService" vertex="1">
+          <mxGeometry height="66" width="340" x="790" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="110" parent="109" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;fontStyle=2;" value="+ (implements IExportService)" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="111" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="ApprovalService" vertex="1">
+          <mxGeometry height="88" width="340" x="1155" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="112" parent="111" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _orderRepo     : IOrderRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="113" parent="111" style="line;strokeColor=#000000;fillColor=none;rotatable=0;fontSize=0;" value="" vertex="1">
+          <mxGeometry height="4" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="114" parent="111" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;fontStyle=2;" value="+ (implements IApprovalService)" vertex="1">
+          <mxGeometry height="18" width="340" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="115" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="NotificationService" vertex="1">
+          <mxGeometry height="88" width="340" x="1520" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="116" parent="115" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _contractRepo  : IContractRepository" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="117" parent="115" style="line;strokeColor=#000000;fillColor=none;rotatable=0;fontSize=0;" value="" vertex="1">
+          <mxGeometry height="4" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="118" parent="115" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;fontStyle=2;" value="+ (implements INotificationService)" vertex="1">
+          <mxGeometry height="18" width="340" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="119" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="«singleton» AiIntegrationService" vertex="1">
+          <mxGeometry height="178" width="340" x="800" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="120" parent="119" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _mlContext           : MLContext" vertex="1">
+          <mxGeometry height="18" width="340" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="121" parent="119" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _trainedModel        : ITransformer?" vertex="1">
+          <mxGeometry height="18" width="340" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="122" parent="119" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _predictionEngine    : PredictionEngine&lt;..&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="76" as="geometry" />
+        </mxCell>
+        <mxCell id="123" parent="119" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _lock                : object" vertex="1">
+          <mxGeometry height="18" width="340" y="94" as="geometry" />
+        </mxCell>
+        <mxCell id="124" parent="119" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;" value="- _isModelTrained      : bool  {volatile" vertex="1">
+          <mxGeometry height="18" width="340" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="125" parent="119" style="line;strokeColor=#000000;fillColor=none;rotatable=0;fontSize=0;" value="" vertex="1">
+          <mxGeometry height="4" width="340" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="126" parent="119" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;fontStyle=2;" value="+ PredictRenewal(value, industry, responseTime, violations) : AiPredictionResponse" vertex="1">
+          <mxGeometry height="18" width="340" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="127" parent="119" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=5;overflow=hidden;rotatable=0;fontSize=10;fontColor=#000000;fontStyle=2;" value="+ PredictAllCustomers(data) : List&lt;AiPredictionResponse&gt;" vertex="1">
+          <mxGeometry height="18" width="340" y="152" as="geometry" />
+        </mxCell>
+        <mxCell id="128" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="«abstract» AbstractValidator&lt;T&gt;" vertex="1">
+          <mxGeometry height="60" width="340" x="50" y="698" as="geometry" />
+        </mxCell>
+        <mxCell id="129" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="ContractValidator" vertex="1">
+          <mxGeometry height="60" width="340" x="50" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="130" parent="1" style="swimlane;fontStyle=1;align=center;startSize=40;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=11;whiteSpace=wrap;html=1;rounded=0;" value="ResultValidator" vertex="1">
+          <mxGeometry height="60" width="340" x="440" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="131" edge="1" parent="1" source="128" style="endArrow=block;endFill=0;dashed=0;endSize=10;strokeColor=#000000;strokeWidth=1.5;html=1;" target="129" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="132" edge="1" parent="1" source="128" style="endArrow=block;endFill=0;dashed=0;endSize=10;strokeColor=#000000;strokeWidth=1.5;html=1;" target="130" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="133" edge="1" parent="1" source="10" style="endArrow=block;endFill=0;dashed=1;endSize=10;strokeColor=#000000;strokeWidth=1.5;html=1;" target="73" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="134" edge="1" parent="1" source="21" style="endArrow=block;endFill=0;dashed=1;endSize=10;strokeColor=#000000;strokeWidth=1.5;html=1;" target="77" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="135" edge="1" parent="1" source="25" style="endArrow=block;endFill=0;dashed=1;endSize=10;strokeColor=#000000;strokeWidth=1.5;html=1;" target="81" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="136" edge="1" parent="1" source="32" style="endArrow=block;endFill=0;dashed=1;endSize=10;strokeColor=#000000;strokeWidth=1.5;html=1;" target="87" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="137" edge="1" parent="1" source="38" style="endArrow=block;endFill=0;dashed=1;endSize=10;strokeColor=#000000;strokeWidth=1.5;html=1;" target="91" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="138" edge="1" parent="1" source="47" style="endArrow=block;endFill=0;dashed=1;endSize=10;strokeColor=#000000;strokeWidth=1.5;html=1;" target="95" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="139" edge="1" parent="1" source="58" style="endArrow=block;endFill=0;dashed=1;endSize=10;strokeColor=#000000;strokeWidth=1.5;html=1;" target="103" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="140" edge="1" parent="1" source="62" style="endArrow=block;endFill=0;dashed=1;endSize=10;strokeColor=#000000;strokeWidth=1.5;html=1;" target="109" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="141" edge="1" parent="1" source="65" style="endArrow=block;endFill=0;dashed=1;endSize=10;strokeColor=#000000;strokeWidth=1.5;html=1;" target="111" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="142" edge="1" parent="1" source="69" style="endArrow=block;endFill=0;dashed=1;endSize=10;strokeColor=#000000;strokeWidth=1.5;html=1;" target="115" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="143" edge="1" parent="1" source="81" style="endArrow=open;endFill=0;dashed=0;strokeColor=#000000;strokeWidth=1.5;html=1;" target="129" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="144" edge="1" parent="1" source="81" style="endArrow=open;endFill=0;dashed=0;strokeColor=#000000;strokeWidth=1.5;html=1;" target="119" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="145" edge="1" parent="1" source="103" style="endArrow=open;endFill=0;dashed=0;strokeColor=#000000;strokeWidth=1.5;html=1;" target="130" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

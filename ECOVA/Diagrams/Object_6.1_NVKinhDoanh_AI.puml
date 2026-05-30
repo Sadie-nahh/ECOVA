@@ -1,0 +1,171 @@
+@startuml Object_6_1_NVKinhDoanh_AI
+title Object Diagram 6.1 — Sales Staff Login & View Contract + AI Prediction\n(Ref: Sequence 4.1 Login-Password · Sequence 4.3 Create-Contract)\n(Ref: State 5.1 ContractStatus · State 5.6 AppState Session)
+
+skinparam monochrome true
+skinparam style strictuml
+skinparam shadowing false
+skinparam backgroundColor White
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 11
+skinparam object {
+    BackgroundColor White
+    BorderColor     Black
+    FontName        "Arial"
+    FontSize        11
+    ArrowColor      Black
+    HeaderBackgroundColor White
+    HeaderBorderColor     Black
+    AttributeFontSize     10
+}
+skinparam note {
+    BackgroundColor White
+    BorderColor     Black
+    FontName        "Arial"
+    FontSize        9
+}
+skinparam linetype polyline
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 1  tuyethan : UserDTO
+'   Source: seed U03  — Department "Kinh doanh", Role R03
+'   Verified from: EcovaDB_Seed_Full.sql (Users table, row U03)
+'   DTO class: EnvContract.DTO.Entities.UserDTO
+' ─────────────────────────────────────────────────────────
+object "<u>tuyethan : UserDTO</u>" as tuyethan {
+    UserID             = "U03"
+    EmployeeCode       = "EMP003"
+    Username           = "tuyethan"
+    FullName           = "Ho Thi Tuyet Han"
+    Email              = "tuyethantt1@gmail.com"
+    Phone              = "0901234789"
+    Department         = "Kinh doanh"
+    RoleID             = "R03"
+    IsActive           = true
+    IsFaceIDRegistered = false
+    CreatedDate        = "2026-04-12"
+}
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 2  salesRole : RoleDTO
+'   Source: seed R03 (Roles table)
+'   DTO class: EnvContract.DTO.Entities.RoleDTO
+' ─────────────────────────────────────────────────────────
+object "<u>salesRole : RoleDTO</u>" as salesRole {
+    RoleID      = "R03"
+    RoleCode    = "SALES"
+    RoleName    = "Phong Kinh doanh"
+    Description = "Sales department staff"
+}
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 3  currentSession : AppState
+'   «singleton» — AppState.Instance
+'   State 5.6 = Authenticated (after UserBLL.LoginAsync → true)
+'   Class: EnvContract.Common.AppState
+' ─────────────────────────────────────────────────────────
+object "<u>currentSession : AppState</u>" as appState {
+    CurrentUser = tuyethan
+    IsLoggedIn  = true
+}
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 4  greenPack : CustomerDto
+'   Source: seed C01 (Customers table)
+'   DTO class: EnvContract.DTO.Entities.CustomerDto
+' ─────────────────────────────────────────────────────────
+object "<u>greenPack : CustomerDto</u>" as greenPack {
+    CustomerId     = "C01"
+    TaxCode        = "0101234567"
+    CompanyName    = "Cong ty CP Bao Bi Xanh"
+    Address        = "Lo A12, KCN Tan Binh, TP.HCM"
+    Representative = "Nguyen Van An"
+    ContactEmail   = "contact@baobixanh.vn"
+    PhoneNumber    = "0901234567"
+}
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 5  contract1 : ContractDto
+'   Source: seed HD-0001 (Contracts table, i=1, cid=C01)
+'   SignedDate = DATEADD(DAY,-1,GETDATE()) ~ 2026-04-12
+'   ValidTo    = DATEADD(MONTH, 12+1%6, SignedDate) = +13 months
+'   TotalValue = 30000000 + (1*1000000) = 31,000,000
+'   Status     = 0  [Active: i<=9 AND i<>5 => CASE => 0]
+'   CreatedBy  = "U06"  [CASE WHEN @i%2=0 THEN 'U03' ELSE 'U06'; i=1 odd => U06]
+'   RenewalLabel = 1  [C01 falls into ELSE branch => 1]
+'   DTO class: EnvContract.DTO.Entities.ContractDto
+' ─────────────────────────────────────────────────────────
+object "<u>contract1 : ContractDto</u>" as contract1 {
+    ContractId         = "HD-0001"
+    CustomerId         = "C01"
+    SignedDate         = "2026-04-12"
+    ValidFrom          = "2026-04-12"
+    ValidTo            = "2027-05-12"
+    Status             = 0
+    CreatedBy          = "U06"
+    TotalContractValue = 31000000
+    IndustryType       = "FoodAndBeverage"
+    RenewalLabel       = 1
+}
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 6  aiResult : AiPredictionResponse
+'   Returned by AiIntegrationService.PredictRenewal()
+'   called inside ContractService.CreateContractAsync()
+'   C01: no violations, high frequency => high score
+'   DTO class: EnvContract.DTO.Responses.AiPredictionResponse
+' ─────────────────────────────────────────────────────────
+object "<u>aiResult : AiPredictionResponse</u>" as aiResult {
+    CustomerID              = "C01"
+    CompanyName             = "Cong ty CP Bao Bi Xanh"
+    RenewalProbabilityScore = 0.78
+    IsPollutionWarning      = false
+    PredictionDetails       = "High renewal probability. Good cooperation frequency, no violations."
+}
+
+' ─────────────────────────────────────────────────────────
+' LINKS — instance-level associations (UML Object Diagram)
+' ─────────────────────────────────────────────────────────
+tuyethan  --  salesRole  : "RoleID = R03"
+appState  --  tuyethan   : "CurrentUser"
+contract1 --  greenPack  : "CustomerId"
+aiResult  --  greenPack  : "predicts for"
+
+' ─────────────────────────────────────────────────────────
+' NOTES
+' ─────────────────────────────────────────────────────────
+note right of appState
+  [State 5.6 - Authenticated]
+  After Seq 4.1 (Login-Password):
+    UserBLL.LoginAsync("tuyethan", password) => true
+    UserRepository.GetByUsernameAsync() => UserDTO(U03)
+    SecurityHelper.VerifyPassword(pw, hash) => true
+    AppState.Instance.CurrentUser <= UserDTO(U03)
+    SystemAuditHelper.LogAsync("LOGIN","Users","U03")
+end note
+
+note right of contract1
+  [State 5.1 - ContractStatus.Active = 0]
+  After Seq 4.3 (Create Contract):
+    ContractValidator.ValidateAndThrow(ContractDto) => OK
+    ContractRepository.AddContractAsync(ContractDto)
+    AiIntegrationService.PredictRenewal(
+      31000000, "FoodAndBeverage", 2, 0) => score=0.78
+    SystemAuditHelper.LogAsync(
+      "CREATE_CONTRACT","Contracts","HD-0001")
+  ---
+  CreatedBy = "U06" (Minhkhoa - Sales)
+  [Seed: CASE WHEN @i%2=0 THEN 'U03' ELSE 'U06'; i=1 odd => U06]
+end note
+
+note bottom of aiResult
+  AiIntegrationService (singleton, no interface):
+    Model: ML.NET ITransformer (trained on CustomerFeedbacks)
+    Input: ContractRenewalInput {
+      TotalValue=31000000, Industry="FoodAndBeverage",
+      ResponseTime=2, Violations=0, Frequency=5 }
+    Output: ContractRenewalPrediction {
+      Score=0.78, PredictedLabel=true }
+  Shown via DashboardUC and ContractListUC
+end note
+
+@enduml

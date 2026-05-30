@@ -1,0 +1,151 @@
+@startuml 04b_SequenceDiagram_Login_FaceID
+title Sequence 4.2 — Login (Face ID)
+skinparam defaultTextAlignment left
+skinparam SequenceArrowThickness 1
+skinparam SequenceBoxBorderColor #000000
+skinparam SequenceLifeLineBorderColor #000000
+skinparam SequenceParticipantBackgroundColor #FFFFFF
+skinparam SequenceParticipantBorderColor #000000
+skinparam NoteBackgroundColor #FFFDE7
+skinparam NoteBorderColor #AAAAAA
+skinparam FontName Arial
+skinparam FontSize 10
+skinparam SequenceGroupBorderColor #555555
+skinparam SequenceGroupBackgroundColor #F5F5F5
+
+' ── Lifelines (7+1audit) — plan: User, Login, UserBLL,
+'    UserRepository, AesHelper, FaceIdManager, AppState, SystemAuditHelper
+actor       "User"               as User
+participant ":Login"             as Login      <<boundary>>
+participant ":UserBLL"           as UserBLL    <<control>>
+participant ":UserRepository"    as UserRepo   <<entity>>
+participant ":AesHelper"         as AesHelper  <<static>>
+participant ":FaceIdManager"     as FaceId     <<static>>
+participant ":AppState"          as AppState   <<singleton>>
+participant ":SystemAuditHelper" as AuditHelper <<entity>>
+
+' ── Step 1: User selects Face ID, enters username ──────────────────
+User -> Login : click "Face ID" tab, enter username
+activate Login
+
+Login -> UserBLL : GetFaceIDDataAsync(username)
+activate UserBLL
+
+  UserBLL -> UserRepo : GetByUsernameAsync(username)
+  activate UserRepo
+    UserRepo -> SqlHelper : QuerySingleOrDefaultAsync<UserDTO>(\n"sp_AuthenticateUser", {username})
+    activate SqlHelper
+    SqlHelper --> UserRepo : return UserDTO
+    deactivate SqlHelper
+    UserRepo --> UserBLL : return UserDTO
+  deactivate UserRepo
+
+  UserBLL -> AesHelper : DecryptBytes(UserDTO.FaceIDData) [static]
+  activate AesHelper
+  note right of AesHelper
+    AesHelper.DecryptBytes(base64Cipher)
+    returns byte[] (storedFaceBytes)
+    null if FaceIDData is null
+  end note
+  AesHelper --> UserBLL : return byte[] (storedFaceBytes)
+  deactivate AesHelper
+
+UserBLL --> Login : return (UserDTO, storedFaceBytes)
+deactivate UserBLL
+
+' ── Step 2: Register FaceID if not yet registered ──────────────────
+alt [IsFaceIDRegistered = false — first-time registration]
+    Login -> Login : Show registration sub-panel
+    User -> Login : Enter password to verify identity
+    User -> Login : Camera captures face image (frame)
+
+    Login -> UserBLL : RegisterFaceIDAsync(username, password, rawFaceData)
+    activate UserBLL
+      note right of UserBLL
+        UserBLL.RegisterFaceIDAsync():
+        1. Verify password via SecurityHelper
+        2. FaceIdManager.ExtractNormalizedFace(frame)
+           -> Resize(100x100) -> GaussianBlur -> normalize
+      end note
+      UserBLL -> AesHelper : EncryptBytes(normalizedFaceData) [static]
+      activate AesHelper
+      AesHelper --> UserBLL : return string (base64 encrypted)
+      deactivate AesHelper
+
+      UserBLL -> UserRepo : RegisterFaceIDAsync(userId, encryptedData)
+      activate UserRepo
+      note right of UserRepo
+        SqlHelper: sp_RegisterFaceID
+        UPDATE Users SET
+          FaceIDData = @encryptedData,
+          IsFaceIDRegistered = 1
+        WHERE UserID = @userId
+      end note
+      UserRepo --> UserBLL : return (void)
+      deactivate UserRepo
+    UserBLL --> Login : return true (registered successfully)
+    deactivate UserBLL
+
+else [IsFaceIDRegistered = true — already registered]
+    Login -> Login : (proceed directly to face matching)
+end
+
+' ── Step 3: Camera loop — capture and match histogram ──────────────
+Login -> Login : Start VideoCapture (VideoCapture.Read loop)
+
+loop [Each frame, while similarity < threshold AND attempts < 5]
+    Login -> FaceId : ExtractNormalizedFace(frame) [static]
+    activate FaceId
+    note right of FaceId
+      EmguCV DNN CascadeClassifier detect face ROI
+      Resize(100x100) -> GaussianBlur -> normalize
+      Returns byte[] (normalized face), or null if no face
+    end note
+    FaceId --> Login : return byte[] (capturedFaceBytes)
+    deactivate FaceId
+
+    Login -> FaceId : CompareHistogram(storedFaceBytes, capturedFaceBytes) [static]
+    activate FaceId
+    note right of FaceId
+      2x2 Grid Histogram Correlation (Bhattacharyya distance)
+      Returns double similarity score: 0.0 -> 1.0
+      BBOX_PADDING = 0.15 (bounding box expansion)
+    end note
+    FaceId --> Login : return double similarity
+    deactivate FaceId
+
+    alt [similarity >= AppConfig.FaceId.Threshold (default 0.65)]
+        ' ── Step 4: Face matched — perform login ──────────────
+        Login -> UserBLL : LoginWithFaceIDAsync(username)
+        activate UserBLL
+          UserBLL -> UserRepo : GetByUsernameAsync(username)
+          activate UserRepo
+          UserRepo --> UserBLL : return UserDTO (full — all fields)
+          deactivate UserRepo
+
+          UserBLL -> AppState : Instance.CurrentUser = UserDTO [singleton]
+          activate AppState
+          AppState --> UserBLL
+          deactivate AppState
+
+          UserBLL -> AuditHelper : LogAsync(userId, "LOGIN_FACEID",\n"User", userId) [fire-and-forget Task]
+          activate AuditHelper
+          AuditHelper --> UserBLL
+          deactivate AuditHelper
+        UserBLL --> Login : return true
+        deactivate UserBLL
+
+        Login -> Login : Stop camera / release VideoCapture
+        Login -> Login : this.Hide()
+        Login -> Login : new MainForm().Show()
+    end
+end
+
+' ── Step 5: Fallback if 5 consecutive failures ─────────────────────
+opt [5 consecutive failed attempts]
+    Login -> Login : Display fallback options:\n[1] Retry Face ID\n[2] Switch to password login\n[3] Update FaceID with new capture (requires password)
+end
+
+deactivate Login
+
+@enduml

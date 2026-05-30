@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="lane_0" value="| Admin (R01)" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="0" y="0" width="360" height="2832" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_1" value="| Sales (R03)" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="360" y="0" width="360" height="2832" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_2" value="| Planning (R06)" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="720" y="0" width="360" height="2832" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_3" value="| Field Sampler (R04)" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="1080" y="0" width="360" height="2832" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_4" value="| Lab Technician (R05)" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="1440" y="0" width="360" height="2832" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_5" value="| QA Officer (R07)" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="1800" y="0" width="360" height="2832" as="geometry"/>
+    </mxCell>
+    <mxCell id="lane_6" value="| Director (R02)" style="swimlane;startSize=32;fillColor=#FFFFFF;strokeColor=#000000;fontStyle=1;fontSize=11;fontColor=#000000;horizontal=1;swimlaneHead=0;align=center;html=1;" vertex="1" parent="1">
+      <mxGeometry x="2160" y="0" width="360" height="2832" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4001" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;fontColor=#FFFFFF;aspect=fixed;" vertex="1" parent="lane_0">
+      <mxGeometry x="169.0" y="52" width="22" height="22" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4002" value="Create new employee account&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;[-&amp;gt; Seq 4.8]&lt;br/&gt;EmployeeService.AddEmployeeAsync(UserDTO)&lt;br/&gt;SecurityHelper.HashPassword(inputPassword)&lt;br/&gt;EmailSmtpHelper.SendEmailAsync(email, generatedPwd)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_0">
+      <mxGeometry x="30.0" y="102" width="300" height="130" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4004" value="Add customer information&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;CustomerService.AddCustomerAsync(CustomerDto)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_1">
+      <mxGeometry x="30.0" y="260" width="300" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4006" value="Enter new contract information" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_1">
+      <mxGeometry x="30.0" y="358" width="300" height="46" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4008" value="ContractValidator validates contract&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;ContractService.CreateContractAsync(CreateContractRequest)&lt;br/&gt;ContractValidator.ValidateAndThrow(CreateContractRequest)&lt;br/&gt;(inherits AbstractValidator&amp;lt;CreateContractRequest&amp;gt;)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_1">
+      <mxGeometry x="30.0" y="432" width="300" height="134" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4010" value="ValidateAndThrow() throws ValidationException?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=center;verticalAlign=middle;" vertex="1" parent="lane_1">
+      <mxGeometry x="100.0" y="594" width="160" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4012" value="Display validation error message" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_1">
+      <mxGeometry x="30.0" y="702" width="300" height="46" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4015" value="Save contract to database&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;[-&amp;gt; Seq 4.3]&lt;br/&gt;ContractRepository.AddContractAsync()&lt;br/&gt;-&amp;gt; SqlHelper: sp_CreateContract&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_1">
+      <mxGeometry x="30.0" y="702" width="300" height="94" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4017" value="Predict renewal probability with AI&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;AiIntegrationService.PredictRenewal(customerFeedback)&lt;br/&gt;-&amp;gt; returns AiPredictionResponse&lt;br/&gt;(RenewalProbabilityScore, IsPollutionWarning)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_1">
+      <mxGeometry x="30.0" y="824" width="300" height="122" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4019" value="Write contract creation audit log&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;SystemAuditHelper.LogAsync(&amp;quot;CREATE_CONTRACT&amp;quot;, contractId)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_1">
+      <mxGeometry x="30.0" y="974" width="300" height="86" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4021" value="Initialize new environmental sampling area&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;[-&amp;gt; Seq 4.7]&lt;br/&gt;PlanningService.CreateSamplingAreaAsync()&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_2">
+      <mxGeometry x="30.0" y="1088" width="300" height="98" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4023" value="Create new sampling Order?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=center;verticalAlign=middle;" vertex="1" parent="lane_2">
+      <mxGeometry x="100.0" y="1214" width="160" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4025" value="Select environment sample type&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;ConstraintMenu - 3 types:&lt;br/&gt;- Air&lt;br/&gt;- Wastewater / Surface water&lt;br/&gt;- Soil / Sediment&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_2">
+      <mxGeometry x="30.0" y="1322" width="300" height="110" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4027" value="Create Order for monitoring batch&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;OrderRepository.CreateOrderAsync(OrderDTO)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_2">
+      <mxGeometry x="30.0" y="1460" width="300" height="86" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4029" value="Save sampling plan&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;PlanningService.SaveSamplingPlanAsync(sampleParameterPlanDTO)&lt;br/&gt;-&amp;gt; SamplingPlanRepository.SaveSamplingPlanAsync()&lt;br/&gt;-&amp;gt; SqlHelper: sp_SaveSamplingPlan&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_2">
+      <mxGeometry x="30.0" y="1574" width="300" height="106" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4031" value="" style="fillColor=#000000;strokeColor=#000000;rounded=0;" vertex="1" parent="1">
+      <mxGeometry x="1100" y="1708" width="680" height="10" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4033" value="Enter field sample results&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;[-&amp;gt; Seq 4.4]&lt;br/&gt;TestingService.EnterTestResultAsync(SampleDTO)&lt;br/&gt;-&amp;gt; SampleRepository.UpdateSampleAsync()&lt;br/&gt;DB Trigger: trg_AutoWarning&lt;br/&gt;(SET IsWarning=1 if exceeds QCVN threshold)&lt;br/&gt;DB Trigger: trg_AuditHistory&lt;br/&gt;(INSERT INTO ResultHistory)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_3">
+      <mxGeometry x="30.0" y="1746" width="300" height="166" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4035" value="Enter laboratory test results&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;[-&amp;gt; Seq 4.4]&lt;br/&gt;TestingService.EnterTestResultAsync(TestResultDTO)&lt;br/&gt;-&amp;gt; TestResultRepository.SaveTestResultAsync()&lt;br/&gt;DB Trigger: trg_AutoWarning&lt;br/&gt;(SET IsWarning=1 if exceeds QCVN threshold)&lt;br/&gt;DB Trigger: trg_AuditHistory&lt;br/&gt;(INSERT INTO ResultHistory)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_4">
+      <mxGeometry x="30.0" y="1746" width="300" height="182" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4037" value="" style="fillColor=#000000;strokeColor=#000000;rounded=0;" vertex="1" parent="1">
+      <mxGeometry x="1100" y="1956" width="680" height="10" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4040" value="Approve monitoring order&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;[-&amp;gt; Seq 4.5]&lt;br/&gt;ApprovalService.ApproveOrderAsync(orderId)&lt;br/&gt;-&amp;gt; OrderRepository.ApproveOrderAsync()&lt;br/&gt;-&amp;gt; SqlHelper: sp_ApproveOrder&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_5">
+      <mxGeometry x="30.0" y="1994" width="300" height="118" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4042" value="Compile and export PDF report&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;ExportService.ExportStructuredPdfAsync(orderId)&lt;br/&gt;-&amp;gt; PdfExportHelper.GeneratePdf()&lt;br/&gt;-&amp;gt; save FinalReportPath to Orders table&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_5">
+      <mxGeometry x="30.0" y="2140" width="300" height="122" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4044" value="Results exceed QCVN threshold?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=center;verticalAlign=middle;" vertex="1" parent="lane_5">
+      <mxGeometry x="100.0" y="2290" width="160" height="80" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4046" value="Display warning and highlight violations&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;ApprovalService.CheckQcvnViolation(orderId)&lt;br/&gt;-&amp;gt; highlight rows where TestResult.IsWarning = 1&lt;br/&gt;-&amp;gt; mark red in PDF report&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_5">
+      <mxGeometry x="30.0" y="2398" width="300" height="122" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4048" value="Display normal results" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_5">
+      <mxGeometry x="30.0" y="2398" width="300" height="44" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4050" value="" style="ellipse;fillColor=none;strokeColor=none;opacity=0;" vertex="1" parent="lane_5">
+      <mxGeometry x="175.0" y="2548" width="10" height="10" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4053" value="View consolidated dashboard&lt;br/&gt;&lt;font color=&quot;#888888&quot; size=&quot;1&quot;&gt;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&amp;#x2500;&lt;br/&gt;DirectorApprovalUC (read-only)&lt;br/&gt;IsReadOnlyForRole(&amp;quot;R02&amp;quot;) = true&lt;br/&gt;AppState.Instance.CurrentUser.RoleID = &amp;quot;R02&amp;quot;&lt;br/&gt;View only - no data modification allowed&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1;fontSize=10;fontColor=#000000;align=left;verticalAlign=top;spacingLeft=6;spacingRight=4;spacingTop=4;spacingBottom=4;" vertex="1" parent="lane_6">
+      <mxGeometry x="30.0" y="2576" width="300" height="118" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4055" value="" style="ellipse;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;aspect=fixed;" vertex="1" parent="lane_6">
+      <mxGeometry x="165.0" y="2722" width="30" height="30" as="geometry"/>
+    </mxCell>
+    <mxCell id="n4056" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;aspect=fixed;" vertex="1" parent="n4055">
+      <mxGeometry x="6.0" y="6.0" width="18" height="18" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4003" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4001" target="n4002" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4005" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4002" target="n4004" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4007" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4004" target="n4006" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4009" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4006" target="n4008" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4011" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4008" target="n4010" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4013" value="[Yes - error found]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;dashed=1;dashPattern=6 3;startArrow=none;endArrow=open;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;fontColor=#444444;fontStyle=2;" edge="1" source="n4010" target="n4012" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4014" value="Enter new contract information" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;dashed=1;dashPattern=6 3;startArrow=none;endArrow=open;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;fontColor=#444444;fontStyle=2;" edge="1" source="n4012" target="n4006" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4016" value="[No - valid]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;fontStyle=2;" edge="1" source="n4010" target="n4015" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4018" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4015" target="n4017" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4020" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4017" target="n4019" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4022" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4019" target="n4021" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4024" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4021" target="n4023" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4026" value="[Yes]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;fontStyle=2;" edge="1" source="n4023" target="n4025" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4028" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4025" target="n4027" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4030" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4027" target="n4029" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4032" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4029" target="n4031" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4034" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4031" target="n4033" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4036" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4031" target="n4035" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4038" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4033" target="n4037" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4039" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4035" target="n4037" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4041" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4037" target="n4040" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4043" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4040" target="n4042" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4045" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4042" target="n4044" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4047" value="[Yes - IsWarning = 1]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;fontStyle=2;" edge="1" source="n4044" target="n4046" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4049" value="[No - within allowed limits]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;fontStyle=2;" edge="1" source="n4044" target="n4048" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4051" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4046" target="n4050" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4052" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4048" target="n4050" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4054" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4050" target="n4053" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4057" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;strokeColor=#000000;strokeWidth=1;startArrow=none;endArrow=open;endFill=1;fontSize=9;fontColor=#000000;" edge="1" source="n4053" target="n4055" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+  </root>
+</mxGraphModel>

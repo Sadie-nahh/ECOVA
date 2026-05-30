@@ -1,0 +1,266 @@
+<mxfile host="app.diagrams.net" agent="puml_seq_to_drawio.py v2.0">
+  <diagram id="seq" name="Sequence 4.3 — Create Contract">
+    <mxGraphModel dx="5150" dy="3040" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1940" pageHeight="2562" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=1.5;fontSize=9;fontStyle=1;verticalAlign=top;align=left;spacingLeft=4;spacingTop=2;" value="" vertex="1">
+          <mxGeometry height="1740" width="1724" x="48" y="564" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="shape=mxgraph.uml.message2;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=9;fontStyle=0;align=center;verticalAlign=middle;" value="&lt;b&gt;ALT&lt;/b&gt; [ValidationException thrown — invalid data]" vertex="1">
+          <mxGeometry height="20" width="275" x="48" y="564" as="geometry" />
+        </mxCell>
+        <mxCell id="4" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="48" y="942" as="sourcePoint" />
+            <mxPoint x="1772" y="942" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5" parent="1" style="text;html=1;align=left;fontSize=9;fontStyle=2;labelBackgroundColor=none;" value="[No exception — data is valid]" vertex="1">
+          <mxGeometry height="16" width="300" x="52" y="944" as="geometry" />
+        </mxCell>
+        <mxCell id="6" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="80" as="sourcePoint" />
+            <mxPoint x="80" y="2502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="80" as="sourcePoint" />
+            <mxPoint x="360" y="2502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="80" as="sourcePoint" />
+            <mxPoint x="580" y="2502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="80" as="sourcePoint" />
+            <mxPoint x="800" y="2502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="10" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="80" as="sourcePoint" />
+            <mxPoint x="1020" y="2502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="11" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="80" as="sourcePoint" />
+            <mxPoint x="1240" y="2502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="12" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1460" y="80" as="sourcePoint" />
+            <mxPoint x="1460" y="2502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="13" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1680" y="80" as="sourcePoint" />
+            <mxPoint x="1680" y="2502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="208" width="12" x="794" y="474" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="416" width="12" x="574" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="1234" y="1254" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="364" width="12" x="1014" y="1150" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="1454" y="1618" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="1674" y="1878" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="2132" width="12" x="354" y="214" as="geometry" />
+        </mxCell>
+        <mxCell id="21" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Open form, fill contract details&lt;br/&gt;(CustomerId, ContractId, ValidFrom, ValidTo,&lt;br/&gt;TotalContractValue, IndustryType, ContractFilePath)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="162" as="sourcePoint" />
+            <mxPoint x="360" y="162" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="22" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="CreateContractAsync(CreateContractRequest)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="266" as="sourcePoint" />
+            <mxPoint x="580" y="266" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="23" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ValidateAndThrow(request.Contract)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="422" as="sourcePoint" />
+            <mxPoint x="800" y="422" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="24" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="throw ValidationException&lt;br/&gt;(list of ValidationFailure)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="630" as="sourcePoint" />
+            <mxPoint x="580" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="25" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="propagate ValidationException">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="734" as="sourcePoint" />
+            <mxPoint x="360" y="734" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="26" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Display per-field error messages">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="838" />
+              <mxPoint x="415" y="868" />
+            </Array>
+            <mxPoint x="360" y="838" as="sourcePoint" />
+            <mxPoint x="360" y="868" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="27" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Highlight invalid controls">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="890" />
+              <mxPoint x="415" y="920" />
+            </Array>
+            <mxPoint x="360" y="890" as="sourcePoint" />
+            <mxPoint x="360" y="920" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="28" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="(return without exception)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="994" as="sourcePoint" />
+            <mxPoint x="580" y="994" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="29" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="AddContractAsync(contractDto)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1098" as="sourcePoint" />
+            <mxPoint x="1020" y="1098" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="30" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ExecuteNonQueryAsync(&lt;br/&gt;&quot;sp_AddContract&quot;,&lt;br/&gt;{contractId, customerId, signedDate,&lt;br/&gt;validFrom, validTo, filePath,&lt;br/&gt;status=0, totalValue, industryType, createdBy})">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="1202" as="sourcePoint" />
+            <mxPoint x="1240" y="1202" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="1358" as="sourcePoint" />
+            <mxPoint x="1020" y="1358" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="1462" as="sourcePoint" />
+            <mxPoint x="580" y="1462" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="33" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="PredictRenewal(&lt;br/&gt;responsSpeed, responseTime,&lt;br/&gt;previousViolations, frequency) [singleton]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1566" as="sourcePoint" />
+            <mxPoint x="1460" y="1566" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return AiPredictionResponse">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1460" y="1722" as="sourcePoint" />
+            <mxPoint x="580" y="1722" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="35" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="LogAsync(&lt;br/&gt;userId, &quot;CREATE_CONTRACT&quot;, &quot;Contract&quot;, contractId)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1826" as="sourcePoint" />
+            <mxPoint x="1680" y="1826" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="36" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="(void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1680" y="1982" as="sourcePoint" />
+            <mxPoint x="580" y="1982" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="37" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void — success)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="2086" as="sourcePoint" />
+            <mxPoint x="360" y="2086" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="38" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Display AI prediction result&lt;br/&gt;(RenewalProbabilityScore, IsPollutionWarning)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="2190" />
+              <mxPoint x="415" y="2220" />
+            </Array>
+            <mxPoint x="360" y="2190" as="sourcePoint" />
+            <mxPoint x="360" y="2220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="39" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="this.Close()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="2242" />
+              <mxPoint x="415" y="2272" />
+            </Array>
+            <mxPoint x="360" y="2242" as="sourcePoint" />
+            <mxPoint x="360" y="2272" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="40" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="CreateContractRequest contains:&lt;br/&gt;Contract: ContractDto&lt;br/&gt;SourcePdfPath: string" vertex="1">
+          <mxGeometry height="58" width="190" x="448" y="318" as="geometry" />
+        </mxCell>
+        <mxCell id="41" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="AbstractValidator&amp;lt;CreateContractRequest&amp;gt;&lt;br/&gt;(ContractValidator : AbstractValidator&amp;lt;CreateContractRequest&amp;gt;)&lt;br/&gt;ValidateAndThrow() throws ValidationException if any rule fails.&lt;br/&gt;Rules validated on request.Contract (ContractDto):&lt;br/&gt;ContractId: NotEmpty, MaxLength(50)&lt;br/&gt;CustomerId: NotEmpty&lt;br/&gt;ValidTo &amp;gt; ValidFrom&lt;br/&gt;ValidTo &amp;gt; DateTime.Today&lt;br/&gt;TotalContractValue &amp;gt;= 0" vertex="1">
+          <mxGeometry height="142" width="190" x="888" y="526" as="geometry" />
+        </mxCell>
+        <mxCell id="42" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="sp_AddContract:&lt;br/&gt;INSERT INTO Contracts (...)&lt;br/&gt;Returns void (non-query)" vertex="1">
+          <mxGeometry height="58" width="190" x="1328" y="1306" as="geometry" />
+        </mxCell>
+        <mxCell id="43" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="ML.NET PredictionEngine&amp;lt;ContractRenewalInput,&lt;br/&gt;ContractRenewalPrediction&amp;gt;&lt;br/&gt;Reads CustomerFeedbacks data for customer.&lt;br/&gt;Returns AiPredictionResponse:&lt;br/&gt;RenewalProbabilityScore: double&lt;br/&gt;IsPollutionWarning: bool&lt;br/&gt;PredictionDetails: string" vertex="1">
+          <mxGeometry height="114" width="190" x="1548" y="1670" as="geometry" />
+        </mxCell>
+        <mxCell id="44" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="Fire-and-forget Task:&lt;br/&gt;INSERT INTO AuditLogs:&lt;br/&gt;Action = &quot;CREATE_CONTRACT&quot;&lt;br/&gt;EntityType = &quot;Contract&quot;&lt;br/&gt;EntityID = contractId&lt;br/&gt;LoggedAt = SYSDATETIME()" vertex="1">
+          <mxGeometry height="100" width="190" x="1768" y="1930" as="geometry" />
+        </mxCell>
+        <mxCell id="45" parent="1" style="shape=mxgraph.uml.actor2;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=10;fontStyle=0;" value="Sales Staff" vertex="1">
+          <mxGeometry height="70" width="40" x="63" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="46" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«boundary»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;ContractCreateForm&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="280" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="47" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«control»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;ContractService&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="500" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="48" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«control»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;ContractValidator&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="720" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="49" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;ContractRepository&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="940" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="50" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;SqlHelper&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="1160" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="51" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«singleton»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;AiIntegrationService&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="1380" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="52" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;SystemAuditHelper&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="1600" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="53" parent="1" style="text;html=1;align=center;strokeColor=none;fillColor=none;fontSize=12;fontStyle=1;" value="Sequence 4.3 — Create Contract" vertex="1">
+          <mxGeometry height="20" width="1760" x="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

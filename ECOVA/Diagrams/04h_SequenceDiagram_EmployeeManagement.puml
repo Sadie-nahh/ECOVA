@@ -1,0 +1,135 @@
+@startuml 04h_SequenceDiagram_EmployeeManagement
+title Sequence 4.8 — Employee Management (Add & Toggle Active)
+skinparam defaultTextAlignment left
+skinparam SequenceArrowThickness 1
+skinparam SequenceBoxBorderColor #000000
+skinparam SequenceLifeLineBorderColor #000000
+skinparam SequenceParticipantBackgroundColor #FFFFFF
+skinparam SequenceParticipantBorderColor #000000
+skinparam NoteBackgroundColor #FFFDE7
+skinparam NoteBorderColor #AAAAAA
+skinparam FontName Arial
+skinparam FontSize 10
+skinparam SequenceGroupBorderColor #555555
+skinparam SequenceGroupBackgroundColor #F5F5F5
+
+' ── Lifelines (6) — plan: Admin, EmployeeManagementUC,
+'    EmployeeService, EmployeeRepository, SqlHelper, SystemAuditHelper
+actor       "Admin"                 as Admin
+participant ":EmployeeManagementUC" as UC          <<boundary>>
+participant ":EmployeeService"      as EmpSvc      <<control>>
+participant ":EmployeeRepository"   as EmpRepo     <<entity>>
+participant ":SqlHelper"            as SqlHelper   <<entity>>
+participant ":SystemAuditHelper"    as AuditHelper <<entity>>
+
+' ── Step 1: Admin opens Employee Management, load list ───────────
+Admin -> UC : Open Employee Management module
+activate UC
+
+UC -> EmpSvc : GetAllEmployeesAsync()
+activate EmpSvc
+  EmpSvc -> EmpRepo : GetAllEmployeesAsync()
+  activate EmpRepo
+    EmpRepo -> SqlHelper : QueryAsync<UserDTO>(\n"sp_GetAllEmployees")
+    activate SqlHelper
+    SqlHelper --> EmpRepo : return List<UserDTO>
+    deactivate SqlHelper
+  EmpRepo --> EmpSvc : return List<UserDTO>
+  deactivate EmpRepo
+EmpSvc --> UC : return List<UserDTO>
+deactivate EmpSvc
+
+UC -> UC : Populate DataGridView\n(EmployeeCode, FullName, Role, IsActive toggle)
+
+' ── FLOW A: Add new employee ─────────────────────────────────────
+opt [Admin clicks "Add Employee"]
+    Admin -> UC : Click "Add Employee", fill employee details\n(FullName, Email, RoleID, Department, DateOfBirth, ...)
+
+    UC -> EmpSvc : AddEmployeeAsync(userDTO)
+    activate EmpSvc
+
+      note right of EmpSvc
+        EmployeeService.AddEmployeeAsync():
+        1. GenerateNewEmployeeDataAsync(roleId)
+           -> auto-generate EmployeeCode, UserID, Username
+        2. SecurityHelper.GenerateRandomPassword()
+           -> RandomNumberGenerator-based plain password
+        3. SecurityHelper.HashPassword(plainPwd)
+           -> BCrypt.Net.BCrypt.HashPassword(workFactor=12)
+      end note
+
+      EmpSvc -> EmpRepo : AddEmployeeAsync(userDTO)
+      activate EmpRepo
+        EmpRepo -> SqlHelper : ExecuteNonQueryAsync(\n"sp_AddEmployee",\n{userId, employeeCode, username,\npasswordHash, fullName, email,\nphone, roleId, department,\ndateOfBirth, isActive=1})
+        activate SqlHelper
+        SqlHelper --> EmpRepo : return (void)
+        deactivate SqlHelper
+      EmpRepo --> EmpSvc : return (void — employee inserted)
+      deactivate EmpRepo
+
+      EmpSvc -> AuditHelper : LogAsync(\nadminId, "ADD_EMPLOYEE", "User", userId)\n[fire-and-forget Task]
+      activate AuditHelper
+      AuditHelper --> EmpSvc : (void)
+      deactivate AuditHelper
+
+      note right of EmpSvc
+        EmailSmtpHelper.SendEmailAsync(
+          email, "Welcome to ECOVA", body)
+        [fire-and-forget — sends temp password to new employee]
+      end note
+
+    EmpSvc --> UC : return UserDTO (newly created employee)
+    deactivate EmpSvc
+
+    UC -> UC : Refresh DataGridView\n(scroll to new row, highlight)
+end
+
+' ── FLOW B: Toggle employee active/lock status ───────────────────
+Admin -> UC : Click "Lock / Unlock" toggle for an employee (userId)
+note right of Admin
+  IsActive toggled:
+    true  -> false  (Lock account)
+    false -> true   (Unlock account)
+end note
+
+UC -> EmpSvc : ToggleActiveAsync(userId, newIsActive)
+activate EmpSvc
+
+  EmpSvc -> EmpRepo : ToggleActiveAsync(userId, newIsActive)
+  activate EmpRepo
+    EmpRepo -> SqlHelper : ExecuteNonQueryAsync(\n"sp_ToggleEmployeeActive",\n{userId, isActive})
+    activate SqlHelper
+    note right of SqlHelper
+      sp_ToggleEmployeeActive:
+      UPDATE Users
+      SET IsActive = @isActive,
+          UpdatedAt = SYSDATETIME()
+      WHERE UserID = @userId
+    end note
+    SqlHelper --> EmpRepo : return (void)
+    deactivate SqlHelper
+  EmpRepo --> EmpSvc : return (void)
+  deactivate EmpRepo
+
+  EmpSvc -> AuditHelper : LogAsync(\nadminId, "TOGGLE_EMPLOYEE", "User", userId)\n[fire-and-forget Task]
+  activate AuditHelper
+  note right of AuditHelper
+    INSERT INTO AuditLogs:
+      Action     = "TOGGLE_EMPLOYEE"
+      EntityType = "User"
+      EntityID   = userId
+      Detail     = "IsActive set to {newIsActive}"
+      LoggedAt   = SYSDATETIME()
+  end note
+  AuditHelper --> EmpSvc : (void)
+  deactivate AuditHelper
+
+EmpSvc --> UC : return (void — success)
+deactivate EmpSvc
+
+' ── Step: Refresh UI ─────────────────────────────────────────────
+UC -> UC : Refresh DataGridView row:\n  - Update lock icon (locked / unlocked)\n  - Update IsActive cell color
+
+deactivate UC
+
+@enduml

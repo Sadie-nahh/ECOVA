@@ -1,0 +1,337 @@
+@startuml ERD_ECOVA
+' ============================================================
+'  ECOVA — Entity Relationship Diagram (ERD)
+'  Phong cach: UML Class Diagram truyen thong
+'  15 bang | 19 quan he FK | 10 CHECK | 13 Indexes
+'  Ky hieu: hinh chu nhat 2 ngan (ten bang / thuoc tinh)
+'           PK: in dam + gach chan
+'           FK: in nghieng
+'           Multiplicity: 1, 0..*, 1..*, 0..1 tren duong noi
+' ============================================================
+
+skinparam linetype ortho
+skinparam ranksep 55
+skinparam nodesep 40
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 10
+
+skinparam class {
+    BackgroundColor          #FFFFFF
+    BorderColor              #1A252F
+    BorderThickness          1.5
+    FontColor                #1A252F
+    FontStyle                bold
+    FontSize                 11
+    AttributeFontColor       #2C3E50
+    AttributeFontSize        10
+    HeaderBackgroundColor    #1A252F
+    HeaderFontColor          #FFFFFF
+    HeaderFontStyle          bold
+    ArrowColor               #1A252F
+    ArrowFontColor           #555555
+    ArrowFontSize            9
+}
+
+hide methods
+hide circle
+hide stereotypes
+
+' ============================================================
+' ZONE 1 — AUTHENTICATION
+' ============================================================
+
+class "Roles" as Roles <<Entity>> {
+    <b><u>RoleID</u></b>          : VARCHAR(50)
+    RoleCode            : VARCHAR(20)  {UNIQUE}
+    RoleName            : NVARCHAR(100)
+    Description         : NVARCHAR(255)
+}
+
+class "Users" as Users <<Entity>> {
+    <b><u>UserID</u></b>          : VARCHAR(50)
+    ..
+    <i>RoleID</i>             : VARCHAR(50)     {FK}
+    EmployeeCode        : VARCHAR(20)      {NOT NULL}
+    Username            : VARCHAR(50)      {UNIQUE, NOT NULL}
+    PasswordHash        : VARCHAR(255)     {NOT NULL}
+    FullName            : NVARCHAR(100)    {NOT NULL}
+    Email               : VARCHAR(100)     {UNIQUE, NOT NULL}
+    Phone               : VARCHAR(20)
+    DateOfBirth         : DATETIME
+    Department          : NVARCHAR(100)
+    Address             : NVARCHAR(255)
+    AvatarData          : VARBINARY(MAX)
+    FaceIDData          : VARBINARY(MAX)
+    IsFaceIDRegistered  : BIT             {DEFAULT 0}
+    IsActive            : BIT             {DEFAULT 1}
+    CreatedDate         : DATETIME        {DEFAULT GETDATE()}
+    UpdatedAt           : DATETIME2
+    ..
+    CK: IsActive IN (0,1)
+    CK: IsFaceIDRegistered IN (0,1)
+    IDX: IX_Users_Email
+    IDX: IX_Users_IsActive
+    TRIGGER: trg_Users_UpdatedAt
+}
+
+' ============================================================
+' ZONE 2 — CUSTOMER
+' ============================================================
+
+class "Customers" as Customers <<Entity>> {
+    <b><u>CustomerID</u></b>      : VARCHAR(50)
+    ..
+    TaxCode             : VARCHAR(20)      {UNIQUE}
+    CompanyName         : NVARCHAR(200)
+    Address             : NVARCHAR(255)
+    Representative      : NVARCHAR(100)
+    ContactEmail        : VARCHAR(100)
+    PhoneNumber         : VARCHAR(20)
+}
+
+class "CustomerFeedbacks" as CustomerFeedbacks <<Entity>> {
+    <b><u>FeedbackID</u></b>      : VARCHAR(50)
+    ..
+    <i>CustomerID</i>         : VARCHAR(50)     {FK}
+    ResponseSpeed       : INT
+    ResponseTime        : INT
+    PreviousViolations  : INT
+    Frequency           : INT
+    CreatedDate         : DATETIME
+    ..
+    CK: ResponseSpeed IS NULL OR (ResponseSpeed >= 1 AND ResponseSpeed <= 10)
+}
+
+' ============================================================
+' ZONE 3 — CONTRACT
+' ============================================================
+
+class "Contracts" as Contracts <<Entity>> {
+    <b><u>ContractID</u></b>      : VARCHAR(50)
+    ..
+    <i>CustomerID</i>         : VARCHAR(50)     {FK}
+    <i>CreatedBy</i>          : VARCHAR(50)     {FK -> Users.UserID}
+    SignedDate          : DATETIME
+    ValidFrom           : DATETIME
+    ValidTo             : DATETIME
+    ContractFilePath    : NVARCHAR(500)
+    Status              : INT             {DEFAULT 0}
+    TotalContractValue  : DECIMAL(18,2)
+    IndustryType        : NVARCHAR(50)
+    RenewalLabel        : INT
+    UpdatedAt           : DATETIME2
+    ..
+    CK: Status IN (0,1,2,3,4)
+    CK: ValidTo > ValidFrom
+    CK: RenewalLabel IS NULL OR IN (0,1)
+    IDX: IX_Contracts_Status
+    IDX: IX_Contracts_CustomerID
+    IDX: IX_Contracts_ValidTo
+    TRIGGER: trg_Contracts_UpdatedAt
+}
+
+' ============================================================
+' ZONE 4 — ORDERS
+' ============================================================
+
+class "Orders" as Orders <<Entity>> {
+    <b><u>OrderID</u></b>         : VARCHAR(50)
+    ..
+    <i>ContractID</i>         : VARCHAR(50)     {FK}
+    OrderName           : NVARCHAR(200)
+    EnvironmentType     : NVARCHAR(50)
+    OrderDate           : DATETIME         {DEFAULT GETDATE()}
+    Deadline            : DATETIME
+    FinalReportPath     : NVARCHAR(500)
+    IsApproved          : INT             {DEFAULT 0}
+    Status              : INT             {DEFAULT 0}
+    CreatedBy           : VARCHAR(50)     {NO FK CONSTRAINT}
+    UpdatedAt           : DATETIME2
+    ..
+    CK: Status IN (0,1,2)
+    CK: IsApproved IN (0,1)
+    IDX: IX_Orders_ContractID
+    TRIGGER: trg_Orders_UpdatedAt
+}
+
+' ============================================================
+' ZONE 5 — REGULATION
+' ============================================================
+
+class "Regulations" as Regulations <<Entity>> {
+    <b><u>RegulationID</u></b>    : VARCHAR(50)
+    ..
+    Code                : NVARCHAR(50)
+    Name                : NVARCHAR(200)
+    EnvironmentType     : NVARCHAR(50)
+}
+
+class "TestParameters" as TestParameters <<Entity>> {
+    <b><u>ParamID</u></b>         : VARCHAR(50)
+    ..
+    ParamName           : NVARCHAR(100)
+    Unit                : NVARCHAR(20)
+    TestMethod          : NVARCHAR(100)
+    IsField             : INT
+    Price               : DECIMAL(18,2)
+}
+
+class "RegulationLimits" as RegulationLimits <<Entity>> {
+    <b><u>LimitID</u></b>         : VARCHAR(50)
+    ..
+    <i>RegulationID</i>       : VARCHAR(50)     {FK}
+    <i>ParamID</i>            : VARCHAR(50)     {FK}
+    MinValue            : FLOAT
+    MaxValue            : FLOAT
+    ..
+    IDX: IX_RegulationLimits_Composite(RegulationID, ParamID)
+}
+
+' ============================================================
+' ZONE 6 — SAMPLING PLAN
+' ============================================================
+
+class "SamplingPlanItems" as SamplingPlanItems <<Entity>> {
+    <b><u>PlanItemID</u></b>      : VARCHAR(50)
+    ..
+    <i>OrderID</i>            : VARCHAR(50)     {FK}
+    <i>ParamID</i>            : VARCHAR(50)     {FK}
+    <i>RegulationID</i>       : VARCHAR(50)     {FK, NULL, named FK}
+    Department          : NVARCHAR(50)     {NOT NULL}
+    QcvnLimit           : NVARCHAR(100)
+    ..
+    IDX: IX_SamplingPlanItems_OrderID
+    NAMED FK: FK_SamplingPlanItems_Regulation
+}
+
+' ============================================================
+' ZONE 7 — SAMPLES & TEST RESULTS
+' ============================================================
+
+class "Samples" as Samples <<Entity>> {
+    <b><u>SampleID</u></b>        : VARCHAR(50)
+    ..
+    <i>OrderID</i>            : VARCHAR(50)     {FK}
+    <i>RegulationID</i>       : VARCHAR(50)     {FK}
+    <i>SamplerID</i>          : VARCHAR(50)     {FK -> Users.UserID}
+    Barcode             : VARCHAR(50)      {UNIQUE}
+    SamplingLocation    : NVARCHAR(200)
+    SamplingTime        : DATETIME
+    FieldTemperature    : FLOAT
+    FieldHumidity       : FLOAT
+    WeatherCondition    : NVARCHAR(200)
+    FieldImage          : NVARCHAR(500)
+    IsWarning           : BIT
+    Status              : INT             {DEFAULT 0}
+    UpdatedAt           : DATETIME2
+    ..
+    CK: Status IN (0,1,2,3)
+    IDX: IX_Samples_OrderID
+    TRIGGER: trg_Samples_UpdatedAt
+}
+
+class "TestResults" as TestResults <<Entity>> {
+    <b><u>ResultID</u></b>        : VARCHAR(50)
+    ..
+    <i>SampleID</i>           : VARCHAR(50)     {FK}
+    <i>ParamID</i>            : VARCHAR(50)     {FK}
+    <i>TesterID</i>           : VARCHAR(50)     {FK -> Users.UserID}
+    ResultValue         : FLOAT
+    IsWarning           : BIT
+    EnteredAt           : DATETIME
+    ..
+    IDX: IX_TestResults_SampleID
+    TRIGGER: trg_TestResults_AutoWarning
+    TRIGGER: trg_TestResults_AuditHistory
+}
+
+class "ResultHistory" as ResultHistory <<Entity>> {
+    <b><u>HistoryID</u></b>       : VARCHAR(50)
+    ..
+    <i>ResultID</i>           : VARCHAR(50)     {FK}
+    <i>ChangedBy</i>          : VARCHAR(50)     {FK -> Users.UserID}
+    OldValue            : FLOAT
+    NewValue            : FLOAT
+    ChangedAt           : DATETIME
+}
+
+' ============================================================
+' ZONE 8 — EMAIL & AUDIT
+' ============================================================
+
+class "EmailQueue" as EmailQueue <<Entity>> {
+    <b><u>EmailID</u></b>         : VARCHAR(50)
+    ..
+    Recipient           : VARCHAR(100)
+    Subject             : NVARCHAR(200)
+    Body                : NVARCHAR(MAX)
+    AttachmentPath      : NVARCHAR(500)
+    Status              : INT             {DEFAULT 0}
+    CreatedTime         : DATETIME
+    Type                : NVARCHAR(50)
+    ..
+    CK: Status IN (0,1,2)
+    IDX: IX_EmailQueue_Pending(Status)
+}
+
+class "AuditLogs" as AuditLogs <<Entity>> {
+    <b><u>LogID</u></b>           : VARCHAR(50)  {DEFAULT NEWID()}
+    ..
+    <i>UserID</i>            : VARCHAR(50)     {FK, NULL}
+    Action              : NVARCHAR(100)
+    EntityType          : NVARCHAR(50)
+    EntityID            : VARCHAR(50)
+    Detail              : NVARCHAR(500)
+    LoggedAt            : DATETIME2       {DEFAULT SYSDATETIME()}
+    ..
+    IDX: IX_AuditLogs_UserID
+    IDX: IX_AuditLogs_LoggedAt
+}
+
+' ============================================================
+' RELATIONSHIPS — 19 FK
+' Multiplicity: "1" | "0..1" | "0..*" | "1..*"
+' Ky hieu duong:
+'   ||---||  tren draw.io la 1..1
+'   ||---o{  la 1..N (zero or more)
+'   o|---o{  la 0..1 : 0..N
+' ============================================================
+
+' --- Zone 1: Auth ---
+Roles        "1" --o{ "0..*" Users           : "RoleID"
+
+Users        "0..1" --o{ "0..*" AuditLogs    : "UserID\n[nullable FK]"
+
+' --- Zone 2: Customer ---
+Customers    "1" --o{ "0..*" CustomerFeedbacks : "CustomerID"
+Customers    "1" --o{ "0..*" Contracts          : "CustomerID"
+
+' --- Zone 3: Contract ---
+Users        "1" --o{ "0..*" Contracts          : "CreatedBy"
+Contracts    "1" --o{ "0..*" Orders             : "ContractID"
+
+' --- Zone 4: Orders ---
+Orders       "1" --o{ "0..*" Samples            : "OrderID"
+Orders       "1" --o{ "0..*" SamplingPlanItems  : "OrderID"
+
+' --- Zone 5: Regulation ---
+Regulations  "1" --o{ "0..*" RegulationLimits   : "RegulationID"
+Regulations  "1" --o{ "0..*" Samples            : "RegulationID"
+Regulations  "0..1" --o{ "0..*" SamplingPlanItems : "RegulationID\n[nullable, named FK]"
+
+' --- TestParameters ---
+TestParameters "1" --o{ "0..*" RegulationLimits   : "ParamID"
+TestParameters "1" --o{ "0..*" SamplingPlanItems  : "ParamID"
+TestParameters "1" --o{ "0..*" TestResults        : "ParamID"
+
+' --- Users field work ---
+Users        "1" --o{ "0..*" Samples             : "SamplerID"
+Users        "1" --o{ "0..*" TestResults         : "TesterID"
+Users        "1" --o{ "0..*" ResultHistory       : "ChangedBy"
+
+' --- Sample chain ---
+Samples      "1" --o{ "0..*" TestResults         : "SampleID"
+TestResults  "1" --o{ "0..*" ResultHistory       : "ResultID"
+
+@enduml

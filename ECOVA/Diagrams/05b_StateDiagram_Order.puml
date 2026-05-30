@@ -1,0 +1,94 @@
+@startuml 05b_StateDiagram_Order
+
+skinparam backgroundColor #ffffff
+skinparam state {
+    BackgroundColor     #ffffff
+    BorderColor         #000000
+    BorderThickness     1.5
+    FontName            Arial
+    FontSize            11
+    FontStyle           plain
+    ArrowColor          #000000
+    ArrowThickness      1.2
+}
+skinparam note {
+    BackgroundColor     #ffffff
+    BorderColor         #000000
+    FontName            Arial
+    FontSize            9
+}
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+' ═══════════════════════════════════════════════════════════════
+title State 5.2 — OrderDTO  [OrderStatus + ApprovalStatus]
+' Source  : Orders.Status INT  CHECK (0,1,2)
+'           Orders.IsApproved INT  CHECK (0,1)
+' Enum    : OrderStatus   {New=0, Planned=1, Completed=2}
+'           ApprovalStatus {Pending=0, Approved=1}
+' Key method chain verified from ApprovalService.cs:
+'   ApproveOrderAsync() → _orderRepository.UpdateOrderAsync(order)
+'                       → EXEC sp_UpdateOrder
+'   RejectOrderAsync()  → _orderRepository.UpdateOrderAsync(order)
+'                       → EXEC sp_UpdateOrder  (IsApproved stays 0)
+' ═══════════════════════════════════════════════════════════════
+
+' ── States (Status dimension) ─────────────────────────────────
+state "New\n(Status=0, IsApproved=0)" as New
+state "Planned\n(Status=1, IsApproved=0)" as Planned
+
+' Completed composite: two sub-states on IsApproved dimension
+state "Completed (Status=2)" as Completed_outer {
+    state "Pending Approval\n(IsApproved=0)" as CP
+    state "Approved\n(IsApproved=1)" as CA
+
+    [*] --> CP
+
+    ' Approve: set IsApproved = 1
+    CP --> CA : ApprovalService.ApproveOrderAsync(orderId, userId)\n/ _orderRepository.UpdateOrderAsync(order)\n  EXEC sp_UpdateOrder  [IsApproved = 1]\n  [Serilog: Log.Information \"Order approved\"]
+
+    ' Reject: IsApproved stays 0, log reason only
+    CP --> CP : ApprovalService.RejectOrderAsync(orderId, userId, reason)\n/ _orderRepository.UpdateOrderAsync(order)\n  EXEC sp_UpdateOrder  [IsApproved = 0, log reason]\n  [Serilog: Log.Warning \"Order rejected\"]
+
+    note right of CA
+      ApprovalService.IsApprovedAsync(orderId)
+      checks order.IsApproved == 1
+      before ExportService.ExportStructuredPdfAsync()
+      is allowed to run.
+    end note
+}
+
+' ── Main transitions ──────────────────────────────────────────
+[*] --> New : PlanningService.CreateSamplingAreaAsync()\n/ OrderRepository.AddOrderAsync(OrderDTO)\n  EXEC sp_AddOrder\n  [Status = 0, IsApproved = 0]
+
+New --> Planned : PlanningService.SaveSamplingPlanAsync(orderId, items)\n/ SamplingPlanRepository.SavePlanItemsAsync(orderId, items)\n  EXEC sp_SaveSamplingPlan\n  [Status = 1]
+
+Planned --> Completed_outer : TestingService.EnterTestResultAsync()\n[all Samples.Status = Completed (3)]\n/ SampleRepository.UpdateSampleAsync()\n  EXEC sp_UpdateSample  [Status = 3]\n  OrderRepository.UpdateOrderAsync()\n  EXEC sp_UpdateOrder   [Status = 2]
+
+CA --> [*] : ExportService.ExportStructuredPdfAsync()\n[IsApproved = 1 verified]\nPDF exported — Order archived (read-only)
+
+' ── Notes ─────────────────────────────────────────────────────
+note right of New
+  EXEC sp_AddOrder sets:
+    Status = 0 (New)
+    OrderDate = GETDATE()
+    IsApproved = 0
+  DB CHECK: Status IN (0,1,2)
+  DB CHECK: IsApproved IN (0,1)
+  FinalReportPath updated separately
+  by ExportService after PDF generation.
+end note
+
+note right of Planned
+  Each Order aggregates
+  multiple Samples (→ State 5.3).
+  All Samples must reach
+  SampleStatus.Completed (3)
+  before this transition fires.
+  There is no explicit SP that
+  transitions Order Status 1→2;
+  it is set programmatically via
+  UpdateOrderAsync / sp_UpdateOrder.
+end note
+
+@enduml

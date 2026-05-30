@@ -1,0 +1,206 @@
+@startuml 03b_ActivityDiagram_Login
+title Login Process - Activity 3.2
+skinparam defaultTextAlignment left
+skinparam ActivityBorderColor #000000
+skinparam ActivityBackgroundColor #FAFAFA
+skinparam ActivityDiamondBorderColor #333333
+skinparam ActivityDiamondBackgroundColor #FFFDE7
+skinparam ArrowColor #333333
+skinparam ActivityBarColor #333333
+skinparam FontName Arial
+skinparam ActivityFontSize 11
+skinparam NoteBackgroundColor #FFFDE7
+skinparam NoteBorderColor #BBBBBB
+skinparam swimlaneBorderColor #666666
+
+' ================================================================
+' APPLICATION STARTUP
+' ================================================================
+|#ECEFF1| System |
+start
+:Launch ECOVA application;
+:Display Login form;
+
+' ================================================================
+' USER SELECTS LOGIN METHOD
+' ================================================================
+|#FFF8E1| User |
+if (Select login method?) then ([Password - Seq 4.1])
+
+  ' --- PASSWORD BRANCH ---
+  |#E3F2FD| Login Form <<boundary>> |
+  :Enter username and password;
+
+  |#E8F5E9| LoginThrottleService <<static>> |
+  :Check if account is locked;
+  note right
+    LoginThrottleService.IsLockedOut(username, out TimeSpan remaining)
+    -> Check internal Dictionary<string, LockInfo>
+  end note
+
+  if (Account is currently locked?) then ([Yes])
+    |#E3F2FD| Login Form <<boundary>> |
+    :Display "Account locked for X min Y sec";
+    stop
+  else ([No])
+
+    |#F3E5F5| UserBLL <<control>> |
+    :Authenticate user credentials;
+    note right
+      UserBLL.LoginAsync(username, password)
+    end note
+
+    |#FBE9E7| UserRepository <<entity>> |
+    :Query user information from DB;
+    note right
+      UserRepository.GetByUsernameAsync(username)
+      -> SqlHelper.QuerySingleOrDefaultAsync(
+           "sp_AuthenticateUser", {username})
+      -> returns UserDTO (PasswordHash, IsActive, RoleID)
+    end note
+
+    |#E8F5E9| SecurityHelper <<static>> |
+    :Verify password against stored hash;
+    note right
+      SecurityHelper.VerifyPassword(inputPwd, UserDTO.PasswordHash)
+      -> BCrypt.Net.BCrypt.Verify(pwd, hash)
+      -> returns bool
+    end note
+
+    if (Password correct and IsActive = true?) then ([Yes])
+      |#FCE4EC| AppState <<singleton>> |
+      :Save user session;
+      note right
+        AppState.Instance.CurrentUser = UserDTO
+      end note
+
+      |#FBE9E7| SystemAuditHelper <<entity>> |
+      :Write login success audit log;
+      note right
+        SystemAuditHelper.LogAsync("LOGIN", userId, detail)
+        -> AuditLogs INSERT (fire-and-forget Task)
+      end note
+
+      |#ECEFF1| System |
+      :Open MainForm (main interface);
+      stop
+
+    else ([No - wrong password or IsActive = false])
+      |#E8F5E9| LoginThrottleService <<static>> |
+      :Record failed login attempt;
+      note right
+        LoginThrottleService.RecordFailure(username)
+        -> _failureCounts[username]++
+      end note
+
+      if (Failure count >= 5?) then ([Yes])
+        |#E3F2FD| Login Form <<boundary>> |
+        :Lock account for 5 minutes;
+        note right
+          LoginThrottleService sets lock timer for 5 minutes
+        end note
+        :Display "Account locked for 5 minutes";
+        stop
+      else ([No - still under 5 attempts])
+        |#E3F2FD| Login Form <<boundary>> |
+        :Display wrong password warning;
+        back to :Enter username and password;
+      endif
+    endif
+  endif
+
+else ([Face ID - Seq 4.2])
+
+  ' --- FACE ID BRANCH ---
+  |#E3F2FD| Login Form <<boundary>> |
+  :Enter username;
+
+  |#F3E5F5| UserBLL <<control>> |
+  :Retrieve stored FaceID data from DB;
+  note right
+    UserBLL.GetFaceIDDataAsync(username)
+    -> UserRepository.GetByUsernameAsync(username)
+    -> returns UserDTO (FaceIDData: byte[], IsFaceIDRegistered: bool)
+  end note
+
+  if (IsFaceIDRegistered = true?) then ([No - Not yet registered])
+    |#E3F2FD| Login Form <<boundary>> |
+    :Activate camera, capture new face image;
+    :Prompt password entry to verify identity;
+
+    |#F3E5F5| UserBLL <<control>> |
+    :Register FaceID for first time;
+    note right
+      UserBLL.RegisterFaceIDAsync(userId, rawFaceData)
+      -> FaceIdManager.ExtractNormalizedFace(frame)
+      -> AesHelper.EncryptBytes(normalizedFaceData)
+      -> UserRepository.RegisterFaceIDAsync(userId, encryptedData)
+         -> SqlHelper: sp_RegisterFaceID
+         -> SET IsFaceIDRegistered = 1
+    end note
+  else ([Yes - Already registered])
+  endif
+
+  ' --- FACE ID MATCHING (both branches converge here) ---
+  |#E0F7FA| FaceIdManager <<static>> |
+  :Decrypt stored FaceID data;
+  note right
+    AesHelper.DecryptBytes(UserDTO.FaceIDData)
+    -> storedFaceBytes (byte[])
+  end note
+
+  repeat
+    :Capture frame from camera (VideoCapture);
+    :Extract and normalize face from frame;
+    note right
+      FaceIdManager.ExtractNormalizedFace(frame)
+      -> EmguCV CascadeClassifier detect face ROI
+      -> Resize(100x100) -> GaussianBlur -> normalize
+    end note
+    :Compare face histograms;
+    note right
+      FaceIdManager.CompareHistogram(storedFace, capturedFace)
+      -> 2x2 Grid Histogram Correlation (Bhattacharyya)
+      -> returns similarity score (double: 0.0 -> 1.0)
+    end note
+  repeat while (similarity < AppConfig.FaceId.Threshold (default 0.65)?) is ([Yes - no match, retry])
+  -> [No - face matched];
+
+  ' --- AFTER SUCCESSFUL MATCH ---
+  |#F3E5F5| UserBLL <<control>> |
+  :Perform login via FaceID;
+  note right
+    UserBLL.LoginWithFaceIDAsync(username)
+    -> UserRepository.GetByUsernameAsync(username)
+    -> returns full UserDTO
+  end note
+
+  |#FCE4EC| AppState <<singleton>> |
+  :Save user session;
+  note right
+    AppState.Instance.CurrentUser = UserDTO
+  end note
+
+  |#FBE9E7| SystemAuditHelper <<entity>> |
+  :Write FaceID login audit log;
+  note right
+    SystemAuditHelper.LogAsync("LOGIN_FACEID", userId)
+    -> AuditLogs INSERT (fire-and-forget Task)
+  end note
+
+  |#ECEFF1| System |
+  :Open MainForm (main interface);
+  stop
+
+endif
+
+' NOTE: Fallback after 5 consecutive FaceID failures
+note
+  If FaceID fails 5 consecutive times:
+  Fallback options displayed:
+  [1] Retry Face ID
+  [2] Switch to password login
+  [3] Update FaceID with new capture (requires password)
+end note
+
+@enduml

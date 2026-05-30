@@ -1,0 +1,84 @@
+@startuml 05c_StateDiagram_Sample
+
+skinparam backgroundColor #ffffff
+skinparam state {
+    BackgroundColor     #ffffff
+    BorderColor         #000000
+    BorderThickness     1.5
+    FontName            Arial
+    FontSize            11
+    FontStyle           plain
+    ArrowColor          #000000
+    ArrowThickness      1.2
+}
+skinparam note {
+    BackgroundColor     #ffffff
+    BorderColor         #000000
+    FontName            Arial
+    FontSize            9
+}
+skinparam shadowing false
+skinparam defaultFontName Arial
+
+' ═══════════════════════════════════════════════════════════════
+title State 5.3 — SampleDTO  [SampleStatus]
+' Source  : Samples.Status INT  CHECK (0,1,2,3)
+' Enum    : SampleStatus  {New=0, Analyzing=1,
+'                          Cancelled=2, Completed=3}
+' DB Triggers on TestResults:
+'   trg_TestResults_AutoWarning   → sets IsWarning = 1/0
+'   trg_TestResults_AuditHistory  → inserts ResultHistory row
+' ═══════════════════════════════════════════════════════════════
+
+' ── States ────────────────────────────────────────────────────
+state "New (0)" as New
+state "Analyzing (1)" as Analyzing
+state "Cancelled (2)" as Cancelled
+state "Completed (3)" as Completed
+
+' ── Initial → New ─────────────────────────────────────────────
+[*] --> New : PlanningService.ConfigureSampleLocationsAsync()\n/ SampleRepository.AddSampleAsync()\n  EXEC sp_AddSample\n  [Status = 0, IsWarning = false]
+
+' ── New → Analyzing (first test result entered) ───────────────
+New --> Analyzing : TestingService.EnterTestResultAsync()\n/ TestResultRepository.SaveTestResultAsync()\n  EXEC sp_SaveTestResult\n  [Status = 1]
+
+note on link
+  DB TRIGGER trg_TestResults_AutoWarning fires:
+  fn_IsResultExceedingLimit(paramId, value)
+  → UPDATE Samples.IsWarning = 1 (if exceeds QCVN limit)
+
+  DB TRIGGER trg_TestResults_AuditHistory fires:
+  INSERT INTO ResultHistory (ResultID, OldValue, NewValue,
+                             ChangedBy, ChangedAt)
+end note
+
+Analyzing --> Completed : All TestResults entered for this Sample\n[all required ParamIDs have ResultValue recorded]\n/ SampleRepository.UpdateSampleAsync(SampleDTO)\n  EXEC sp_UpdateSample  [Status = 3]
+
+' ── New → Cancelled (planning cancels sample) ─────────────────
+New --> Cancelled : PlanningService.CancelSampleAsync(sampleId)\n/ SampleRepository.UpdateSampleAsync(SampleDTO)\n  EXEC sp_UpdateSample  [Status = 2]
+
+' ── Terminal states ────────────────────────────────────────────
+Cancelled --> [*] : Sample discarded\n(read-only, excluded from PDF)
+Completed --> [*] : Sample included in\nExportService.ExportStructuredPdfAsync()
+
+' ── Notes ─────────────────────────────────────────────────────
+note right of Analyzing
+  While Status = Analyzing (1):
+  - Multiple TestResult entries
+    may exist for this Sample
+  - Each entry fires both triggers
+  - IsWarning = true → row
+    highlighted red in UI
+    (EnterResultUC / LabResultUC)
+end note
+
+note right of Completed
+  DB CHECK: Status IN (0,1,2,3)
+  SampleStatus.Completed (3) means
+  all parameters have results.
+  Order.Status → Completed (2)
+  when ALL its Samples reach
+  SampleStatus.Completed (3).
+end note
+
+@enduml

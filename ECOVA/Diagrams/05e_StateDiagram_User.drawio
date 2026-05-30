@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="21.0" type="device">
+  <diagram id="state-diagram" name="State 5.5 — UserDTO  [IsActive × IsFaceIDRegistered]">
+    <mxGraphModel dx="1422" dy="762" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="945" pageHeight="1318" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="Active / No FaceID&lt;br/&gt;(IsActive=1, IsFaceIDRegistered=0)" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=10;fontStyle=0;align=center;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry x="282.5" y="323.0" width="260.0" height="78.0" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="Active / FaceID Registered&lt;br/&gt;(IsActive=1, IsFaceIDRegistered=1)" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=10;fontStyle=0;align=center;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry x="80.0" y="576.0" width="260.0" height="78.0" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Locked / No FaceID&lt;br/&gt;(IsActive=0, IsFaceIDRegistered=0)" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=10;fontStyle=0;align=center;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry x="485.0" y="576.0" width="260.0" height="78.0" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="Locked / FaceID Registered&lt;br/&gt;(IsActive=0, IsFaceIDRegistered=1)" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1.5;fontSize=10;fontStyle=0;align=center;spacingTop=6;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry x="373.0" y="829.0" width="260.0" height="78.0" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;strokeWidth=1;fontSize=1;aspect=fixed;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="398.5" y="120.0" width="28.0" height="28.0" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="" style="ellipse;fillColor=#ffffff;strokeColor=#000000;strokeWidth=3;fontSize=1;aspect=fixed;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="192.0" y="850.0" width="36.0" height="36.0" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;strokeWidth=1;fontSize=1;aspect=fixed;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="202.0" y="860.0" width="16.0" height="16.0" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="" style="ellipse;fillColor=#ffffff;strokeColor=#000000;strokeWidth=3;fontSize=1;aspect=fixed;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="394.5" y="1082.0" width="36.0" height="36.0" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="" style="ellipse;fillColor=#000000;strokeColor=#000000;strokeWidth=1;fontSize=1;aspect=fixed;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="404.5" y="1092.0" width="16.0" height="16.0" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="EmployeeService.AddEmployeeAsync(UserDTO)&lt;br/&gt;/ EmployeeRepository.UpsertEmployeeAsync(UserDTO)&lt;br/&gt;  EXEC sp_UpsertEmployee  (OUTPUT: UserID)&lt;br/&gt;  [IsActive = 1, IsFaceIDRegistered = 0]&lt;br/&gt;  + SecurityHelper.GenerateRandomPassword()&lt;br/&gt;  + EmailSmtpHelper.SendEmailAsync(email, subject, body)" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;" edge="1" parent="1" source="6" target="2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="412.5" y="134.0" as="sourcePoint" />
+            <mxPoint x="412.5" y="362.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="12" value="UserBLL.RegisterFaceIDAsync(username, password, faceData)&lt;br/&gt;/ AesHelper.EncryptBytes(faceData) [static]&lt;br/&gt;  UserRepository.RegisterFaceIDAsync(userId, encryptedData)&lt;br/&gt;  EXEC sp_RegisterFaceID  [IsFaceIDRegistered = 1]" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="3">
+          <mxGeometry relative="1" as="geometry" x="0.40">
+            <mxPoint x="412.5" y="362.0" as="sourcePoint" />
+            <mxPoint x="210.0" y="615.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="13" value="UserBLL.RegisterFaceIDAsync(username, password, faceData)&lt;br/&gt;[re-registration: capture new face data]&lt;br/&gt;/ AesHelper.EncryptBytes(faceData) [static]&lt;br/&gt;  UserRepository.RegisterFaceIDAsync(userId, encryptedData)&lt;br/&gt;  EXEC sp_RegisterFaceID  [IsFaceIDRegistered stays 1]" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=left;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="599.4" as="sourcePoint" />
+            <mxPoint x="340.0" y="630.6" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="410.0" y="599.4" />
+              <mxPoint x="410.0" y="630.6" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="14" value="EmployeeService.ToggleActiveAsync(userId, false)&lt;br/&gt;/ EmployeeRepository.ToggleActiveAsync()&lt;br/&gt;  EXEC sp_ToggleEmployeeActive  [IsActive = 0]&lt;br/&gt;  + SystemAuditHelper.LogAsync(adminId, \&quot;TOGGLE_EMPLOYEE\&quot;,&lt;br/&gt;    \&quot;User\&quot;, userId)" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="4">
+          <mxGeometry relative="1" as="geometry" x="0.40">
+            <mxPoint x="412.5" y="362.0" as="sourcePoint" />
+            <mxPoint x="615.0" y="615.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="15" value="EmployeeService.ToggleActiveAsync(userId, true)&lt;br/&gt;/ EmployeeRepository.ToggleActiveAsync()&lt;br/&gt;  EXEC sp_ToggleEmployeeActive  [IsActive = 1]&lt;br/&gt;  + SystemAuditHelper.LogAsync(adminId, \&quot;TOGGLE_EMPLOYEE\&quot;,&lt;br/&gt;    \&quot;User\&quot;, userId)" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=left;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="4" target="2">
+          <mxGeometry relative="1" as="geometry" x="-0.20">
+            <mxPoint x="615.0" y="615.0" as="sourcePoint" />
+            <mxPoint x="412.5" y="362.0" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-10.0" y="615.0" />
+              <mxPoint x="-10.0" y="362.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="16" value="EmployeeService.ToggleActiveAsync(userId, false)&lt;br/&gt;/ EXEC sp_ToggleEmployeeActive  [IsActive = 0]&lt;br/&gt;  + SystemAuditHelper.LogAsync(...)" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;exitX=0.65;exitY=1;exitDx=0;exitDy=0;entryX=0.65;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="210.0" y="615.0" as="sourcePoint" />
+            <mxPoint x="503.0" y="868.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="17" value="EmployeeService.ToggleActiveAsync(userId, true)&lt;br/&gt;/ EXEC sp_ToggleEmployeeActive  [IsActive = 1]&lt;br/&gt;  + SystemAuditHelper.LogAsync(...)" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=left;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="5" target="3">
+          <mxGeometry relative="1" as="geometry" x="-0.20">
+            <mxPoint x="503.0" y="868.0" as="sourcePoint" />
+            <mxPoint x="210.0" y="615.0" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-10.0" y="868.0" />
+              <mxPoint x="-10.0" y="615.0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="18" value="EmployeeService.DeleteEmployeeAsync(id)&lt;br/&gt;[soft delete or admin removes account]" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;" edge="1" parent="1" source="4" target="7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="615.0" y="615.0" as="sourcePoint" />
+            <mxPoint x="210.0" y="868.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="19" value="EmployeeService.DeleteEmployeeAsync(id)" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.3;fontSize=8;fontStyle=0;labelBackgroundColor=#ffffff;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;rounded=1;align=center;" edge="1" parent="1" source="5" target="9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="503.0" y="868.0" as="sourcePoint" />
+            <mxPoint x="412.5" y="1100.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="20" value="Locked users CANNOT log in.&lt;br/&gt;LoginThrottleService / AppState&lt;br/&gt;never populate CurrentUser for&lt;br/&gt;IsActive = 0 accounts.&lt;br/&gt;(UserBLL.LoginAsync checks IsActive)" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=12;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=6;spacingRight=6;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="781.0" y="576.0" width="250.0" height="92.0" as="geometry" />
+        </mxCell>
+        <mxCell id="21" value="" style="endArrow=none;html=1;dashed=1;strokeColor=#888888;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="781.0" y="622.0" as="sourcePoint" />
+            <mxPoint x="745.0" y="615.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="22" value="FaceID is used if&lt;br/&gt;IsFaceIDRegistered = 1 AND&lt;br/&gt;IsActive = 1.&lt;br/&gt;Threshold: AppConfig.FaceId.Threshold&lt;br/&gt;(default 0.65).&lt;br/&gt;FaceIdManager.CompareHistogram() ≥ 0.65&lt;br/&gt;→ UserBLL.LoginWithFaceIDAsync()" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=12;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=6;spacingRight=6;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1067.0" y="576.0" width="250.0" height="120.0" as="geometry" />
+        </mxCell>
+        <mxCell id="23" value="" style="endArrow=none;html=1;dashed=1;strokeColor=#888888;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1067.0" y="636.0" as="sourcePoint" />
+            <mxPoint x="340.0" y="615.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="24" value="IsFaceIDRegistered remains 1&lt;br/&gt;even when locked.&lt;br/&gt;Upon re-activation the employee&lt;br/&gt;can again use Face ID login&lt;br/&gt;without re-registration." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=12;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=6;spacingRight=6;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="669.0" y="829.0" width="250.0" height="92.0" as="geometry" />
+        </mxCell>
+        <mxCell id="25" value="" style="endArrow=none;html=1;dashed=1;strokeColor=#888888;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="669.0" y="875.0" as="sourcePoint" />
+            <mxPoint x="633.0" y="868.0" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="26" value="State 5.5 — UserDTO  [IsActive × IsFaceIDRegistered]" style="text;html=1;align=center;strokeColor=none;fillColor=none;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80.0" y="0.0" width="665.0" height="100.0" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

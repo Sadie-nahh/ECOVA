@@ -1,0 +1,295 @@
+<mxfile host="app.diagrams.net" agent="puml_seq_to_drawio.py v2.0">
+  <diagram id="seq" name="Sequence 4.5 — Approve Order &amp; Export PDF Report">
+    <mxGraphModel dx="687" dy="405" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1940" pageHeight="2510" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="80" as="sourcePoint" />
+            <mxPoint x="80" y="2450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="80" as="sourcePoint" />
+            <mxPoint x="360" y="2450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="80" as="sourcePoint" />
+            <mxPoint x="580" y="2450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="80" as="sourcePoint" />
+            <mxPoint x="800" y="2450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="80" as="sourcePoint" />
+            <mxPoint x="1020" y="2450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="80" as="sourcePoint" />
+            <mxPoint x="1240" y="2450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1460" y="80" as="sourcePoint" />
+            <mxPoint x="1460" y="2450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1680" y="80" as="sourcePoint" />
+            <mxPoint x="1680" y="2450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="1014" y="526" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="364" width="12" x="794" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="572" width="12" x="574" y="318" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="104" width="12" x="1674" y="1826" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="884" width="12" x="1454" y="1150" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="1092" width="12" x="1234" y="1046" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="2080" width="12" x="354" y="214" as="geometry" />
+        </mxCell>
+        <mxCell id="17" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Select completed order, click &quot;Approve&quot;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="162" as="sourcePoint" />
+            <mxPoint x="360" y="162" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="18" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ApproveOrderAsync(orderId, userId)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="266" as="sourcePoint" />
+            <mxPoint x="580" y="266" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="19" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ApproveOrderAsync(orderId)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="370" as="sourcePoint" />
+            <mxPoint x="800" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="20" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ExecuteNonQueryAsync(&lt;br/&gt;&quot;sp_ApproveOrder&quot;, {orderId})">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="474" as="sourcePoint" />
+            <mxPoint x="1020" y="474" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="21" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="630" as="sourcePoint" />
+            <mxPoint x="800" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="22" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="734" as="sourcePoint" />
+            <mxPoint x="580" y="734" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="23" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void — approved)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="838" as="sourcePoint" />
+            <mxPoint x="360" y="838" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="24" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Click &quot;Export Report&quot;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="942" as="sourcePoint" />
+            <mxPoint x="360" y="942" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="25" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ExportStructuredPdfAsync(&lt;br/&gt;orderId, customerName, customerAddress,&lt;br/&gt;environmentType, List&amp;lt;samplingAreas&amp;gt;,&lt;br/&gt;List&amp;lt;resultRows&amp;gt;, outputDirectory,&lt;br/&gt;orderDate, deadline)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="994" as="sourcePoint" />
+            <mxPoint x="1240" y="994" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="26" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="GenerateStructuredPdf(&lt;br/&gt;data, outputPath) [static]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="1098" as="sourcePoint" />
+            <mxPoint x="1460" y="1098" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="27" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="CreateFont(Arial, BaseFont.IDENTITY_H)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1515" y="1254" />
+              <mxPoint x="1515" y="1284" />
+            </Array>
+            <mxPoint x="1460" y="1254" as="sourcePoint" />
+            <mxPoint x="1460" y="1284" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="28" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="CreateDocument(PageSize.A4, margins)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1515" y="1306" />
+              <mxPoint x="1515" y="1336" />
+            </Array>
+            <mxPoint x="1460" y="1306" as="sourcePoint" />
+            <mxPoint x="1460" y="1336" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="29" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="AddHeader(&lt;br/&gt;&quot;CONG TY CO PHAN TAP DOAN FEC&quot;)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1515" y="1358" />
+              <mxPoint x="1515" y="1388" />
+            </Array>
+            <mxPoint x="1460" y="1358" as="sourcePoint" />
+            <mxPoint x="1460" y="1388" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="30" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="AddSubHeader(&lt;br/&gt;&quot;ENVIRONMENTAL MONITORING REPORT&quot;)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1515" y="1462" />
+              <mxPoint x="1515" y="1492" />
+            </Array>
+            <mxPoint x="1460" y="1462" as="sourcePoint" />
+            <mxPoint x="1460" y="1492" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="AddInfoTable(&lt;br/&gt;customerName, customerAddress,&lt;br/&gt;orderDate, deadline, environmentType)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1515" y="1514" />
+              <mxPoint x="1515" y="1544" />
+            </Array>
+            <mxPoint x="1460" y="1514" as="sourcePoint" />
+            <mxPoint x="1460" y="1544" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="AddResultsTable(&lt;br/&gt;parameters, K1values, K2values,&lt;br/&gt;QCVNLimits, IsWarning[] flags)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1515" y="1566" />
+              <mxPoint x="1515" y="1596" />
+            </Array>
+            <mxPoint x="1460" y="1566" as="sourcePoint" />
+            <mxPoint x="1460" y="1596" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="33" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="AddWatermark(icon.png, opacity=0.15f)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1515" y="1670" />
+              <mxPoint x="1515" y="1700" />
+            </Array>
+            <mxPoint x="1460" y="1670" as="sourcePoint" />
+            <mxPoint x="1460" y="1700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="AddFooter(&lt;br/&gt;companyLogo + &quot;Ecova&quot; + pageNumber)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1515" y="1722" />
+              <mxPoint x="1515" y="1752" />
+            </Array>
+            <mxPoint x="1460" y="1722" as="sourcePoint" />
+            <mxPoint x="1460" y="1752" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="35" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="doc.Close() — write PDF to outputPath">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1460" y="1774" as="sourcePoint" />
+            <mxPoint x="1680" y="1774" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="36" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (file written)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1680" y="1878" as="sourcePoint" />
+            <mxPoint x="1460" y="1878" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="37" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return filePath (string)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1460" y="1982" as="sourcePoint" />
+            <mxPoint x="1240" y="1982" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="38" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return filePath">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="2086" as="sourcePoint" />
+            <mxPoint x="360" y="2086" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="39" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Process.Start(filePath)&lt;br/&gt;(open PDF in system default viewer)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="2242" />
+              <mxPoint x="415" y="2272" />
+            </Array>
+            <mxPoint x="360" y="2242" as="sourcePoint" />
+            <mxPoint x="360" y="2272" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="40" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="sp_ApproveOrder:&lt;br/&gt;UPDATE Orders&lt;br/&gt;SET IsApproved = 1,&lt;br/&gt;UpdatedAt = SYSDATETIME()&lt;br/&gt;WHERE OrderID = @orderId" vertex="1">
+          <mxGeometry height="86" width="190" x="1108" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="41" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="Uses iTextSharp library.&lt;br/&gt;outputPath = Path.Combine(outputDirectory,&lt;br/&gt;$&quot;{orderId}.pdf&quot;)" vertex="1">
+          <mxGeometry height="58" width="190" x="1548" y="1202" as="geometry" />
+        </mxCell>
+        <mxCell id="42" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="Exact header text from implementation:&lt;br/&gt;&quot;CONG TY CO PHAN TAP DOAN FEC&quot;&lt;br/&gt;(not &quot;ECOVA ENVIRONMENTAL MONITORING&quot;)" vertex="1">
+          <mxGeometry height="58" width="190" x="1548" y="1410" as="geometry" />
+        </mxCell>
+        <mxCell id="43" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="Rows where IsWarning = true:&lt;br/&gt;cell background highlighted.&lt;br/&gt;QCVN column shows limit value." vertex="1">
+          <mxGeometry height="58" width="190" x="1548" y="1618" as="geometry" />
+        </mxCell>
+        <mxCell id="44" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="ExportStructuredPdfAsync() also calls:&lt;br/&gt;OrderRepository.UpdateFinalReportPathAsync(orderId, filePath)&lt;br/&gt;-&amp;gt; SqlHelper.ExecuteNonQueryAsync(&lt;br/&gt;&quot;sp_UpdateFinalReportPath&quot;, {orderId, filePath})&lt;br/&gt;This saves FinalReportPath in the Orders table." vertex="1">
+          <mxGeometry height="86" width="190" x="1328" y="2190" as="geometry" />
+        </mxCell>
+        <mxCell id="45" parent="1" style="shape=mxgraph.uml.actor2;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=10;fontStyle=0;" value="QA Officer" vertex="1">
+          <mxGeometry height="70" width="40" x="60" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="46" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«boundary»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;DirectorApprovalUC&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="280" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="47" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«control»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;ApprovalService&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="500" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="48" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;OrderRepository&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="720" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="49" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;SqlHelper&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="940" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="50" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«control»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;ExportService&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="1160" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="51" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«static»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;PdfExportHelper&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="1380" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="52" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;File System&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="1600" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="53" parent="1" style="text;html=1;align=center;strokeColor=none;fillColor=none;fontSize=12;fontStyle=1;" value="Sequence 4.5 — Approve Order &amp;amp; Export PDF Report" vertex="1">
+          <mxGeometry height="20" width="1760" x="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

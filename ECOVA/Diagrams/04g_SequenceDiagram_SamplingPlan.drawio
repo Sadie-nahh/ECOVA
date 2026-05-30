@@ -1,0 +1,344 @@
+<mxfile host="app.diagrams.net" agent="puml_seq_to_drawio.py v2.0">
+  <diagram id="seq" name="Sequence 4.7 — Sampling Plan Setup">
+    <mxGraphModel dx="589" dy="347" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1500" pageHeight="3758" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=1.5;fontSize=9;fontStyle=1;verticalAlign=top;align=left;spacingLeft=4;spacingTop=2;" value="" vertex="1">
+          <mxGeometry height="388" width="1284" x="48" y="2332" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="shape=mxgraph.uml.message2;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=9;fontStyle=0;align=center;verticalAlign=middle;" value="&lt;b&gt;OPT&lt;/b&gt; [No samples yet — add sample locations]" vertex="1">
+          <mxGeometry height="20" width="255" x="48" y="2332" as="geometry" />
+        </mxCell>
+        <mxCell id="4" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="80" as="sourcePoint" />
+            <mxPoint x="80" y="3698" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="80" as="sourcePoint" />
+            <mxPoint x="360" y="3698" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="80" as="sourcePoint" />
+            <mxPoint x="580" y="3698" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="80" as="sourcePoint" />
+            <mxPoint x="800" y="3698" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="80" as="sourcePoint" />
+            <mxPoint x="1020" y="3698" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="80" as="sourcePoint" />
+            <mxPoint x="1240" y="3698" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="574" y="318" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="104" width="12" x="1234" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="312" width="12" x="794" y="786" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="520" width="12" x="574" y="682" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="104" width="12" x="1234" y="1618" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="312" width="12" x="794" y="1514" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="520" width="12" x="574" y="1410" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="574" y="2138" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="574" y="2502" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="1234" y="3074" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="364" width="12" x="1014" y="2970" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="572" width="12" x="574" y="2866" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="3328" width="12" x="354" y="214" as="geometry" />
+        </mxCell>
+        <mxCell id="23" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Open Planning module">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="162" as="sourcePoint" />
+            <mxPoint x="360" y="162" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="24" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="GetContractListAsync()">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="266" as="sourcePoint" />
+            <mxPoint x="580" y="266" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="25" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return List&amp;lt;ContractDisplayDTO&amp;gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="422" as="sourcePoint" />
+            <mxPoint x="360" y="422" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="26" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Populate contract dropdown">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="526" />
+              <mxPoint x="415" y="556" />
+            </Array>
+            <mxPoint x="360" y="526" as="sourcePoint" />
+            <mxPoint x="360" y="556" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="27" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Select contract from dropdown (contractId)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="578" as="sourcePoint" />
+            <mxPoint x="360" y="578" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="28" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="GetOrdersByContractAsync(contractId)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="630" as="sourcePoint" />
+            <mxPoint x="580" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="29" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="GetOrdersByContractIdAsync(contractId)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="734" as="sourcePoint" />
+            <mxPoint x="800" y="734" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="30" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="QueryAsync&amp;lt;OrderDTO&amp;gt;(&lt;br/&gt;&quot;sp_GetOrdersByContract&quot;, {contractId})">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="838" as="sourcePoint" />
+            <mxPoint x="1240" y="838" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return List&amp;lt;OrderDTO&amp;gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="942" as="sourcePoint" />
+            <mxPoint x="800" y="942" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return List&amp;lt;OrderDTO&amp;gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="1046" as="sourcePoint" />
+            <mxPoint x="580" y="1046" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="33" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return List&amp;lt;OrderDTO&amp;gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1150" as="sourcePoint" />
+            <mxPoint x="360" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Display order sections grouped by EnvironmentType&lt;br/&gt;(Air / Wastewater / Soil)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="1254" />
+              <mxPoint x="415" y="1284" />
+            </Array>
+            <mxPoint x="360" y="1254" as="sourcePoint" />
+            <mxPoint x="360" y="1284" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="35" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Click &quot;Add Area&quot;, enter area name,&lt;br/&gt;select environment type (e.g. &quot;Air&quot;)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="1306" as="sourcePoint" />
+            <mxPoint x="360" y="1306" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="36" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="CreateSamplingAreaAsync(&lt;br/&gt;contractId, areaName, environmentType)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="1358" as="sourcePoint" />
+            <mxPoint x="580" y="1358" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="37" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="AddOrderAsync(orderDTO)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1462" as="sourcePoint" />
+            <mxPoint x="800" y="1462" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="38" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ExecuteNonQueryAsync(&lt;br/&gt;&quot;sp_AddOrder&quot;,&lt;br/&gt;{orderId, contractId, orderName,&lt;br/&gt;environmentType, orderDate,&lt;br/&gt;deadline, createdBy, status=0})">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="1566" as="sourcePoint" />
+            <mxPoint x="1240" y="1566" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="39" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="1670" as="sourcePoint" />
+            <mxPoint x="800" y="1670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="40" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="1774" as="sourcePoint" />
+            <mxPoint x="580" y="1774" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return OrderDTO (newly created order)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1878" as="sourcePoint" />
+            <mxPoint x="360" y="1878" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="42" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Append new area section to UI grid">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="1982" />
+              <mxPoint x="415" y="2012" />
+            </Array>
+            <mxPoint x="360" y="1982" as="sourcePoint" />
+            <mxPoint x="360" y="2012" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="43" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Click &quot;Configure Sample Locations&quot; for the order">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="2034" as="sourcePoint" />
+            <mxPoint x="360" y="2034" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="44" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="GetSamplesByOrderAsync(orderId)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="2086" as="sourcePoint" />
+            <mxPoint x="580" y="2086" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="45" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return List&amp;lt;SampleDTO&amp;gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="2242" as="sourcePoint" />
+            <mxPoint x="360" y="2242" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="46" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Add sampling locations&lt;br/&gt;(Barcode, SamplingLocation, SamplerID, RegulationID)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="2398" as="sourcePoint" />
+            <mxPoint x="360" y="2398" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="47" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ConfigureSampleLocationsAsync(&lt;br/&gt;orderId, List&amp;lt;SampleDTO&amp;gt;)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="2450" as="sourcePoint" />
+            <mxPoint x="580" y="2450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="48" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="2606" as="sourcePoint" />
+            <mxPoint x="360" y="2606" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="49" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Select parameters for each sample location,&lt;br/&gt;set QCVN limits and departments, click &quot;Save Plan&quot;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="2762" as="sourcePoint" />
+            <mxPoint x="360" y="2762" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="50" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="SaveSamplingPlanAsync(&lt;br/&gt;orderId, List&amp;lt;SampleParameterPlanDTO&amp;gt;)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="2814" as="sourcePoint" />
+            <mxPoint x="580" y="2814" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="51" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="SaveSamplingPlanAsync(&lt;br/&gt;orderId, planItems)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="2918" as="sourcePoint" />
+            <mxPoint x="1020" y="2918" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="52" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ExecuteNonQueryAsync(&lt;br/&gt;&quot;sp_SaveSamplingPlan&quot;,&lt;br/&gt;{orderId, paramId, department,&lt;br/&gt;qcvnLimit, regulationId})&lt;br/&gt;[called per item or bulk]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="3022" as="sourcePoint" />
+            <mxPoint x="1240" y="3022" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="53" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="3178" as="sourcePoint" />
+            <mxPoint x="1020" y="3178" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="54" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="3282" as="sourcePoint" />
+            <mxPoint x="580" y="3282" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="55" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void — success)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="3386" as="sourcePoint" />
+            <mxPoint x="360" y="3386" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="56" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Display &quot;Sampling plan saved successfully&quot;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="3490" />
+              <mxPoint x="415" y="3520" />
+            </Array>
+            <mxPoint x="360" y="3490" as="sourcePoint" />
+            <mxPoint x="360" y="3520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="57" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="PlanningService.GetContractListAsync()&lt;br/&gt;-&amp;gt; IContractRepository.GetActiveContractsAsync()&lt;br/&gt;Returns List&amp;lt;ContractDisplayDTO&amp;gt;&lt;br/&gt;(for dropdown binding)" vertex="1">
+          <mxGeometry height="72" width="190" x="668" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="58" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="PlanningService.GetSamplesByOrderAsync(orderId)&lt;br/&gt;-&amp;gt; ISampleRepository.GetByOrderIdAsync(orderId)&lt;br/&gt;(SampleRepository, not OrderRepository)&lt;br/&gt;-&amp;gt; SqlHelper: sp_GetSamplesByOrder&lt;br/&gt;Returns List&amp;lt;SampleDTO&amp;gt;" vertex="1">
+          <mxGeometry height="86" width="190" x="668" y="2190" as="geometry" />
+        </mxCell>
+        <mxCell id="59" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="For each SampleDTO:&lt;br/&gt;SampleRepository.AddSampleAsync(sampleDto)&lt;br/&gt;-&amp;gt; SqlHelper: sp_AddSample" vertex="1">
+          <mxGeometry height="58" width="190" x="668" y="2554" as="geometry" />
+        </mxCell>
+        <mxCell id="60" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="sp_SaveSamplingPlan:&lt;br/&gt;MERGE INTO SamplingPlanItems&lt;br/&gt;USING (values) AS src&lt;br/&gt;ON PlanItemID match&lt;br/&gt;WHEN MATCHED -&amp;gt; UPDATE&lt;br/&gt;WHEN NOT MATCHED -&amp;gt; INSERT" vertex="1">
+          <mxGeometry height="100" width="190" x="1328" y="3126" as="geometry" />
+        </mxCell>
+        <mxCell id="61" parent="1" style="shape=mxgraph.uml.actor2;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=10;fontStyle=0;" value="Planning Officer" vertex="1">
+          <mxGeometry height="70" width="40" x="60" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="62" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«boundary»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;SampleConfigUC&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="280" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="63" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«control»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;PlanningService&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="500" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="64" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;OrderRepository&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="720" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="65" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;SamplingPlanRepository&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="940" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="66" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;SqlHelper&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="1160" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="67" parent="1" style="text;html=1;align=center;strokeColor=none;fillColor=none;fontSize=12;fontStyle=1;" value="Sequence 4.7 — Sampling Plan Setup" vertex="1">
+          <mxGeometry height="20" width="1320" x="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

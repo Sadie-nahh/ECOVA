@@ -1,0 +1,304 @@
+<mxfile host="app.diagrams.net" agent="puml_seq_to_drawio.py v2.0">
+  <diagram id="seq" name="Sequence 4.8 — Employee Management (Add &amp; Toggle Active)">
+    <mxGraphModel dx="710" dy="419" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1500" pageHeight="3394" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=1.5;fontSize=9;fontStyle=1;verticalAlign=top;align=left;spacingLeft=4;spacingTop=2;" value="" vertex="1">
+          <mxGeometry height="1116" width="1284" x="48" y="928" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="shape=mxgraph.uml.message2;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=9;fontStyle=0;align=center;verticalAlign=middle;" value="&lt;b&gt;OPT&lt;/b&gt; [Admin clicks &quot;Add Employee&quot;]" vertex="1">
+          <mxGeometry height="20" width="205" x="48" y="928" as="geometry" />
+        </mxCell>
+        <mxCell id="4" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="80" as="sourcePoint" />
+            <mxPoint x="80" y="3334" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="80" as="sourcePoint" />
+            <mxPoint x="360" y="3334" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="80" as="sourcePoint" />
+            <mxPoint x="580" y="3334" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="80" as="sourcePoint" />
+            <mxPoint x="800" y="3334" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="80" as="sourcePoint" />
+            <mxPoint x="1020" y="3334" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="80" as="sourcePoint" />
+            <mxPoint x="1240" y="3334" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="104" width="12" x="1014" y="526" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="312" width="12" x="794" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="520" width="12" x="574" y="318" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="104" width="12" x="1014" y="1358" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="312" width="12" x="794" y="1254" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="104" width="12" x="1234" y="1670" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="832" width="12" x="574" y="1098" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="1014" y="2450" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="364" width="12" x="794" y="2346" as="geometry" />
+        </mxCell>
+        <mxCell id="19" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="1234" y="2814" as="geometry" />
+        </mxCell>
+        <mxCell id="20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="832" width="12" x="574" y="2242" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="2964" width="12" x="354" y="214" as="geometry" />
+        </mxCell>
+        <mxCell id="22" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Open Employee Management module">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="162" as="sourcePoint" />
+            <mxPoint x="360" y="162" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="23" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="GetAllEmployeesAsync()">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="266" as="sourcePoint" />
+            <mxPoint x="580" y="266" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="24" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="GetAllEmployeesAsync()">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="370" as="sourcePoint" />
+            <mxPoint x="800" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="25" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="QueryAsync&amp;lt;UserDTO&amp;gt;(&lt;br/&gt;&quot;sp_GetAllEmployees&quot;)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="474" as="sourcePoint" />
+            <mxPoint x="1020" y="474" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="26" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return List&amp;lt;UserDTO&amp;gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="578" as="sourcePoint" />
+            <mxPoint x="800" y="578" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="27" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return List&amp;lt;UserDTO&amp;gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="682" as="sourcePoint" />
+            <mxPoint x="580" y="682" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="28" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return List&amp;lt;UserDTO&amp;gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="786" as="sourcePoint" />
+            <mxPoint x="360" y="786" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="29" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Populate DataGridView&lt;br/&gt;(EmployeeCode, FullName, Role, IsActive toggle)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="890" />
+              <mxPoint x="415" y="920" />
+            </Array>
+            <mxPoint x="360" y="890" as="sourcePoint" />
+            <mxPoint x="360" y="920" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="30" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Click &quot;Add Employee&quot;, fill employee details&lt;br/&gt;(FullName, Email, RoleID, Department, DateOfBirth, ...)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="994" as="sourcePoint" />
+            <mxPoint x="360" y="994" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="AddEmployeeAsync(userDTO)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="1046" as="sourcePoint" />
+            <mxPoint x="580" y="1046" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="AddEmployeeAsync(userDTO)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1202" as="sourcePoint" />
+            <mxPoint x="800" y="1202" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="33" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ExecuteNonQueryAsync(&lt;br/&gt;&quot;sp_AddEmployee&quot;,&lt;br/&gt;{userId, employeeCode, username,&lt;br/&gt;passwordHash, fullName, email,&lt;br/&gt;phone, roleId, department,&lt;br/&gt;dateOfBirth, isActive=1})">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="1306" as="sourcePoint" />
+            <mxPoint x="1020" y="1306" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="1410" as="sourcePoint" />
+            <mxPoint x="800" y="1410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="35" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void — employee inserted)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="1514" as="sourcePoint" />
+            <mxPoint x="580" y="1514" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="36" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="LogAsync(&lt;br/&gt;adminId, &quot;ADD_EMPLOYEE&quot;, &quot;User&quot;, userId)&lt;br/&gt;[fire-and-forget Task]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1618" as="sourcePoint" />
+            <mxPoint x="1240" y="1618" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="37" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="(void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="1722" as="sourcePoint" />
+            <mxPoint x="580" y="1722" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="38" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return UserDTO (newly created employee)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1878" as="sourcePoint" />
+            <mxPoint x="360" y="1878" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="39" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Refresh DataGridView&lt;br/&gt;(scroll to new row, highlight)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="1982" />
+              <mxPoint x="415" y="2012" />
+            </Array>
+            <mxPoint x="360" y="1982" as="sourcePoint" />
+            <mxPoint x="360" y="2012" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="40" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Click &quot;Lock / Unlock&quot; toggle for an employee (userId)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="2086" as="sourcePoint" />
+            <mxPoint x="360" y="2086" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ToggleActiveAsync(userId, newIsActive)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="2190" as="sourcePoint" />
+            <mxPoint x="580" y="2190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="42" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ToggleActiveAsync(userId, newIsActive)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="2294" as="sourcePoint" />
+            <mxPoint x="800" y="2294" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="43" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ExecuteNonQueryAsync(&lt;br/&gt;&quot;sp_ToggleEmployeeActive&quot;,&lt;br/&gt;{userId, isActive})">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="2398" as="sourcePoint" />
+            <mxPoint x="1020" y="2398" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="44" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="2554" as="sourcePoint" />
+            <mxPoint x="800" y="2554" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="45" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="2658" as="sourcePoint" />
+            <mxPoint x="580" y="2658" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="46" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="LogAsync(&lt;br/&gt;adminId, &quot;TOGGLE_EMPLOYEE&quot;, &quot;User&quot;, userId)&lt;br/&gt;[fire-and-forget Task]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="2762" as="sourcePoint" />
+            <mxPoint x="1240" y="2762" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="47" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="(void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="2918" as="sourcePoint" />
+            <mxPoint x="580" y="2918" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="48" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void — success)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="3022" as="sourcePoint" />
+            <mxPoint x="360" y="3022" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="49" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Refresh DataGridView row:&lt;br/&gt;  - Update lock icon (locked / unlocked)&lt;br/&gt;  - Update IsActive cell color">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="3126" />
+              <mxPoint x="415" y="3156" />
+            </Array>
+            <mxPoint x="360" y="3126" as="sourcePoint" />
+            <mxPoint x="360" y="3156" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="50" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="EmployeeService.AddEmployeeAsync():&lt;br/&gt;1. GenerateNewEmployeeDataAsync(roleId)&lt;br/&gt;-&amp;gt; auto-generate EmployeeCode, UserID, Username&lt;br/&gt;2. SecurityHelper.GenerateRandomPassword()&lt;br/&gt;-&amp;gt; RandomNumberGenerator-based plain password&lt;br/&gt;3. SecurityHelper.HashPassword(plainPwd)&lt;br/&gt;-&amp;gt; BCrypt.Net.BCrypt.HashPassword(workFactor=12)" vertex="1">
+          <mxGeometry height="114" width="190" x="668" y="1150" as="geometry" />
+        </mxCell>
+        <mxCell id="51" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="EmailSmtpHelper.SendEmailAsync(&lt;br/&gt;email, &quot;Welcome to ECOVA&quot;, body)&lt;br/&gt;[fire-and-forget — sends temp password to new employee]" vertex="1">
+          <mxGeometry height="58" width="190" x="668" y="1826" as="geometry" />
+        </mxCell>
+        <mxCell id="52" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="IsActive toggled:&lt;br/&gt;true  -&amp;gt; false  (Lock account)&lt;br/&gt;false -&amp;gt; true   (Unlock account)" vertex="1">
+          <mxGeometry height="58" width="190" x="108" y="2138" as="geometry" />
+        </mxCell>
+        <mxCell id="53" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="sp_ToggleEmployeeActive:&lt;br/&gt;UPDATE Users&lt;br/&gt;SET IsActive = @isActive,&lt;br/&gt;UpdatedAt = SYSDATETIME()&lt;br/&gt;WHERE UserID = @userId" vertex="1">
+          <mxGeometry height="86" width="190" x="1108" y="2502" as="geometry" />
+        </mxCell>
+        <mxCell id="54" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="INSERT INTO AuditLogs:&lt;br/&gt;Action     = &quot;TOGGLE_EMPLOYEE&quot;&lt;br/&gt;EntityType = &quot;User&quot;&lt;br/&gt;EntityID   = userId&lt;br/&gt;Detail     = &quot;IsActive set to {newIsActive}&quot;&lt;br/&gt;LoggedAt   = SYSDATETIME()" vertex="1">
+          <mxGeometry height="100" width="190" x="1328" y="2866" as="geometry" />
+        </mxCell>
+        <mxCell id="55" parent="1" style="shape=mxgraph.uml.actor2;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=10;fontStyle=0;" value="Admin" vertex="1">
+          <mxGeometry height="70" width="40" x="62" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="56" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«boundary»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;EmployeeManagementUC&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="280" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="57" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«control»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;EmployeeService&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="500" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="58" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;EmployeeRepository&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="720" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="59" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;SqlHelper&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="940" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="60" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;SystemAuditHelper&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="1160" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="61" parent="1" style="text;html=1;align=center;strokeColor=none;fillColor=none;fontSize=12;fontStyle=1;" value="Sequence 4.8 — Employee Management (Add &amp;amp; Toggle Active)" vertex="1">
+          <mxGeometry height="20" width="1320" x="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,404 @@
+<mxfile host="app.diagrams.net" agent="puml_seq_to_drawio.py v2.0">
+  <diagram id="seq" name="Sequence 4.2 — Login (Face ID)">
+    <mxGraphModel dx="792" dy="468" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1940" pageHeight="4278" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=1.5;fontSize=9;fontStyle=1;verticalAlign=top;align=left;spacingLeft=4;spacingTop=2;" value="" vertex="1">
+          <mxGeometry height="1064" width="1724" x="48" y="1136" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="shape=mxgraph.uml.message2;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=9;fontStyle=0;align=center;verticalAlign=middle;" value="&lt;b&gt;ALT&lt;/b&gt; [IsFaceIDRegistered = false — first-time registration]" vertex="1">
+          <mxGeometry height="20" width="330" x="48" y="1136" as="geometry" />
+        </mxCell>
+        <mxCell id="4" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="48" y="2086" as="sourcePoint" />
+            <mxPoint x="1772" y="2086" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5" parent="1" style="text;html=1;align=left;fontSize=9;fontStyle=2;labelBackgroundColor=none;" value="[IsFaceIDRegistered = true — already registered]" vertex="1">
+          <mxGeometry height="16" width="300" x="52" y="2088" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=1.5;fontSize=9;fontStyle=1;verticalAlign=top;align=left;spacingLeft=4;spacingTop=2;" value="" vertex="1">
+          <mxGeometry height="960" width="1724" x="48" y="2852" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="1" style="shape=mxgraph.uml.message2;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=9;fontStyle=0;align=center;verticalAlign=middle;" value="&lt;b&gt;ALT&lt;/b&gt; [similarity &amp;gt;= AppConfig.FaceId.Threshold (default 0.65)]" vertex="1">
+          <mxGeometry height="20" width="345" x="48" y="2852" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=1.5;fontSize=9;fontStyle=1;verticalAlign=top;align=left;spacingLeft=4;spacingTop=2;" value="" vertex="1">
+          <mxGeometry height="1584" width="1724" x="48" y="2280" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="1" style="shape=mxgraph.uml.message2;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=9;fontStyle=0;align=center;verticalAlign=middle;" value="&lt;b&gt;LOOP&lt;/b&gt; [Each frame, while similarity &amp;lt; threshold AND attempts &amp;lt; 5]" vertex="1">
+          <mxGeometry height="20" width="355" x="48" y="2280" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#000000;strokeWidth=1.5;fontSize=9;fontStyle=1;verticalAlign=top;align=left;spacingLeft=4;spacingTop=2;" value="" vertex="1">
+          <mxGeometry height="128" width="1724" x="48" y="3892" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="shape=mxgraph.uml.message2;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=9;fontStyle=0;align=center;verticalAlign=middle;" value="&lt;b&gt;OPT&lt;/b&gt; [5 consecutive failed attempts]" vertex="1">
+          <mxGeometry height="20" width="215" x="48" y="3892" as="geometry" />
+        </mxCell>
+        <mxCell id="12" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="80" as="sourcePoint" />
+            <mxPoint x="80" y="4218" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="13" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="80" as="sourcePoint" />
+            <mxPoint x="360" y="4218" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="14" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="80" as="sourcePoint" />
+            <mxPoint x="580" y="4218" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="15" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="80" as="sourcePoint" />
+            <mxPoint x="800" y="4218" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="16" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="80" as="sourcePoint" />
+            <mxPoint x="1020" y="4218" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="17" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="80" as="sourcePoint" />
+            <mxPoint x="1240" y="4218" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="18" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1460" y="80" as="sourcePoint" />
+            <mxPoint x="1460" y="4218" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="19" edge="1" parent="1" style="endArrow=none;html=1;dashed=1;strokeColor=#000000;strokeWidth=1;dashPattern=8 4;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1680" y="80" as="sourcePoint" />
+            <mxPoint x="1680" y="4218" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="312" width="12" x="794" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="21" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="1014" y="838" as="geometry" />
+        </mxCell>
+        <mxCell id="22" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="780" width="12" x="574" y="318" as="geometry" />
+        </mxCell>
+        <mxCell id="23" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="104" width="12" x="1014" y="1566" as="geometry" />
+        </mxCell>
+        <mxCell id="24" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="794" y="1774" as="geometry" />
+        </mxCell>
+        <mxCell id="25" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="624" width="12" x="574" y="1410" as="geometry" />
+        </mxCell>
+        <mxCell id="26" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="1234" y="2398" as="geometry" />
+        </mxCell>
+        <mxCell id="27" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="156" width="12" x="1234" y="2658" as="geometry" />
+        </mxCell>
+        <mxCell id="28" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="104" width="12" x="794" y="3074" as="geometry" />
+        </mxCell>
+        <mxCell id="29" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="52" width="12" x="1454" y="3282" as="geometry" />
+        </mxCell>
+        <mxCell id="30" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="52" width="12" x="1674" y="3438" as="geometry" />
+        </mxCell>
+        <mxCell id="31" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="624" width="12" x="574" y="2970" as="geometry" />
+        </mxCell>
+        <mxCell id="32" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="3848" width="12" x="354" y="214" as="geometry" />
+        </mxCell>
+        <mxCell id="33" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="click &quot;Face ID&quot; tab, enter username">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="162" as="sourcePoint" />
+            <mxPoint x="360" y="162" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="GetFaceIDDataAsync(username)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="266" as="sourcePoint" />
+            <mxPoint x="580" y="266" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="35" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="GetByUsernameAsync(username)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="370" as="sourcePoint" />
+            <mxPoint x="800" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="36" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="QuerySingleOrDefaultAsync&amp;lt;UserDTO&amp;gt;(&lt;br/&gt;&quot;sp_AuthenticateUser&quot;, {username})">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="474" as="sourcePoint" />
+            <mxPoint x="1680" y="474" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="37" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return UserDTO">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="578" as="sourcePoint" />
+            <mxPoint x="800" y="578" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="38" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return UserDTO">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="682" as="sourcePoint" />
+            <mxPoint x="580" y="682" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="39" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="DecryptBytes(UserDTO.FaceIDData) [static]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="786" as="sourcePoint" />
+            <mxPoint x="1020" y="786" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="40" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return byte[] (storedFaceBytes)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="942" as="sourcePoint" />
+            <mxPoint x="580" y="942" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (UserDTO, storedFaceBytes)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1046" as="sourcePoint" />
+            <mxPoint x="360" y="1046" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="42" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Show registration sub-panel">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="1202" />
+              <mxPoint x="415" y="1232" />
+            </Array>
+            <mxPoint x="360" y="1202" as="sourcePoint" />
+            <mxPoint x="360" y="1232" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="43" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Enter password to verify identity">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="1254" as="sourcePoint" />
+            <mxPoint x="360" y="1254" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="44" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Camera captures face image (frame)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="1306" as="sourcePoint" />
+            <mxPoint x="360" y="1306" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="45" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="RegisterFaceIDAsync(username, password, rawFaceData)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="1358" as="sourcePoint" />
+            <mxPoint x="580" y="1358" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="46" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="EncryptBytes(normalizedFaceData) [static]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1514" as="sourcePoint" />
+            <mxPoint x="1020" y="1514" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="47" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return string (base64 encrypted)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1020" y="1618" as="sourcePoint" />
+            <mxPoint x="580" y="1618" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="48" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="RegisterFaceIDAsync(userId, encryptedData)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1722" as="sourcePoint" />
+            <mxPoint x="800" y="1722" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="49" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return (void)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="1878" as="sourcePoint" />
+            <mxPoint x="580" y="1878" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="50" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return true (registered successfully)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1982" as="sourcePoint" />
+            <mxPoint x="360" y="1982" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="51" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="(proceed directly to face matching)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="2138" />
+              <mxPoint x="415" y="2168" />
+            </Array>
+            <mxPoint x="360" y="2138" as="sourcePoint" />
+            <mxPoint x="360" y="2168" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="52" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Start VideoCapture (VideoCapture.Read loop)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="2242" />
+              <mxPoint x="415" y="2272" />
+            </Array>
+            <mxPoint x="360" y="2242" as="sourcePoint" />
+            <mxPoint x="360" y="2272" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="53" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="ExtractNormalizedFace(frame) [static]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="2346" as="sourcePoint" />
+            <mxPoint x="1240" y="2346" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="54" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return byte[] (capturedFaceBytes)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="2502" as="sourcePoint" />
+            <mxPoint x="360" y="2502" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="55" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="CompareHistogram(storedFaceBytes, capturedFaceBytes) [static]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="2606" as="sourcePoint" />
+            <mxPoint x="1240" y="2606" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="56" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return double similarity">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240" y="2762" as="sourcePoint" />
+            <mxPoint x="360" y="2762" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="57" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="LoginWithFaceIDAsync(username)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="2918" as="sourcePoint" />
+            <mxPoint x="580" y="2918" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="58" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="GetByUsernameAsync(username)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="3022" as="sourcePoint" />
+            <mxPoint x="800" y="3022" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="59" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return UserDTO (full — all fields)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="3126" as="sourcePoint" />
+            <mxPoint x="580" y="3126" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="60" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="Instance.CurrentUser = UserDTO [singleton]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="3230" as="sourcePoint" />
+            <mxPoint x="1460" y="3230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="61" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;exitX=0.5;exitY=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="LogAsync(userId, &quot;LOGIN_FACEID&quot;,&lt;br/&gt;&quot;User&quot;, userId) [fire-and-forget Task]">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="3386" as="sourcePoint" />
+            <mxPoint x="1680" y="3386" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="62" edge="1" parent="1" style="endArrow=open;endFill=0;html=1;dashed=1;dashPattern=6 3;strokeColor=#000000;strokeWidth=1;fontSize=9;align=center;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=none;" value="return true">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="3542" as="sourcePoint" />
+            <mxPoint x="360" y="3542" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="63" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Stop camera / release VideoCapture">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="3646" />
+              <mxPoint x="415" y="3676" />
+            </Array>
+            <mxPoint x="360" y="3646" as="sourcePoint" />
+            <mxPoint x="360" y="3676" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="64" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="this.Hide()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="3698" />
+              <mxPoint x="415" y="3728" />
+            </Array>
+            <mxPoint x="360" y="3698" as="sourcePoint" />
+            <mxPoint x="360" y="3728" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="65" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="new MainForm().Show()">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="3750" />
+              <mxPoint x="415" y="3780" />
+            </Array>
+            <mxPoint x="360" y="3750" as="sourcePoint" />
+            <mxPoint x="360" y="3780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="66" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;dashed=0;strokeColor=#000000;strokeWidth=1.5;fontSize=9;align=left;labelBackgroundColor=none;labelBorderColor=none;edgeStyle=orthogonalEdgeStyle;" value="Display fallback options:&lt;br/&gt;[1] Retry Face ID&lt;br/&gt;[2] Switch to password login&lt;br/&gt;[3] Update FaceID with new capture (requires password)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="415" y="3958" />
+              <mxPoint x="415" y="3988" />
+            </Array>
+            <mxPoint x="360" y="3958" as="sourcePoint" />
+            <mxPoint x="360" y="3988" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="67" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="AesHelper.DecryptBytes(base64Cipher)&lt;br/&gt;returns byte[] (storedFaceBytes)&lt;br/&gt;null if FaceIDData is null" vertex="1">
+          <mxGeometry height="58" width="190" x="1108" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="68" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="UserBLL.RegisterFaceIDAsync():&lt;br/&gt;1. Verify password via SecurityHelper&lt;br/&gt;2. FaceIdManager.ExtractNormalizedFace(frame)&lt;br/&gt;-&amp;gt; Resize(100x100) -&amp;gt; GaussianBlur -&amp;gt; normalize" vertex="1">
+          <mxGeometry height="72" width="190" x="668" y="1462" as="geometry" />
+        </mxCell>
+        <mxCell id="69" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="SqlHelper: sp_RegisterFaceID&lt;br/&gt;UPDATE Users SET&lt;br/&gt;FaceIDData = @encryptedData,&lt;br/&gt;IsFaceIDRegistered = 1&lt;br/&gt;WHERE UserID = @userId" vertex="1">
+          <mxGeometry height="86" width="190" x="888" y="1826" as="geometry" />
+        </mxCell>
+        <mxCell id="70" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="EmguCV DNN CascadeClassifier detect face ROI&lt;br/&gt;Resize(100x100) -&amp;gt; GaussianBlur -&amp;gt; normalize&lt;br/&gt;Returns byte[] (normalized face), or null if no face" vertex="1">
+          <mxGeometry height="58" width="190" x="1328" y="2450" as="geometry" />
+        </mxCell>
+        <mxCell id="71" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=10;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=8;align=left;spacingLeft=8;spacingTop=4;verticalAlign=top;" value="2x2 Grid Histogram Correlation (Bhattacharyya distance)&lt;br/&gt;Returns double similarity score: 0.0 -&amp;gt; 1.0&lt;br/&gt;BBOX_PADDING = 0.15 (bounding box expansion)" vertex="1">
+          <mxGeometry height="58" width="190" x="1328" y="2710" as="geometry" />
+        </mxCell>
+        <mxCell id="72" parent="1" style="shape=mxgraph.uml.actor2;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=10;fontStyle=0;" value="User" vertex="1">
+          <mxGeometry height="70" width="40" x="62" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="73" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«boundary»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;Login&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="280" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="74" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«control»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;UserBLL&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="500" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="75" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;UserRepository&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="720" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="76" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«static»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;AesHelper&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="940" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="77" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«static»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;FaceIdManager&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="1160" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="78" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«singleton»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;AppState&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="1380" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="79" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;strokeWidth=1;fontSize=10;fontStyle=0;verticalAlign=middle;align=center;" value="&lt;font style=&quot;font-size:8px&quot;&gt;&lt;i&gt;«entity»&lt;/i&gt;&lt;/font&gt;&lt;br/&gt;&lt;b&gt;SystemAuditHelper&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="160" x="1600" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="80" parent="1" style="text;html=1;align=center;strokeColor=none;fillColor=none;fontSize=12;fontStyle=1;" value="Sequence 4.2 — Login (Face ID)" vertex="1">
+          <mxGeometry height="20" width="1760" x="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

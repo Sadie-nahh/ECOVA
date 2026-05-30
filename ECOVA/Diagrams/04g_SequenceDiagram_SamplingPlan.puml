@@ -1,0 +1,134 @@
+@startuml 04g_SequenceDiagram_SamplingPlan
+title Sequence 4.7 — Sampling Plan Setup
+skinparam defaultTextAlignment left
+skinparam SequenceArrowThickness 1
+skinparam SequenceBoxBorderColor #000000
+skinparam SequenceLifeLineBorderColor #000000
+skinparam SequenceParticipantBackgroundColor #FFFFFF
+skinparam SequenceParticipantBorderColor #000000
+skinparam NoteBackgroundColor #FFFDE7
+skinparam NoteBorderColor #AAAAAA
+skinparam FontName Arial
+skinparam FontSize 10
+skinparam SequenceGroupBorderColor #555555
+skinparam SequenceGroupBackgroundColor #F5F5F5
+
+' ── Lifelines (6) — plan: Planning Officer, SampleConfigUC,
+'    PlanningService, OrderRepository, SamplingPlanRepository, SqlHelper
+actor       "Planning Officer"        as PlO
+participant ":SampleConfigUC"         as UC         <<boundary>>
+participant ":PlanningService"        as PlSvc      <<control>>
+participant ":OrderRepository"        as OrderRepo  <<entity>>
+participant ":SamplingPlanRepository" as PlanRepo   <<entity>>
+participant ":SqlHelper"              as SqlHelper  <<entity>>
+
+' ── Step 1: Load contract list ──────────────────────────────────
+PlO -> UC : Open Planning module
+activate UC
+
+UC -> PlSvc : GetContractListAsync()
+activate PlSvc
+note right of PlSvc
+  PlanningService.GetContractListAsync()
+  -> IContractRepository.GetActiveContractsAsync()
+  Returns List<ContractDisplayDTO>
+  (for dropdown binding)
+end note
+PlSvc --> UC : return List<ContractDisplayDTO>
+deactivate PlSvc
+
+UC -> UC : Populate contract dropdown
+
+' ── Step 2: Select contract → load existing orders ───────────────
+PlO -> UC : Select contract from dropdown (contractId)
+
+UC -> PlSvc : GetOrdersByContractAsync(contractId)
+activate PlSvc
+  PlSvc -> OrderRepo : GetOrdersByContractIdAsync(contractId)
+  activate OrderRepo
+    OrderRepo -> SqlHelper : QueryAsync<OrderDTO>(\n"sp_GetOrdersByContract", {contractId})
+    activate SqlHelper
+    SqlHelper --> OrderRepo : return List<OrderDTO>
+    deactivate SqlHelper
+  OrderRepo --> PlSvc : return List<OrderDTO>
+  deactivate OrderRepo
+PlSvc --> UC : return List<OrderDTO>
+deactivate PlSvc
+
+UC -> UC : Display order sections grouped by EnvironmentType\n(Air / Wastewater / Soil)
+
+' ── Step 3: Create new sampling area (Order) ─────────────────────
+PlO -> UC : Click "Add Area", enter area name,\nselect environment type (e.g. "Air")
+
+UC -> PlSvc : CreateSamplingAreaAsync(\ncontractId, areaName, environmentType)
+activate PlSvc
+  PlSvc -> OrderRepo : AddOrderAsync(orderDTO)
+  activate OrderRepo
+    OrderRepo -> SqlHelper : ExecuteNonQueryAsync(\n"sp_AddOrder",\n{orderId, contractId, orderName,\nenvironmentType, orderDate,\ndeadline, createdBy, status=0})
+    activate SqlHelper
+    SqlHelper --> OrderRepo : return (void)
+    deactivate SqlHelper
+  OrderRepo --> PlSvc : return (void)
+  deactivate OrderRepo
+PlSvc --> UC : return OrderDTO (newly created order)
+deactivate PlSvc
+
+UC -> UC : Append new area section to UI grid
+
+' ── Step 4: Configure sample locations ───────────────────────────
+PlO -> UC : Click "Configure Sample Locations" for the order
+
+UC -> PlSvc : GetSamplesByOrderAsync(orderId)
+activate PlSvc
+  note right of PlSvc
+    PlanningService.GetSamplesByOrderAsync(orderId)
+    -> ISampleRepository.GetByOrderIdAsync(orderId)
+    (SampleRepository, not OrderRepository)
+    -> SqlHelper: sp_GetSamplesByOrder
+    Returns List<SampleDTO>
+  end note
+PlSvc --> UC : return List<SampleDTO>
+deactivate PlSvc
+
+opt [No samples yet — add sample locations]
+    PlO -> UC : Add sampling locations\n(Barcode, SamplingLocation, SamplerID, RegulationID)
+    UC -> PlSvc : ConfigureSampleLocationsAsync(\norderId, List<SampleDTO>)
+    activate PlSvc
+    note right of PlSvc
+      For each SampleDTO:
+        SampleRepository.AddSampleAsync(sampleDto)
+        -> SqlHelper: sp_AddSample
+    end note
+    PlSvc --> UC : return (void)
+    deactivate PlSvc
+end
+
+' ── Step 5: Configure parameters and save plan ───────────────────
+PlO -> UC : Select parameters for each sample location,\nset QCVN limits and departments, click "Save Plan"
+
+UC -> PlSvc : SaveSamplingPlanAsync(\norderId, List<SampleParameterPlanDTO>)
+activate PlSvc
+  PlSvc -> PlanRepo : SaveSamplingPlanAsync(\norderId, planItems)
+  activate PlanRepo
+    PlanRepo -> SqlHelper : ExecuteNonQueryAsync(\n"sp_SaveSamplingPlan",\n{orderId, paramId, department,\nqcvnLimit, regulationId})\n[called per item or bulk]
+    activate SqlHelper
+    note right of SqlHelper
+      sp_SaveSamplingPlan:
+        MERGE INTO SamplingPlanItems
+        USING (values) AS src
+        ON PlanItemID match
+        WHEN MATCHED -> UPDATE
+        WHEN NOT MATCHED -> INSERT
+    end note
+    SqlHelper --> PlanRepo : return (void)
+    deactivate SqlHelper
+  PlanRepo --> PlSvc : return (void)
+  deactivate PlanRepo
+PlSvc --> UC : return (void — success)
+deactivate PlSvc
+
+UC -> UC : Display "Sampling plan saved successfully"
+
+deactivate UC
+
+@enduml

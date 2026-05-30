@@ -1,0 +1,261 @@
+@startuml 02b_ClassDiagram_DAL
+' ============================================================
+'  ECOVA -- Class Diagram 2.2: DAL Layer
+'  10 interface + 10 implementation + 3 no-interface repos
+'  + SqlHelper + DbConnectionFactory + SystemAuditHelper
+'  Quan he:
+'    (<|..) Realization: Repository implements IRepository
+'    (-->) Dependency: Repository --> SqlHelper
+'    (-->) Dependency: SqlHelper --> DbConnectionFactory
+'  Nguon goc: implementation_plan.md lines 336-395
+' ============================================================
+
+skinparam linetype ortho
+skinparam ranksep 60
+skinparam nodesep 40
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 10
+
+skinparam class {
+    BackgroundColor          #FFFFFF
+    BorderColor              #000000
+    BorderThickness          1.5
+    FontColor                #000000
+    FontStyle                bold
+    FontSize                 11
+    AttributeFontColor       #000000
+    AttributeFontSize        10
+    HeaderBackgroundColor    #000000
+    HeaderFontColor          #FFFFFF
+    ArrowColor               #000000
+    ArrowFontColor           #000000
+    ArrowFontSize            9
+}
+
+hide circle
+hide stereotypes
+
+' ============================================================
+' INFRASTRUCTURE: SqlHelper + DbConnectionFactory
+' ============================================================
+
+class "SqlHelper" as SqlHelper {
+    - _connectionString : string
+    --
+    + QueryAsync<T>(sql, param) : Task<IEnumerable<T>>
+    + QuerySingleOrDefaultAsync<T>(sql, param) : Task<T?>
+    + ExecuteNonQueryAsync(sql, param) : Task
+    + ExecuteSpAsync(sp, param) : Task
+    + QuerySpAsync<T>(sp, param) : Task<IEnumerable<T>>
+    + ExecuteInTransactionAsync(action) : Task
+}
+
+class "DbConnectionFactory" as DbConnectionFactory {
+    --
+    + GetConnectionString() : string
+}
+
+SqlHelper --> DbConnectionFactory : "uses"
+
+' ============================================================
+' INTERFACES (10)
+' ============================================================
+
+interface "IUserRepository" as IUserRepository {
+    + GetByUsernameAsync(username) : Task<UserDTO>
+    + GetByUserIdAsync(userId) : Task<UserDTO?>
+    + GetByEmailAsync(email) : Task<UserDTO?>
+    + GetPasswordHashByUsernameAsync(username) : Task<string>
+    + UpdateFaceIDDataAsync(userId, faceData) : Task
+    + UpdateAvatarDataAsync(userId, data) : Task
+    + SetFaceIDRegisteredAsync(userId, registered) : Task
+    + RegisterFaceIDAsync(userId, faceData) : Task
+    + UpdatePasswordAsync(username, hash) : Task
+    + UpdatePasswordByEmailAsync(email, hash) : Task
+    + UpdateProfileAsync(user) : Task
+}
+
+interface "IContractRepository" as IContractRepository {
+    + GetAllContractsAsync() : Task<List<ContractDto>>
+    + GetContractCardsAsync() : Task<List<ContractCardDTO>>
+    + SearchContractCardsAsync(keyword) : Task<List<ContractCardDTO>>
+    + GetContractCardByIdAsync(id) : Task<ContractCardDTO?>
+    + CreateContractAsync(request) : Task
+    + UpdateContractAsync(contract) : Task
+    + GetContractNotificationsAsync() : Task<List<ContractNotificationDTO>>
+    + GetContractDisplayListAsync() : Task<List<ContractDisplayDTO>>
+}
+
+interface "ICustomerRepository" as ICustomerRepository {
+    + GetAllCustomersAsync() : Task<List<CustomerDto>>
+    + AddCustomerAsync(customer) : Task
+    + UpdateCustomerAsync(customer) : Task
+    + CheckTaxCodeExistsAsync(taxCode) : Task<bool>
+    + GetCustomerByIdAsync(id) : Task<CustomerDto?>
+}
+
+interface "IEmployeeRepository" as IEmployeeRepository {
+    + AddEmployeeAsync(user) : Task<string>
+    + UpdateEmployeeAsync(user) : Task
+    + ToggleActiveAsync(userId, isActive) : Task
+    + DeleteEmployeeAsync(id) : Task
+    + GetEmployeeByIdAsync(id) : Task<UserDTO?>
+    + GetAllEmployeesAsync() : Task<List<UserDTO>>
+    + SearchEmployeesAsync(keyword) : Task<List<UserDTO>>
+    + GenerateNewEmployeeDataAsync(roleId) : Task<(string,string,string)>
+}
+
+interface "IOrderRepository" as IOrderRepository {
+    + GetOrdersByContractAsync(contractId) : Task<List<OrderDTO>>
+    + CreateOrderAsync(order) : Task<OrderDTO>
+    + DeleteOrderAsync(orderId) : Task
+    + ApproveOrderAsync(orderId, userId) : Task
+    + RejectOrderAsync(orderId, userId, reason) : Task
+    + IsApprovedAsync(orderId) : Task<bool>
+}
+
+interface "ISampleRepository" as ISampleRepository {
+    + ConfigureSampleLocationsAsync(orderId, samples) : Task
+    + CancelSampleAsync(sampleId) : Task
+    + GetSamplesByOrderAsync(orderId) : Task<List<SampleDTO>>
+}
+
+interface "ITestResultRepository" as ITestResultRepository {
+    + SaveTestResultAsync(resultId, sampleId, paramId, value, testerId) : Task<TestResultDTO?>
+    + DeleteTestResultAsync(resultId) : Task
+    + GetTestResultByIdAsync(resultId) : Task<TestResultDTO?>
+    + GetTestResultsBySampleIdAsync(sampleId) : Task<List<TestResultDTO>>
+}
+
+interface "IAuditLogRepository" as IAuditLogRepository {
+    + GetResultHistoryAsync(resultId) : Task<List<AuditLogDTO>>
+}
+
+interface "ISamplingPlanRepository" as ISamplingPlanRepository {
+    + SaveSamplingPlanAsync(orderId, items) : Task
+    + GetParametersByOrderAsync(orderId) : Task<List<SampleParameterPlanDTO>>
+}
+
+interface "IStandardParameterRepository" as IStandardParameterRepository {
+    + GetParametersForPlanAsync(envType) : Task<List<SampleParameterPlanDTO>>
+    + GetTestParametersByIdsAsync(ids) : Task<List<TestParameterDTO>>
+}
+
+' ============================================================
+' IMPLEMENTATIONS (10 co interface)
+' ============================================================
+
+class "UserRepository" as UserRepository {
+    - _sqlHelper : SqlHelper
+    --
+    + (implements IUserRepository)
+}
+
+class "ContractRepository" as ContractRepository {
+    - _sqlHelper : SqlHelper
+    --
+    + (implements IContractRepository)
+}
+
+class "CustomerRepository" as CustomerRepository {
+    - _sqlHelper : SqlHelper
+    --
+    + (implements ICustomerRepository)
+}
+
+class "EmployeeRepository" as EmployeeRepository {
+    - _sqlHelper : SqlHelper
+    --
+    + (implements IEmployeeRepository)
+}
+
+class "OrderRepository" as OrderRepository {
+    - _sqlHelper : SqlHelper
+    --
+    + (implements IOrderRepository)
+}
+
+class "SampleRepository" as SampleRepository {
+    - _sqlHelper : SqlHelper
+    --
+    + (implements ISampleRepository)
+}
+
+class "TestResultRepository" as TestResultRepository {
+    - _sqlHelper : SqlHelper
+    --
+    + (implements ITestResultRepository)
+}
+
+class "AuditLogRepository" as AuditLogRepository {
+    - _sqlHelper : SqlHelper
+    --
+    + (implements IAuditLogRepository)
+}
+
+class "SamplingPlanRepository" as SamplingPlanRepository {
+    - _sqlHelper : SqlHelper
+    --
+    + (implements ISamplingPlanRepository)
+}
+
+class "StandardParameterRepository" as StandardParameterRepository {
+    - _sqlHelper : SqlHelper
+    --
+    + (implements IStandardParameterRepository)
+}
+
+' ============================================================
+' REPOS KHONG CO INTERFACE (3 -- plan lines 391-394)
+' ============================================================
+
+class "TestingResultRepository" as TestingResultRepository {
+    - _sqlHelper : SqlHelper
+    --
+    + GetResultsByOrderAsync(orderId) : Task
+    + GetResultsForDirectorAsync(orderId) : Task
+}
+
+class "ResultAuditLogRepository" as ResultAuditLogRepository {
+    - _sqlHelper : SqlHelper
+    --
+    + GetResultHistoryAsync(resultId) : Task
+}
+
+class "SystemAuditHelper" as SystemAuditHelper {
+    - _sqlHelper : SqlHelper
+    --
+    + LogAsync(userId, action, entity, id, detail) : Task
+}
+
+' ============================================================
+' QUAN HE
+' ============================================================
+
+IUserRepository               <|.. UserRepository
+IContractRepository           <|.. ContractRepository
+ICustomerRepository           <|.. CustomerRepository
+IEmployeeRepository           <|.. EmployeeRepository
+IOrderRepository              <|.. OrderRepository
+ISampleRepository             <|.. SampleRepository
+ITestResultRepository         <|.. TestResultRepository
+IAuditLogRepository           <|.. AuditLogRepository
+ISamplingPlanRepository       <|.. SamplingPlanRepository
+IStandardParameterRepository  <|.. StandardParameterRepository
+
+UserRepository               --> SqlHelper
+ContractRepository           --> SqlHelper
+CustomerRepository           --> SqlHelper
+EmployeeRepository           --> SqlHelper
+OrderRepository              --> SqlHelper
+SampleRepository             --> SqlHelper
+TestResultRepository         --> SqlHelper
+AuditLogRepository           --> SqlHelper
+SamplingPlanRepository       --> SqlHelper
+StandardParameterRepository  --> SqlHelper
+TestingResultRepository      --> SqlHelper
+ResultAuditLogRepository     --> SqlHelper
+SystemAuditHelper            --> SqlHelper
+
+@enduml

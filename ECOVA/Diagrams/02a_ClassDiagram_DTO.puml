@@ -1,0 +1,167 @@
+@startuml 02a_ClassDiagram_DTO
+' ============================================================
+'  ECOVA -- Class Diagram 2.1: DTO Layer
+'  26 classes  (pure data carriers -- khong co methods)
+'    - 8 DTO chinh (chi tiet day du properties theo code)
+'    - 18 DTO phu  (gon -- chi ten, per plan line 328)
+'  Quan he: CreateContractRequest (Aggregation)-> ContractDto
+'  Nguon goc: implementation_plan.md lines 260-333
+' ============================================================
+
+skinparam linetype ortho
+skinparam ranksep 50
+skinparam nodesep 40
+skinparam shadowing false
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 10
+
+skinparam class {
+    BackgroundColor          #FFFFFF
+    BorderColor              #000000
+    BorderThickness          1.5
+    FontColor                #000000
+    FontStyle                bold
+    FontSize                 11
+    AttributeFontColor       #000000
+    AttributeFontSize        10
+    HeaderBackgroundColor    #000000
+    HeaderFontColor          #FFFFFF
+    ArrowColor               #000000
+}
+
+hide methods
+hide circle
+hide stereotypes
+
+' ==============================================================
+' DTO CHINH (8 classes -- day du properties)
+' ==============================================================
+
+class "UserDTO" as UserDTO <<DTO>> {
+    + UserID              : string
+    + Username            : string
+    + PasswordHash        : string
+    + FullName            : string
+    + Email               : string
+    + AvatarData          : byte[]
+    + FaceIDData          : byte[]
+    + IsFaceIDRegistered  : bool
+    + RoleID              : string
+    + IsActive            : bool
+    + CreatedDate         : DateTime
+    + Address             : string
+    + Phone               : string
+    + DateOfBirth         : DateTime?
+    + Department          : string
+    + EmployeeCode        : string
+}
+
+class "ContractDto" as ContractDto <<DTO>> {
+    + ContractId          : string
+    + CustomerId          : string
+    + SignedDate          : DateTime
+    + ValidFrom           : DateTime
+    + ValidTo             : DateTime
+    + ContractFilePath    : string
+    + Status              : int
+    + CreatedBy           : string
+    + TotalContractValue  : decimal?
+    + IndustryType        : string
+    + RenewalLabel        : int?
+}
+
+class "CustomerDto" as CustomerDto <<DTO>> {
+    + CustomerId          : string
+    + TaxCode             : string
+    + CompanyName         : string
+    + Address             : string
+    + Representative      : string
+    + ContactEmail        : string
+    + PhoneNumber         : string
+}
+
+class "OrderDTO" as OrderDTO <<DTO>> {
+    + OrderID             : string
+    + ContractID          : string
+    + OrderName           : string
+    + OrderDate           : DateTime?
+    + Deadline            : DateTime?
+    + FinalReportPath     : string
+    + IsApproved          : int?
+    + Status              : int?
+    + CreatedBy           : string
+    + EnvironmentType     : string
+}
+
+class "SampleDTO" as SampleDTO <<DTO>> {
+    + SampleID            : string
+    + OrderID             : string
+    + RegulationID        : string
+    + Barcode             : string
+    + SamplingLocation    : string
+    + SamplingTime        : DateTime?
+    + FieldTemperature    : double?
+    + FieldHumidity       : double?
+    + WeatherCondition    : string
+    + FieldImage          : string
+    + IsWarning           : bool
+    + SamplerID           : string
+    + Status              : int?
+}
+
+class "TestResultDTO" as TestResultDTO <<DTO>> {
+    + ResultID            : string
+    + SampleID            : string
+    + ParamID             : string
+    + ResultValue         : double
+    + IsWarning           : bool
+    + TesterID            : string
+    + EnteredAt           : DateTime
+}
+
+class "AiPredictionResponse" as AiPredictionResponse <<Response>> {
+    + CustomerID               : string
+    + CompanyName              : string
+    + RenewalProbabilityScore  : double
+    + IsPollutionWarning       : bool
+    + PredictionDetails        : string
+}
+
+class "CreateContractRequest" as CreateContractRequest <<Request>> {
+    + Contract        : ContractDto
+    + SourcePdfPath   : string
+}
+
+' ==============================================================
+' DTO PHU (18 classes -- gon, chi ten, per plan line 328)
+' Khong liet ke props de giu diagram gon gang
+' ==============================================================
+
+class "AuditLogDTO"               as AuditLogDTO               <<DTO>>
+class "ContractCardDTO"           as ContractCardDTO           <<DTO>>
+class "ContractDisplayDTO"        as ContractDisplayDTO        <<DTO>>
+class "ContractNotificationDTO"   as ContractNotificationDTO   <<DTO>>
+class "CustomerFeedbackDTO"       as CustomerFeedbackDTO       <<DTO>>
+class "EmailQueueDTO"             as EmailQueueDTO             <<DTO>>
+class "EmployeeDTO"               as EmployeeDTO               <<DTO>>
+class "NotificationDTO"           as NotificationDTO           <<DTO>>
+class "QcvnParameterDTO"          as QcvnParameterDTO          <<DTO>>
+class "RegulationDTO"             as RegulationDTO             <<DTO>>
+class "RegulationLimitDTO"        as RegulationLimitDTO        <<DTO>>
+class "RoleDTO"                   as RoleDTO                   <<DTO>>
+class "SampleEnvironmentDTO"      as SampleEnvironmentDTO      <<DTO>>
+class "SampleLocationDTO"         as SampleLocationDTO         <<DTO>>
+class "SampleParameterPlanDTO"    as SampleParameterPlanDTO    <<DTO>>
+class "TestParameterDTO"          as TestParameterDTO          <<DTO>>
+class "ContractDashboardResponse" as ContractDashboardResponse <<Response>>
+class "UpdateResultRequest"       as UpdateResultRequest       <<Request>>
+
+' ==============================================================
+' QUAN HE
+'   CreateContractRequest (o--) aggregates ContractDto
+'   per plan line 331: "Contract : ContractDto" field
+' ==============================================================
+
+CreateContractRequest o-- "1" ContractDto : "Contract"
+
+@enduml

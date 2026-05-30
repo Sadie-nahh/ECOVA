@@ -1,0 +1,109 @@
+@startuml 04e_SequenceDiagram_ExportPDF
+title Sequence 4.5 — Approve Order & Export PDF Report
+skinparam defaultTextAlignment left
+skinparam SequenceArrowThickness 1
+skinparam SequenceBoxBorderColor #000000
+skinparam SequenceLifeLineBorderColor #000000
+skinparam SequenceParticipantBackgroundColor #FFFFFF
+skinparam SequenceParticipantBorderColor #000000
+skinparam NoteBackgroundColor #FFFDE7
+skinparam NoteBorderColor #AAAAAA
+skinparam FontName Arial
+skinparam FontSize 10
+skinparam SequenceGroupBorderColor #555555
+skinparam SequenceGroupBackgroundColor #F5F5F5
+
+' ── Lifelines (5+1) — plan: QA Officer, DirectorApprovalUC,
+'    ExportService, PdfExportHelper, FileSystem
+' (ApprovalService + OrderRepository added to show full call chain)
+actor       "QA Officer"          as QA
+participant ":DirectorApprovalUC" as UC          <<boundary>>
+participant ":ApprovalService"    as AppSvc      <<control>>
+participant ":OrderRepository"    as OrderRepo   <<entity>>
+participant ":SqlHelper"          as SqlHelper   <<entity>>
+participant ":ExportService"      as ExportSvc   <<control>>
+participant ":PdfExportHelper"    as PdfHelper   <<static>>
+participant "File System"         as FS          <<entity>>
+
+' ── Step 1: QA approves the monitoring order ─────────────────────
+QA -> UC : Select completed order, click "Approve"
+activate UC
+
+UC -> AppSvc : ApproveOrderAsync(orderId, userId)
+activate AppSvc
+  AppSvc -> OrderRepo : ApproveOrderAsync(orderId)
+  activate OrderRepo
+    OrderRepo -> SqlHelper : ExecuteNonQueryAsync(\n"sp_ApproveOrder", {orderId})
+    activate SqlHelper
+    note right of SqlHelper
+      sp_ApproveOrder:
+      UPDATE Orders
+      SET IsApproved = 1,
+          UpdatedAt = SYSDATETIME()
+      WHERE OrderID = @orderId
+    end note
+    SqlHelper --> OrderRepo : return (void)
+    deactivate SqlHelper
+  OrderRepo --> AppSvc : return (void)
+  deactivate OrderRepo
+AppSvc --> UC : return (void — approved)
+deactivate AppSvc
+
+' ── Step 2: QA requests PDF export ──────────────────────────────
+QA -> UC : Click "Export Report"
+
+UC -> ExportSvc : ExportStructuredPdfAsync(\norderId, customerName, customerAddress,\nenvironmentType, List<samplingAreas>,\nList<resultRows>, outputDirectory,\norderDate, deadline)
+activate ExportSvc
+
+  ExportSvc -> PdfHelper : GenerateStructuredPdf(\ndata, outputPath) [static]
+  activate PdfHelper
+  note right of PdfHelper
+    Uses iTextSharp library.
+    outputPath = Path.Combine(outputDirectory,
+      $"{orderId}.pdf")
+  end note
+
+    PdfHelper -> PdfHelper : CreateFont(Arial, BaseFont.IDENTITY_H)
+    PdfHelper -> PdfHelper : CreateDocument(PageSize.A4, margins)
+    PdfHelper -> PdfHelper : AddHeader(\n"CONG TY CO PHAN TAP DOAN FEC")
+    note right of PdfHelper
+      Exact header text from implementation:
+      "CONG TY CO PHAN TAP DOAN FEC"
+      (not "ECOVA ENVIRONMENTAL MONITORING")
+    end note
+    PdfHelper -> PdfHelper : AddSubHeader(\n"ENVIRONMENTAL MONITORING REPORT")
+    PdfHelper -> PdfHelper : AddInfoTable(\ncustomerName, customerAddress,\norderDate, deadline, environmentType)
+    PdfHelper -> PdfHelper : AddResultsTable(\nparameters, K1values, K2values,\nQCVNLimits, IsWarning[] flags)
+    note right of PdfHelper
+      Rows where IsWarning = true:
+      cell background highlighted.
+      QCVN column shows limit value.
+    end note
+    PdfHelper -> PdfHelper : AddWatermark(icon.png, opacity=0.15f)
+    PdfHelper -> PdfHelper : AddFooter(\ncompanyLogo + "Ecova" + pageNumber)
+
+    PdfHelper -> FS : doc.Close() — write PDF to outputPath
+    activate FS
+    FS --> PdfHelper : return (file written)
+    deactivate FS
+
+  PdfHelper --> ExportSvc : return filePath (string)
+  deactivate PdfHelper
+
+ExportSvc --> UC : return filePath
+deactivate ExportSvc
+
+' ── Step 3: ExportService saves FinalReportPath and opens PDF ───────
+note right of ExportSvc
+  ExportStructuredPdfAsync() also calls:
+  OrderRepository.UpdateFinalReportPathAsync(orderId, filePath)
+  -> SqlHelper.ExecuteNonQueryAsync(
+       "sp_UpdateFinalReportPath", {orderId, filePath})
+  This saves FinalReportPath in the Orders table.
+end note
+
+UC -> UC : Process.Start(filePath)\n(open PDF in system default viewer)
+
+deactivate UC
+
+@enduml

@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <!-- Tắt kiểm tra lỗ hổng NuGet khi không có kết nối internet -->
+    <NuGetAudit>false</NuGetAudit>
+  </PropertyGroup>
+</Project>

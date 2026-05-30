@@ -1,0 +1,148 @@
+@startuml Object_6_3_OTP_ChoXacNhan
+title Object Diagram 6.3 — OTP Pending Confirmation (Forgot Password Flow)\nRef: Sequence 4.6 Forgot-Password — Login.ForgotPassword.cs\nRef: State 5.6 AppState Session = NotAuthenticated
+
+skinparam monochrome true
+skinparam style strictuml
+skinparam shadowing false
+skinparam backgroundColor White
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 11
+skinparam object {
+    BackgroundColor White
+    BorderColor     Black
+    FontName        "Arial"
+    FontSize        11
+    ArrowColor      Black
+    HeaderBackgroundColor White
+    HeaderBorderColor     Black
+    AttributeFontSize     10
+}
+skinparam note {
+    BackgroundColor White
+    BorderColor     Black
+    FontName        "Arial"
+    FontSize        9
+}
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 1  loginForm : Login
+'   Partial class (Login.cs + Login.FaceID.cs + Login.ForgotPassword.cs)
+'   Snapshot at Step 2 — user received OTP email, entering code
+'   OTP is implemented INLINE — AuthService is NOT used
+'   Private fields verified from Login.ForgotPassword.cs
+'   Class: EnvContract.GUI.Forms.Login
+' ─────────────────────────────────────────────────────────
+object "<u>loginForm : Login</u>" as loginForm {
+    _forgotStep       = 2
+    _sentOtp          = "847291"
+    _remainingSeconds = 245
+    _userBLL          = "IUserBLL (DI injected)"
+}
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 2  currentSession : AppState
+'   Singleton — AppState.Instance
+'   State 5.6 = NotAuthenticated
+'   CurrentUser = null: user has NOT logged in
+'   Forgot-password flow does NOT require prior login
+'   Class: EnvContract.Common.AppState
+' ─────────────────────────────────────────────────────────
+object "<u>currentSession : AppState</u>" as appState {
+    CurrentUser = null
+    IsLoggedIn  = false
+}
+
+' ─────────────────────────────────────────────────────────
+' INSTANCE 3  targetUser : UserDTO
+'   Source: seed U03 — tuyethan (the account being reset)
+'   Loaded in memory by: UserBLL.CheckEmailExistsAsync(email)
+'     => UserRepository.GetByEmailAsync("tuyethantt1@gmail.com")
+'   NOT set into AppState.CurrentUser at this snapshot
+'   PasswordHash will be updated after OTP confirmation
+'   DTO class: EnvContract.DTO.Entities.UserDTO
+' ─────────────────────────────────────────────────────────
+object "<u>targetUser : UserDTO</u>" as targetUser {
+    UserID       = "U03"
+    EmployeeCode = "EMP003"
+    Username     = "tuyethan"
+    FullName     = "Ho Thi Tuyet Han"
+    Email        = "tuyethantt1@gmail.com"
+    RoleID       = "R03"
+    IsActive     = true
+    PasswordHash = "bcrypt(rounds=11, seed value)"
+}
+
+' ─────────────────────────────────────────────────────────
+' LINKS — instance-level associations
+' ─────────────────────────────────────────────────────────
+loginForm --  appState   : "checks IsLoggedIn = false"
+loginForm --  targetUser : "reset target\n(CheckEmailExistsAsync)"
+
+' ─────────────────────────────────────────────────────────
+' NOTES
+' ─────────────────────────────────────────────────────────
+note right of loginForm
+  Login.ForgotPassword.cs — OTP implemented INLINE
+  AuthService is NOT used (verified from source code)
+  ..
+  STEP 1 (completed):
+  1. _userBLL.CheckEmailExistsAsync(email) -> true
+  2. RandomNumberGenerator.GetInt32(100000,1000000) -> 847291
+  3. _sentOtp = "847291"
+  4. EmailSmtpHelper.SendEmailAsync(
+       to   : "tuyethantt1@gmail.com",
+       subj : "ECOVA - Ma OTP",
+       body : BuildOtpEmailBody("847291")) -> true
+  5. timer.Start() — countdown 5 minutes (300 seconds)
+  6. _forgotStep = 2  [show OTP input panel]
+  ..
+  CURRENT SNAPSHOT (Step 2):
+  _remainingSeconds = 245  (~4 min 5 sec remaining)
+  Waiting: txtForgotOtp.Text.Trim() == _sentOtp ?
+  UI: txtForgotOtp enabled, btnVerifyOtp visible
+  ..
+  STEP 3 (not yet reached):
+  If OTP correct => _forgotStep = 3 [new password panel]
+  _userBLL.ResetPasswordByEmailAsync(email, newPassword)
+    => SecurityHelper.HashPassword(newPassword) => newHash
+    => UserRepository.UpdatePasswordByEmailAsync(email, newHash)
+  MessageBox "Password reset successfully"
+  => Return to login panel
+end note
+
+note right of appState
+  [State 5.6 - NotAuthenticated]
+  AppState.IsLoggedIn = false
+  AppState.CurrentUser = null
+  ..
+  Forgot-password requires only a registered email,
+  no prior login is needed to enter this flow.
+  ..
+  After successful reset and re-login:
+    UserBLL.LoginAsync("tuyethan", newPassword) -> true
+    AppState transitions to State 5.6 = Authenticated
+    AppState.CurrentUser <= UserDTO(U03)
+end note
+
+note right of targetUser
+  Exists only in memory (local variable)
+  NOT AppState.CurrentUser at this snapshot.
+  ..
+  Loaded by:
+    UserBLL.CheckEmailExistsAsync()
+    => UserRepository.GetByEmailAsync(email)
+    => sp_GetUserByEmail
+    => SELECT * FROM Users WHERE Email = email
+  ..
+  Seed PasswordHash:
+    BCrypt hash, rounds=11
+    (all seed users share the same test hash)
+  ..
+  After Step 3 completes:
+    UserRepository.UpdatePasswordByEmailAsync(email, newHash)
+    => UPDATE Users SET PasswordHash = newHash
+       WHERE Email = email
+    DB PasswordHash updated with new BCrypt hash
+end note
+
+@enduml
